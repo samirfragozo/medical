@@ -16,15 +16,6 @@ class Base extends Model
      */
     protected $guarded = [];
 
-    /**
-     * The mutated attributes that should be added for arrays.
-     *
-     * @var array
-     */
-    protected $appends = [
-        'full_name',
-    ];
-
     // Methods
 
     /**

@@ -80,4 +80,16 @@ class Patient extends Base
 
         return array_merge($layout);
     }
+
+    // Relationships
+
+    /**
+     * Person relationship
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function person()
+    {
+        return $this->belongsTo(Person::class);
+    }
 }

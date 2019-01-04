@@ -1,5 +1,5 @@
 columnsDataTable = [
-    {data: 'name'},
+    {data: 'id'},
 ];
 
 /**

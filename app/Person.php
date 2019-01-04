@@ -110,4 +110,16 @@ class Person extends Model
     {
         return $this->layout;
     }
+
+    // Relationships
+
+    /**
+     * Patient relationship
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function patient()
+    {
+        return $this->hasOne(Patient::class);
+    }
 }
