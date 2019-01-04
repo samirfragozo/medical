@@ -65,7 +65,34 @@
         <div class="form-group {{$size ?? 'col-12'}}">
             @php($text = $field['text'] ?? __($route . $field['name']))
             {{Form::label($field['name'] . '_' . $suffix, $text)}}
-            @if($field['type'] == 'select')
+            @if($field['type'] == 'checkbox')
+                <div class="m-checkbox-list">
+                    @foreach($field['value'] as $value)
+                        <label class="m-checkbox m-checkbox--solid m-checkbox--brand">
+                            {{Form::checkbox($value, 1, false, ['id' => $value . '_' . $suffix])}}{{__($route . '.' . $value)}}<span></span>
+                        </label>
+                    @endforeach
+                </div>
+            @elseif($field['type'] == 'date')
+                @if(isset($field['format']))
+                    @php($format = $field['format'])
+                @else
+                    @php($format = 'datepicker')
+                @endif
+                {{Form::text($field['name'], null, [
+                    'id' => $field['name'] . '_' . $suffix,
+                    'class' => 'form-control ' . $format,
+                    'data-provide' => 'datepicker',
+                    'style' => 'width: 100%',
+                    'autocomplete' => 'off'
+                ])}}
+            @elseif($field['type'] == 'file')
+                {{Form::file($field['name'], [
+                    'id' => $field['name'] . '_' . $suffix,
+                    'class' => 'form-control',
+                    'accept' => $field['accept'] ?? '.pdf'
+                ])}}
+            @elseif($field['type'] == 'select')
                 {{Form::select($field['name'], __($field['value']), null, [
                     'id' => $field['name'] . '_' . $suffix,
                     'class' => 'form-control m-bootstrap-select m_selectpicker',
