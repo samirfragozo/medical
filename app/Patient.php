@@ -23,91 +23,26 @@ class Patient extends Base
         'form' => [
             [
                 'type' => 'section',
-                'value' => 'app.sections.personal_information',
-            ],
-            [
-                'default' => '/img/people/default.jpg',
-                'name' => 'picture',
-                'type' => 'picture',
-            ],
-            [
-                'name' => 'document_type',
-                'only-view' => true,
-                'type' => 'select',
-                'value' => 'app.selects.person.document_type',
-            ],
-            [
-                'name' => 'document',
-                'only-view' => true,
-                'type' => 'text',
-            ],
-            [
-                'name' => 'name',
-                'type' => 'text',
-            ],
-            [
-                'name' => 'last_name',
-                'type' => 'text',
-            ],
-            [
-                'name' => 'birth_date',
-                'type' => 'date',
-            ],
-            [
-                'name' => 'country_id',
-                'type' => 'select_reload',
-            ],
-            [
-                'name' => 'state_id',
-                'type' => 'select_reload',
-            ],
-            [
-                'name' => 'city_id',
-                'type' => 'select_reload',
-            ],
-            [
-                'name' => 'sex',
-                'type' => 'select',
-                'value' => 'app.selects.person.sex',
-            ],
-            [
-                'name' => 'civil_status',
-                'type' => 'select',
-                'value' => 'app.selects.person.civil_status',
-            ],
-            [
-                'type' => 'section',
-                'value' => 'app.sections.contact_information',
-            ],
-            [
-                'name' => 'address',
-                'type' => 'text'
-            ],
-            [
-                'name' => 'neighborhood',
-                'type' => 'text'
-            ],
-            [
-                'name' => 'state_id',
-                'type' => 'select_reload',
-            ],
-            [
-                'name' => 'city_id',
-                'type' => 'select_reload',
-            ],
-            [
-                'name' => 'phone',
-                'type' => 'text'
-            ],
-            [
-                'name' => 'cellphone',
-                'type' => 'text'
-            ],
-            [
-                'type' => 'section',
                 'value' => 'app.sections.medical_information',
             ],
 
         ],
     ];
+
+    // Methods
+
+    /**
+     * Get the data to build the layout.
+     *
+     * @return array
+     */
+    public function getLayout(): array
+    {
+        $layout = $this->layout;
+        $personLayout = (new Person)->getLayout();
+
+        foreach ($personLayout as $key =>$value) $layout[$key] = array_merge($personLayout[$key], $this->layout[$key]);
+
+        return array_merge($layout);
+    }
 }
