@@ -1,6 +1,6 @@
 @php
     $files = false;
-    $numFields = 5;
+    $numFields = 8;
     $valFields = array();
 @endphp
 @foreach($fields as $field)

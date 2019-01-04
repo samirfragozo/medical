@@ -143,6 +143,8 @@ return [
 
     'attributes' => [
         'address' => 'Dirección',
+        'allergies' => 'Alergias',
+        'allergies_description' => 'Descripción Alergias',
         'birth_date' => 'Fecha de Nacimiento',
         'cellphone' => 'Celular',
         'city_id' => 'Ciudad',
@@ -151,11 +153,17 @@ return [
         'document' => 'Documento',
         'document_type' => 'Tipo de Documento',
         'last_name' => 'Apellidos',
+        'medication_allergies' => 'Alergias a Medicamentos',
+        'medication_allergies_description' => 'Descripción de Alergias a Medicamentos',
+        'medicines' => 'Medicamentos',
+        'medicines_description' => 'Descripción Medicamentos',
         'name' => 'Nombre',
         'neighborhood' => 'Barrio',
+        'no' => 'No',
         'phone' => 'Teléfono',
         'sex' => 'Sexo',
         'state_id' => 'Departamento',
+        'yes' => 'Sí',
     ],
 
 ];

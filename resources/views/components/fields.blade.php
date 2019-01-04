@@ -69,7 +69,7 @@
                 <div class="m-checkbox-list">
                     @foreach($field['value'] as $value)
                         <label class="m-checkbox m-checkbox--solid m-checkbox--brand">
-                            {{Form::checkbox($value, 1, false, ['id' => $value . '_' . $suffix])}}{{__($route . '.' . $value)}}<span></span>
+                            {{Form::checkbox($value, 1, false, ['id' => $value . '_' . $suffix])}}{{__($route . $value)}}<span></span>
                         </label>
                     @endforeach
                 </div>
@@ -92,6 +92,14 @@
                     'class' => 'form-control',
                     'accept' => $field['accept'] ?? '.pdf'
                 ])}}
+            @elseif($field['type'] == 'radio')
+                <div class="m-radio-list">
+                    @foreach($field['value'] as $value)
+                        <label class="m-radio m-radio--solid m-radio--brand">
+                            {{Form::radio($value, 1, false, ['name' => $field['name'] . '_' . $suffix])}}{{__($route . $value)}}<span></span>
+                        </label>
+                    @endforeach
+                </div>
             @elseif($field['type'] == 'select')
                 {{Form::select($field['name'], __($field['value']), null, [
                     'id' => $field['name'] . '_' . $suffix,

@@ -11,6 +11,6 @@ class TestSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\person::class, 5)->create();
+        factory(App\Patient::class, 5)->create();
     }
 }

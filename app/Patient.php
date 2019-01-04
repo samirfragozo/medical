@@ -25,7 +25,42 @@ class Patient extends Base
                 'type' => 'section',
                 'value' => 'app.sections.medical_information',
             ],
-
+            [
+                'name' => 'allergies',
+                'type' => 'radio',
+                'value' => [
+                    'yes',
+                    'no',
+                ],
+            ],
+            [
+                'name' => 'allergies_description',
+                'type' => 'textarea',
+            ],
+            [
+                'name' => 'medication_allergies',
+                'type' => 'radio',
+                'value' => [
+                    'yes',
+                    'no',
+                ],
+            ],
+            [
+                'name' => 'medication_allergies_description',
+                'type' => 'textarea',
+            ],
+            [
+                'name' => 'medicines',
+                'type' => 'radio',
+                'value' => [
+                    'yes',
+                    'no',
+                ],
+            ],
+            [
+                'name' => 'medicines_description',
+                'type' => 'textarea',
+            ],
         ],
     ];
 
