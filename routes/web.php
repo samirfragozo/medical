@@ -23,4 +23,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::redirect('home', 'patients')->name('home');
 
     Route::resource('patients', 'PatientController', ['except' => ['create', 'edit']]);
+
+    Route::resource('professionals', 'ProfessionalController', ['except' => ['create', 'edit']]);
 });

@@ -122,4 +122,14 @@ class Person extends Model
     {
         return $this->hasOne(Patient::class);
     }
+
+    /**
+     * Professional relationship
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function professional()
+    {
+        return $this->hasOne(Professional::class);
+    }
 }

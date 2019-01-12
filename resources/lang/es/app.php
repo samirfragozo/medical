@@ -82,8 +82,8 @@ return [
                 'FREE_UNION' => 'UNION LIBRE'
             ],
             'document_type' => [
-                'CC' => 'Cédula de Ciudadanía',
-                'CE' => 'Cédula de Extranjería'
+                'CC' => 'CÉDULA DE CIUDADANÍA',
+                'CE' => 'CÉDULA DE EXTRANJERÍA'
             ],
             'sex' => [
                 'FEMALE' => 'FEMENINO',
@@ -92,8 +92,38 @@ return [
         ],
         'social_security_entities' => [
             'type' => [
-                'ARL' => 'Administradora de Riesgos Laborales',
-                'EPS' => 'Entidad Promotora de Salud',
+                'ARL' => 'ADMINISTRADORA DE RIESGOS LABORALES',
+                'EPS' => 'ENTIDAD PROMOTORA DE SALUD',
+            ],
+        ],
+        'professional' => [
+            'type' => [
+                'DOCTOR' => 'MÉDICO',
+                'NURSE' => 'ENFERMERA',
+                'NURSE BOOS' => 'ENFERMERA JEFE',
+                'THERAPIST' => 'TERAPEUTA',
+            ],
+            'title_type' => [
+                'TECHNICAL' => 'TÉCNICO',
+                'TECHNOLOGIST' => 'TECNÓLOGO',
+                'PROFESSIONAL' => 'PROFESIONAL',
+                'SPECIALIST' => 'ESPECIALISTA',
+                'MASTER' => 'MAESTRÍA',
+                'DOCTORATE' => 'DOCTORADO',
+            ],
+            'doctor_type' => [
+                'MG' => 'MEDICINA GENERAL',
+                'MI' => 'MEDICINA INTERNA',
+                'C' => 'CARDIOLOGÍA',
+                'PN' => 'PEDIATRÍA Y NEONATOLOGÍA',
+                'GA' => 'GASTROENTEROLOGÍA',
+                'NEU' => 'NEUROLOGÍA',
+                'NEF' => 'NEFROLOGÍA',
+                'GY' => 'GINECOLOGÍA',
+                'I' => 'INFECTOLOGÍA',
+                'O' => 'ONCOLOGÍA',
+                'PH' => 'FONOAUDIOLOGIA',
+                'ND' => 'NUTRICIÓN Y DIETÉTICA',
             ],
         ],
     ],
