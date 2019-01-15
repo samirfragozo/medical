@@ -92,4 +92,14 @@ class Patient extends Base
     {
         return $this->belongsTo(Person::class);
     }
+
+    /**
+     * Person relationship
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function relative()
+    {
+        return $this->hasMany(Relative::class);
+    }
 }

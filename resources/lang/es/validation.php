@@ -162,6 +162,7 @@ return [
         'neighborhood' => 'Barrio',
         'no' => 'No',
         'phone' => 'Teléfono',
+        'relationship' => 'Parentesco',
         'sex' => 'Sexo',
         'state_id' => 'Departamento',
         'title' => 'Título',

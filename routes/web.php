@@ -25,4 +25,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('patients', 'PatientController', ['except' => ['create', 'edit']]);
 
     Route::resource('professionals', 'ProfessionalController', ['except' => ['create', 'edit']]);
+
+    Route::resource('relatives', 'RelativeController', ['except' => ['create', 'edit']]);
 });

@@ -90,12 +90,6 @@ return [
                 'MALE' => 'MASCULINO',
             ],
         ],
-        'social_security_entities' => [
-            'type' => [
-                'ARL' => 'ADMINISTRADORA DE RIESGOS LABORALES',
-                'EPS' => 'ENTIDAD PROMOTORA DE SALUD',
-            ],
-        ],
         'professional' => [
             'type' => [
                 'DOCTOR' => 'MÉDICO',
@@ -124,6 +118,25 @@ return [
                 'O' => 'ONCOLOGÍA',
                 'PH' => 'FONOAUDIOLOGIA',
                 'ND' => 'NUTRICIÓN Y DIETÉTICA',
+            ],
+        ],
+        'relative' => [
+            'relationship' => [
+                'AUNT' => 'TÍA',
+                'BROTHER' => 'HERMANO',
+                'COUSIN' => 'PRIMO O PRIMA',
+                'FATHER' => 'PAPÁ',
+                'GRANDFATHER' => 'ABUELO',
+                'GRANDMA' => 'ABUELA',
+                'MOM' => 'MAMÁ',
+                'SISTER' => 'HERMANA',
+                'UNCLE' => 'TÍO',
+            ],
+        ],
+        'social_security_entities' => [
+            'type' => [
+                'ARL' => 'ADMINISTRADORA DE RIESGOS LABORALES',
+                'EPS' => 'ENTIDAD PROMOTORA DE SALUD',
             ],
         ],
     ],

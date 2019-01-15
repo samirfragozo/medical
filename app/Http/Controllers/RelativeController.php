@@ -5,16 +5,17 @@ namespace App\Http\Controllers;
 use App\relative;
 use Illuminate\Http\Request;
 
-class RelativeController extends Controller
+class RelativeController extends BaseController
 {
     /**
-     * Display a listing of the resource.
+     * Create a controller instance.
      *
-     * @return \Illuminate\Http\Response
+     * @param Relative $entity
      */
-    public function index()
+    public function __construct(Relative $entity)
     {
-        //
+        parent::__construct($entity);
+        $this->model = $this->entity->orderBy('created_at');
     }
 
     /**
@@ -37,18 +38,6 @@ class RelativeController extends Controller
     {
         //
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\relative  $relative
-     * @return \Illuminate\Http\Response
-     */
-    public function show(relative $relative)
-    {
-        //
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
