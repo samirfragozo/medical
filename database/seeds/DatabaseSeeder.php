@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
             CitiesTableFourSeeder::class,
             CitiesTableFiveSeeder::class,
             SocialSecurityEntitiesTableSeeder::class,
+            ProfessionalTypesTableSeeder::class,
+            ProfessionalSpecialtiesTableSeeder::class,
             UsersTableSeeder::class,
         ]);
 
