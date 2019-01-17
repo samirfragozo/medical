@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\patient;
+use App\MedicalAppointment;
 use Illuminate\Http\Request;
 
-class PatientController extends BaseController
+class MedicalAppointmentController extends BaseController
 {
     /**
      * Create a controller instance.
      *
-     * @param Patient $entity
+     * @param MedicalAppointment $entity
      */
-    public function __construct(Patient $entity)
+    public function __construct(MedicalAppointment $entity)
     {
         parent::__construct($entity);
         $this->model = $this->entity->orderBy('created_at');
@@ -42,10 +42,10 @@ class PatientController extends BaseController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\patient $patient
+     * @param MedicalAppointment $medicalAppointment
      * @return void
      */
-    public function edit(Patient $patient)
+    public function edit(MedicalAppointment $medicalAppointment)
     {
         //
     }
@@ -54,10 +54,10 @@ class PatientController extends BaseController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \App\patient $patient
+     * @param MedicalAppointment $medicalAppointment
      * @return void
      */
-    public function update(Request $request, Patient $patient)
+    public function update(Request $request, MedicalAppointment $medicalAppointment)
     {
         //
     }
@@ -65,10 +65,10 @@ class PatientController extends BaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Patient $patient
+     * @param MedicalAppointment $medicalAppointment
      * @return void
      */
-    public function destroy(Patient $patient)
+    public function destroy(MedicalAppointment $medicalAppointment)
     {
         //
     }

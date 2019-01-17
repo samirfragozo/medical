@@ -84,6 +84,16 @@ class Patient extends Base
     // Relationships
 
     /**
+     * Medical Appointment relationship
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function medical_appointment()
+    {
+        return $this->hasMany(MedicalAppointment::class);
+    }
+
+    /**
      * Person relationship
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
