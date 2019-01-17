@@ -26,6 +26,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::resource('professionals', 'ProfessionalController', ['except' => ['create', 'edit']]);
 
+    Route::resource('professional_types', 'ProfessionalTypeController', ['except' => ['create', 'edit']]);
+
+    Route::resource('professional_specialties', 'ProfessionalSpecialtyController', ['except' => ['create', 'edit']]);
+
     Route::resource('relatives', 'RelativeController', ['except' => ['create', 'edit']]);
 
     Route::resource('medical_appointments', 'MedicalAppointmentController', ['except' => ['create', 'edit']]);

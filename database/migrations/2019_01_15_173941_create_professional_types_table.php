@@ -15,7 +15,9 @@ class CreateProfessionalTypesTable extends Migration
     {
         Schema::create('professional_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('code', 10);
+            $table->string('name', 50);
+            $table->string('description', 200)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

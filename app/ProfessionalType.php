@@ -2,7 +2,7 @@
 
 namespace App;
 
-class ProfessionalSpecialty extends Base
+class ProfessionalType extends Base
 {
     /**
      * The data to build the layout.
@@ -33,10 +33,6 @@ class ProfessionalSpecialty extends Base
                 'name' => 'description',
                 'type' => 'textarea',
             ],
-            [
-                'name' => 'professional_type_id',
-                'type' => 'select_reload',
-            ],
         ],
     ];
 
@@ -45,11 +41,10 @@ class ProfessionalSpecialty extends Base
     /**
      * Professional Specialty relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function professional_type()
+    public function professional_specialty()
     {
-        return $this->belongsTo(ProfessionalType::class);
+        return $this->hasMany(ProfessionalSpecialty::class);
     }
-
 }

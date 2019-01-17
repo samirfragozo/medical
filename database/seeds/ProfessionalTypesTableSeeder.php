@@ -20,22 +20,27 @@ class ProfessionalTypesTableSeeder extends Seeder
         DB::table('professional_types')->insert([
             [
                 'id' => 1,
+                'code' => 'TIP-001',
                 'name' => 'Doctor'
             ],
             [
                 'id' => 2,
+                'code' => 'TIP-002',
                 'name' => 'Fisioterapeuta'
             ],
             [
                 'id' => 3,
+                'code' => 'TIP-003',
                 'name' => 'Psicólogo'
             ],
             [
                 'id' => 4,
+                'code' => 'TIP-004',
                 'name' => 'Enfermera Jefe'
             ],
             [
                 'id' => 5,
+                'code' => 'TIP-005',
                 'name' => 'Enfermera'
             ],
         ]);

@@ -19,58 +19,93 @@ class ProfessionalSpecialtiesTableSeeder extends Seeder
 
         DB::table('professional_specialties')->insert([
             [
+                'code' => 'ESP-001',
                 'name' => 'Medicina General',
                 'professional_type_id' => 1,
             ],
-            ['name' => 'Medicina Interna',
+            [
+                'code' => 'ESP-002',
+                'name' => 'Medicina Interna',
                 'professional_type_id' => 1,
             ],
-            ['name' => 'Cardiología',
+            [
+                'code' => 'ESP-003',
+                'name' => 'Cardiología',
                 'professional_type_id' => 1,
             ],
-            ['name' => 'Pediatría y Neonatología',
+            [
+                'code' => 'ESP-004',
+                'name' => 'Pediatría y Neonatología',
                 'professional_type_id' => 1,
             ],
-            ['name' => 'Gastroenterología',
+            [
+                'code' => 'ESP-005',
+                'name' => 'Gastroenterología',
                 'professional_type_id' => 1,
             ],
-            ['name' => 'Neurología',
+            [
+                'code' => 'ESP-006',
+                'name' => 'Neurología',
                 'professional_type_id' => 1,
             ],
-            ['name' => 'Nefrología',
+            [
+                'code' => 'ESP-007',
+                'name' => 'Nefrología',
                 'professional_type_id' => 1,
             ],
-            ['name' => 'Ginecología',
+            [
+                'code' => 'ESP-008',
+                'name' => 'Ginecología',
                 'professional_type_id' => 1,
             ],
-            ['name' => 'Infectología',
+            [
+                'code' => 'ESP-009',
+                'name' => 'Infectología',
                 'professional_type_id' => 1,
             ],
-            ['name' => 'Oncología',
+            [
+                'code' => 'ESP-010',
+                'name' => 'Oncología',
                 'professional_type_id' => 1,
             ],
-            ['name' => 'Fonoaudilogía',
+            [
+                'code' => 'ESP-011',
+                'name' => 'Fonoaudilogía',
                 'professional_type_id' => 1,
             ],
-            ['name' => 'Nutrición y Dietética',
+            [
+                'code' => 'ESP-012',
+                'name' => 'Nutrición y Dietética',
                 'professional_type_id' => 1,
             ],
-            ['name' => 'Física',
+            [
+                'code' => 'ESP-013',
+                'name' => 'Física',
                 'professional_type_id' => 2,
             ],
-            ['name' => 'Respiratoria',
+            [
+                'code' => 'ESP-014',
+                'name' => 'Respiratoria',
                 'professional_type_id' => 2,
             ],
-            ['name' => 'Ocupacional',
+            [
+                'code' => 'ESP-015',
+                'name' => 'Ocupacional',
                 'professional_type_id' => 2,
             ],
-            ['name' => 'Psicólogo',
+            [
+                'code' => 'ESP-016',
+                'name' => 'Psicólogo',
                 'professional_type_id' => 3,
             ],
-            ['name' => 'Enfermera Jefe',
+            [
+                'code' => 'ESP-017',
+                'name' => 'Enfermera Jefe',
                 'professional_type_id' => 4,
             ],
-            ['name' => 'Enfermera',
+            [
+                'code' => 'ESP-018',
+                'name' => 'Enfermera',
                 'professional_type_id' => 5,
             ],
         ]);
