@@ -139,6 +139,17 @@ return [
                 'EPS' => 'ENTIDAD PROMOTORA DE SALUD',
             ],
         ],
+        'supply' => [
+            'unit' => [
+                'DL' => 'DECILITRO',
+                'G' => 'GRAMO',
+                'KG' => 'KILOGRAMO',
+                'LT' => 'LITRO',
+                'MCG' => 'MICROGRAMO',
+                'MG' => 'MILIGRAMO',
+                'ML' => 'MILILITRO',
+            ],
+        ],
     ],
 
     'singular_titles' => [
