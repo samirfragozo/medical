@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Person extends Model
 {
     /**
+     * The mutated attributes that should be added for arrays.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'full_name', 'picture'
+    ];
+
+    /**
      * The data to build the layout.
      *
      * @var array
@@ -109,6 +118,31 @@ class Person extends Model
     public function getLayout(): array
     {
         return $this->layout;
+    }
+
+    // Mutator
+
+    /**
+     * Mutator for the full name
+     *
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        return $this->name . ' ' . $this->last_name;
+    }
+
+    /**
+     * Mutator for the picture route
+     *
+     * @return string
+     */
+    public function getPictureAttribute()
+    {
+        if(file_exists(storage_path('app/public/people/' . $this->id . '.jpg'))){
+            return asset('storage/people/' . $this->id . '.jpg');
+        }
+        return asset('/img/people/default.jpg');
     }
 
     // Relationships

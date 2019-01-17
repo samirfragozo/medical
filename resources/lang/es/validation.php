@@ -142,6 +142,8 @@ return [
     */
 
     'attributes' => [
+        'actions' => 'Acciones',
+        'active' => 'Activo',
         'address' => 'Dirección',
         'allergies' => 'Alergias',
         'allergies_description' => 'Descripción Alergias',
@@ -169,11 +171,13 @@ return [
         'no' => 'No',
         'observations' => 'Observaciones',
         'phone' => 'Teléfono',
+        'picture' => 'Foto',
         'professional_id' => 'Profesional',
         'professional_type_id' => 'Tipo de Profesional',
         'professional_speciality_id' => 'Especialidad Profesional',
         'relationship' => 'Parentesco',
         'sex' => 'Sexo',
+        'social_security_entity_id' => 'EPS',
         'start' => 'Inicio',
         'state_id' => 'Departamento',
         'title' => 'Título',

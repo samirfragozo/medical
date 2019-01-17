@@ -330,66 +330,6 @@ class SocialSecurityEntitiesTableSeeder extends Seeder
                 'nit' => '890102044',
                 'name' => 'Cajacopi Atlántico - CCF'
             ],
-            [
-                'type' => 'ARL',
-                'code' => '14-4',
-                'nit' => '860002183-9',
-                'name' => 'A.R.L. Seguros de Vida Colpatria S.A.'
-            ],
-            [
-                'type' => 'ARL',
-                'code' => '14-7',
-                'nit' => '860002503-2',
-                'name' => 'Compañía de Seguros Bolívar S.A.'
-            ],
-            [
-                'type' => 'ARL',
-                'code' => '14-8',
-                'nit' => '860022137-5',
-                'name' => 'Seguros de Vida Aurora'
-            ],
-            [
-                'type' => 'ARL',
-                'code' => '14-17',
-                'nit' => '860503617-3',
-                'name' => 'ARP Alfa'
-            ],
-            [
-                'type' => 'ARL',
-                'code' => '14-18',
-                'nit' => '860008645-7',
-                'name' => 'Liberty Seguros de Vida S.A.'
-            ],
-            [
-                'type' => 'ARL',
-                'code' => '14-23',
-                'nit' => '860011153-6',
-                'name' => 'Positiva Compañía de Seguros'
-            ],
-            [
-                'type' => 'ARL',
-                'code' => '14-25',
-                'nit' => '800226175-3',
-                'name' => 'Colmena Riesgos Profesionales'
-            ],
-            [
-                'type' => 'ARL',
-                'code' => '14-28',
-                'nit' => '800256161-9',
-                'name' => 'ARL Sura'
-            ],
-            [
-                'type' => 'ARL',
-                'code' => '14-29',
-                'nit' => '830008686-1',
-                'name' => 'La Equidad Seguros de Vida'
-            ],
-            [
-                'type' => 'ARL',
-                'code' => '14-30',
-                'nit' => '830054904-6',
-                'name' => 'Mapfre Colombia Vida Seguros S.A'
-            ],
         ]);
 
         if(env('DB_CONNECTION') == 'sqlsrv') {

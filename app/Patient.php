@@ -5,6 +5,15 @@ namespace App;
 class Patient extends Base
 {
     /**
+     * The mutated attributes that should be added for arrays.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'actions'
+    ];
+
+    /**
      * The data to build the layout.
      *
      * @var array
@@ -16,14 +25,18 @@ class Patient extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['name'],
-            'active' => false,
-            'actions' => false,
+            'fields' => ['picture', 'document', 'name'],
+            'active' => true,
+            'actions' => true,
         ],
         'form' => [
             [
                 'type' => 'section',
                 'value' => 'app.sections.medical_information',
+            ],
+            [
+                'name' => 'social_security_entity_id',
+                'type' => 'select_reload',
             ],
             [
                 'name' => 'allergies',
@@ -79,6 +92,21 @@ class Patient extends Base
         foreach ($personLayout as $key =>$value) $layout[$key] = array_merge($personLayout[$key], $this->layout[$key]);
 
         return array_merge($layout);
+    }
+
+    // Mutator
+
+    /**
+     * Mutator for the full name
+     *
+     * @return array
+     */
+    public function getActionsAttribute()
+    {
+        return [
+            'id' => $this->id,
+            'active' => $this->active,
+        ];
     }
 
     // Relationships

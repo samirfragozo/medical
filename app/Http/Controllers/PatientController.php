@@ -15,7 +15,7 @@ class PatientController extends BaseController
     public function __construct(Patient $entity)
     {
         parent::__construct($entity);
-        $this->model = $this->entity->orderBy('created_at');
+        $this->model = $this->entity->with('person')->orderBy('created_at');
     }
 
     /**
