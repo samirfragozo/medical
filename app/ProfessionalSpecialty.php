@@ -5,6 +5,15 @@ namespace App;
 class ProfessionalSpecialty extends Base
 {
     /**
+     * The mutated attributes that should be added for arrays.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'actions'
+    ];
+
+    /**
      * The data to build the layout.
      *
      * @var array
@@ -16,9 +25,9 @@ class ProfessionalSpecialty extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['name'],
-            'active' => false,
-            'actions' => false,
+            'fields' => ['code', 'name', 'professional_type_id'],
+            'active' => true,
+            'actions' => true,
         ],
         'form' => [
             [
@@ -40,7 +49,32 @@ class ProfessionalSpecialty extends Base
         ],
     ];
 
+    // Mutator
+
+    /**
+     * Mutator for the actions
+     *
+     * @return array
+     */
+    public function getActionsAttribute()
+    {
+        return [
+            'id' => $this->id,
+            'active' => $this->active,
+        ];
+    }
+
     // Relationships
+
+    /**
+     * Medical Appointment relationship
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function professional()
+    {
+        return $this->hasMany(Professional::class);
+    }
 
     /**
      * Professional Specialty relationship

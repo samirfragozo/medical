@@ -19,6 +19,7 @@ class CreateProfessionalsTable extends Migration
             $table->enum('title_type', array_keys(__('app.selects.professional.title_type')));
             $table->string('collage', 100);
             $table->string('year', 4);
+            $table->boolean('active')->default(1);
             $table->unsignedInteger('professional_specialty_id');
             $table->foreign('professional_specialty_id')->references('id')->on('professional_specialties');
             $table->unsignedInteger('person_id');

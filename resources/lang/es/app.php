@@ -75,6 +75,13 @@ return [
     ],
 
     'selects' => [
+        'medical_appointment' => [
+            'state' => [
+                'ATTENDED' => 'ATENDIDA',
+                'CANCELED' => 'CANCELADA',
+                'PENDING' => 'PENDIENTE',
+            ],
+        ],
         'person' => [
             'civil_status' => [
                 'MARRIED' => 'CASADO(A)',

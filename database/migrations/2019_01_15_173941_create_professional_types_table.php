@@ -18,6 +18,7 @@ class CreateProfessionalTypesTable extends Migration
             $table->string('code', 10);
             $table->string('name', 50);
             $table->string('description', 200)->nullable();
+            $table->boolean('active')->default(1);
             $table->timestamps();
             $table->softDeletes();
         });

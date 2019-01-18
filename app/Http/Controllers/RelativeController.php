@@ -15,7 +15,7 @@ class RelativeController extends BaseController
     public function __construct(Relative $entity)
     {
         parent::__construct($entity);
-        $this->model = $this->entity->orderBy('created_at');
+        $this->model = $this->entity->with('person')->orderBy('name');
     }
 
     /**

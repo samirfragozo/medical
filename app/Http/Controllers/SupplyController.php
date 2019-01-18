@@ -15,7 +15,7 @@ class SupplyController extends BaseController
     public function __construct(Supply $entity)
     {
         parent::__construct($entity);
-        $this->model = $this->entity->orderBy('created_at');
+        $this->model = $this->entity->orderBy('name');
     }
 
     /**

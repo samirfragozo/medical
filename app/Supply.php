@@ -5,6 +5,15 @@ namespace App;
 class Supply extends Base
 {
     /**
+     * The mutated attributes that should be added for arrays.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'actions', 'translated_unit'
+    ];
+
+    /**
      * The data to build the layout.
      *
      * @var array
@@ -16,9 +25,9 @@ class Supply extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['name'],
-            'active' => false,
-            'actions' => false,
+            'fields' => ['code', 'name', 'content', 'unit'],
+            'active' => true,
+            'actions' => true,
         ],
         'form' => [
             [
@@ -40,4 +49,29 @@ class Supply extends Base
             ],
         ],
     ];
+
+    // Mutator
+
+    /**
+     * Mutator for the actions
+     *
+     * @return array
+     */
+    public function getActionsAttribute()
+    {
+        return [
+            'id' => $this->id,
+            'active' => $this->active,
+        ];
+    }
+
+    /**
+     * Mutator for the actions
+     *
+     * @return array
+     */
+    public function getTranslatedUnitAttribute()
+    {
+        return __('app.selects.supply.unit.' . $this->unit);
+    }
 }

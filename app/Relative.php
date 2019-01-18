@@ -16,9 +16,9 @@ class Relative extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['name'],
+            'fields' => ['picture', 'document', 'name', 'cellphone'],
             'active' => false,
-            'actions' => false,
+            'actions' => true,
         ],
         'form' => [
             [
@@ -41,7 +41,7 @@ class Relative extends Base
         $layout = $this->layout;
         $personLayout = (new Person)->getLayout();
 
-        foreach ($personLayout as $key =>$value) $layout[$key] = array_merge($personLayout[$key], $this->layout[$key]);
+        foreach ($personLayout as $key => $value) $layout[$key] = array_merge($personLayout[$key], $this->layout[$key]);
 
         return array_merge($layout);
     }

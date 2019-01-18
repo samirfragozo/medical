@@ -16,9 +16,9 @@ class MedicalAppointment extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['name'],
+            'fields' => ['date', 'start', 'professional_specialty_id', 'professional_id'],
             'active' => false,
-            'actions' => false,
+            'actions' => true,
         ],
         'form' => [
             [
@@ -38,7 +38,7 @@ class MedicalAppointment extends Base
                 'type' => 'textarea',
             ],
             [
-                'name' => 'professional_speciality_id',
+                'name' => 'professional_specialty_id',
                 'type' => 'select_reload',
             ],
             [

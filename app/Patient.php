@@ -25,7 +25,7 @@ class Patient extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['picture', 'document', 'name'],
+            'fields' => ['picture', 'document', 'name', 'social_security_entity_id'],
             'active' => true,
             'actions' => true,
         ],
@@ -97,7 +97,7 @@ class Patient extends Base
     // Mutator
 
     /**
-     * Mutator for the full name
+     * Mutator for the actions
      *
      * @return array
      */
@@ -132,12 +132,22 @@ class Patient extends Base
     }
 
     /**
-     * Person relationship
+     * Relative relationship
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function relative()
     {
         return $this->hasMany(Relative::class);
+    }
+
+    /**
+     * Social Security relationship
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function social_security_entity()
+    {
+        return $this->belongsTo(SocialSecurityEntity::class);
     }
 }

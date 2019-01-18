@@ -15,7 +15,7 @@ class ProfessionalController extends BaseController
     public function __construct(Professional $entity)
     {
         parent::__construct($entity);
-        $this->model = $this->entity->orderBy('created_at');
+        $this->model = $this->entity->with('person', 'professional_specialty.professional_type')->orderBy('created_at');
     }
 
     /**

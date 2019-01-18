@@ -5,6 +5,15 @@ namespace App;
 class Professional extends Base
 {
     /**
+     * The mutated attributes that should be added for arrays.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'actions'
+    ];
+
+    /**
      * The data to build the layout.
      *
      * @var array
@@ -17,9 +26,9 @@ class Professional extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['name'],
-            'active' => false,
-            'actions' => false,
+            'fields' => ['picture', 'document', 'name', 'professional_type_id'],
+            'active' => true,
+            'actions' => true,
         ],
         'form' => [
             [
@@ -27,14 +36,12 @@ class Professional extends Base
                 'value' => 'app.sections.academic_information',
             ],
             [
-                'name' => 'type',
-                'type' => 'select',
-                'value' => 'app.selects.professional.type',
+                'name' => 'professional_type_id',
+                'type' => 'select_reload',
             ],
             [
-                'name' => 'doctor_type',
-                'type' => 'select',
-                'value' => 'app.selects.professional.doctor_type',
+                'name' => 'professional_specialty_id',
+                'type' => 'select_reload',
             ],
             [
                 'name' => 'title',
@@ -71,6 +78,21 @@ class Professional extends Base
         return array_merge($layout);
     }
 
+    // Mutator
+
+    /**
+     * Mutator for the actions
+     *
+     * @return array
+     */
+    public function getActionsAttribute()
+    {
+        return [
+            'id' => $this->id,
+            'active' => $this->active,
+        ];
+    }
+
     // Relationships
 
     /**
@@ -91,5 +113,15 @@ class Professional extends Base
     public function person()
     {
         return $this->belongsTo(Person::class);
+    }
+
+    /**
+     * Professional Speciality relationship
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function professional_specialty()
+    {
+        return $this->belongsTo(ProfessionalSpecialty::class);
     }
 }

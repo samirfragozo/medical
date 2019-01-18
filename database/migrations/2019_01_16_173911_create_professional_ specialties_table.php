@@ -18,6 +18,7 @@ class CreateProfessionalSpecialtiesTable extends Migration
             $table->string('code',10);
             $table->string('name',50);
             $table->string('description',200)->nullable();
+            $table->boolean('active')->default(1);
             $table->unsignedInteger('professional_type_id');
             $table->foreign('professional_type_id')->references('id')->on('professional_types');
             $table->timestamps();
