@@ -5,6 +5,15 @@ namespace App;
 class MedicalAppointment extends Base
 {
     /**
+     * The mutated attributes that should be added for arrays.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'actions', 'translated_state'
+    ];
+
+    /**
      * The data to build the layout.
      *
      * @var array
@@ -16,7 +25,7 @@ class MedicalAppointment extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['date', 'start', 'professional_specialty_id', 'professional_id'],
+            'fields' => ['date', 'start', 'professional_specialty_id', 'professional_id', 'state'],
             'active' => false,
             'actions' => true,
         ],
@@ -47,6 +56,35 @@ class MedicalAppointment extends Base
             ],
         ],
     ];
+
+    // Mutator
+
+    /**
+     * Mutator for the actions
+     *
+     * @return array
+     */
+    public function getActionsAttribute()
+    {
+        return [
+            'id' => $this->id,
+            'cancel' => $this->state == 'ATENDIDA' or $this->state == 'PENDIENTE',
+        ];
+    }
+
+
+    /**
+     * Mutator for the actions
+     *
+     * @return array
+     */
+    public function getTranslatedStateAttribute()
+    {
+        return [
+            'state' => $this->state,
+            'class' => __('app.selects.medical_appointment.state_class.' . $this->state),
+        ];
+    }
 
     // Relationships
 

@@ -77,9 +77,14 @@ return [
     'selects' => [
         'medical_appointment' => [
             'state' => [
-                'ATTENDED' => 'ATENDIDA',
-                'CANCELED' => 'CANCELADA',
-                'PENDING' => 'PENDIENTE',
+                'ATENDIDA' => 'ATENDIDA',
+                'CANCELADA' => 'CANCELADA',
+                'PENDIENTE' => 'PENDIENTE',
+            ],
+            'state_class' => [
+                'ATENDIDA' => 'success',
+                'CANCELADA' => 'danger',
+                'PENDIENTE' => 'warning',
             ],
         ],
         'person' => [

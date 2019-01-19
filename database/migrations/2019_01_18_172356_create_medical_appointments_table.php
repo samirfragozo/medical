@@ -19,7 +19,7 @@ class CreateMedicalAppointmentsTable extends Migration
             $table->string('start', 8);
             $table->string('end', 8);
             $table->string('observations', 200);
-            $table->enum('state',  array_keys(__('app.selects.medical_appointment.state')))->default('PENDING');
+            $table->enum('state',  array_keys(__('app.selects.medical_appointment.state')))->default('PENDIENTE');
             $table->unsignedInteger('professional_id');
             $table->foreign('professional_id')->references('id')->on('professionals');
             $table->unsignedInteger('patient_id');
