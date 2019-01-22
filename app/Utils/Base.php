@@ -3,7 +3,7 @@
 namespace App\Utils;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Route;
 use Spatie\Menu\Laravel\Html;
 use Spatie\Menu\Laravel\Link;
@@ -11,6 +11,17 @@ use Spatie\Menu\Laravel\Menu;
 
 class Base
 {
+    private $menu;
+
+    /**
+     * Create a controller instance.
+     *
+     */
+    public function __construct()
+    {
+        $this->menu = config('menu');
+    }
+
     /**
      * Return the HTML for the bread crumbs.
      *
@@ -27,14 +38,14 @@ class Base
             )
         ;
 
-        foreach ($this->crumbs($this->sections()) as $item) {
+        foreach ($this->crumbs($this->menu) as $item) {
             $menu
                 ->add(
                     Html::raw('>')
                         ->addParentClass('m-nav__separator')
                 )
                 ->add(
-                    Link::to($item['link'], '<span class="m-nav__link-text">'. $item['text'] . '</span>')
+                    Link::to($item['link'], '<span class="m-nav__link-text">' . $item['text'] . '</span>')
                         ->addClass('m-nav__link')
                         ->addParentClass('m-nav__item')
                 )
@@ -45,7 +56,7 @@ class Base
     }
 
     /**
-     * Return an array with the bread crumbs.
+     * Return a array with the bread crumbs.
      *
      * @param array $options
      * @return array
@@ -53,35 +64,103 @@ class Base
     private function crumbs(array $options)
     {
         foreach ($options as $option) {
-            if (!isset($option['section'])) {
-                if (!isset($option['submenu'])) {
-                    $route = isset($option['route']) ? $option['route'] : $option['crud'] . '.index';
-                    if (Route::currentRouteName() == $route) {
-                        if ($route !== 'home') {
-                            return [
-                                [
-                                    'link' => \route($route),
-                                    'text' => __('app.titles.' . $option['crud']),
-                                ]
-                            ];
-                        }
-                    }
-                } else {
-                    $items = $this->crumbs($option['submenu']);
+            if (!isset($option['submenu'])) {
+                $route = isset($option['route']) ? $option['route'] : $option['crud'] . '.index';
+                if (Route::currentRouteName() == $route and $route !== 'home') {
+                    return [
+                        [
+                            'link' => \route($route),
+                            'text' => __('app.titles.' . $option['crud']),
+                        ]
+                    ];
+                }
+            } else {
+                $items = $this->crumbs($option['submenu']);
 
-                    if (!empty($items)) {
-                        array_unshift($items, [
-                            'link' => '',
-                            'text' => __('app.menu.' . $option['name']),
-                        ]);
+                if (!empty($items)) {
+                    array_unshift($items, [
+                        'link' => 'javascript:',
+                        'text' => __('app.titles.' . $option['name']),
+                    ]);
 
-                        return $items;
-                    }
+                    return $items;
                 }
             }
         }
 
         return [];
+    }
+
+    /**
+     * Return the HTML for the submenus.
+     *
+     * @param array $options
+     * @return Menu
+     */
+    private function items(array $options)
+    {
+        return Menu::build($options['submenu'], function ($menu, $option) {
+            if (!isset($option['submenu'])) {
+                $menu->routeIfCan($option['crud'] . '.show', isset($option['route']) ? $option['route'] : $option['crud'] . '.index',
+                    '<i class="m-menu__link-bullet m-menu__link-bullet--dot">' .
+                    '<span></span>' .
+                    '</i>' .
+                    '<span class="m-menu__link-text">' . __('app.titles.' . $option['crud']) . '</span>'
+                );
+            } else {
+                $menu->add(
+                    Link::to('#',
+                        '<i class="m-menu__link-bullet m-menu__link-bullet--dot">' .
+                        '<span></span>' .
+                        '</i>' .
+                        '<span class="m-menu__link-text">' . __('app.titles.' . $option['name']) . '</span>' .
+                        '<i class="m-menu__ver-arrow la la-angle-right"></i>'
+                    )
+                        ->addParentClass('m-menu__item m-menu__item--submenu')
+                        ->addClass('m-menu__link m-menu__toggle')
+                        ->append($this->items($option))
+                        ->setParentAttributes(['aria-haspopup' =>'true', 'm-menu-submenu-toggle' => 'hover'])
+                );
+            }
+        })
+            ->setActive(url()->current())
+            ->addClass('m-menu__subnav')
+            ->append('</div>')
+            ->each(function (Link $link) {
+                $link->addClass('m-menu__link')
+                    ->addParentClass('m-menu__item')
+                    ->setParentAttribute('aria-haspopup', 'true')
+                ;
+            })
+            ->prepend(
+                '<div class="m-menu__submenu">' .
+                '<span class="m-menu__arrow"></span>'
+            )
+            ->setActiveClass('m-menu__item--active')
+            ;
+    }
+
+    /**
+     * Return the HTML for the custom massive.
+     *
+     * @param array $options
+     * @return Menu
+     */
+    public function massive(array $options)
+    {
+        return Menu::build($options, function ($menu, $option) {
+            $menu->add(
+                Link::to('#',
+                    '<i class="m-nav__link-icon ' . $option['icon'] . '"></i>' .
+                    '<span class="m-nav__link-text">' . $option['text'] . '</span>'
+                )
+                    ->addClass('m-nav__link')
+                    ->addParentClass('m-nav__item')
+                    ->setAttribute('onclick', 'openMassive(active, 1)')
+            );
+        })
+            ->addClass('m-nav')
+            ;
     }
 
     /**
@@ -91,16 +170,9 @@ class Base
      */
     public function menu()
     {
-        return Menu::build($this->sections(), function ($menu, $option) {
-            if (isset($option['section'])) {
-                $menu->html(
-                    '<li class="m-menu__section ">' .
-                    '<h4 class="m-menu__section-text">' . __('app.roles.' . $option['section']) . '</h4>' .
-                    '<i class="m-menu__section-icon flaticon-more-v2"></i>' .
-                    '</li>'
-                );
-            } else {
-                $menu->route(isset($option['route']) ? $option['route'] : $option['crud'] . '.index',
+        return Menu::build($this->menu , function ($menu, $option) {
+            if (!isset($option['submenu'])) {
+                $menu->routeIfCan($option['crud'] . '.show', isset($option['route']) ? $option['route'] : $option['crud'] . '.index',
                     '<i class="m-menu__link-icon ' . $option['icon'] . '"></i>' .
                     '<span class="m-menu__link-title">' .
                     '<span class="m-menu__link-wrap">' .
@@ -108,32 +180,42 @@ class Base
                     '</span>' .
                     '</span>'
                 );
+            } else {
+                $menu->add(
+                    Link::to('#',
+                        '<i class="m-menu__link-icon ' . $option['icon'] . '"></i>' .
+                        '<span class="m-menu__link-text">' . __('app.titles.' . $option['name']) . '</span>' .
+                        '<i class="m-menu__ver-arrow la la-angle-right"></i>'
+
+                    )
+                        ->addParentClass('m-menu__item m-menu__item--submenu')
+                        ->addClass('m-menu__toggle')
+                        ->append($this->items($option))
+                        ->setParentAttribute('m-menu-submenu-toggle', 'hover')
+                );
             }
         })
             ->addClass('m-menu__nav m-menu__nav--dropdown-submenu-arrow')
-            ->append('</div></div>')
             ->each(function (Link $link) {
                 $link->addClass('m-menu__link')
                     ->addParentClass('m-menu__item')
                     ->setParentAttribute('aria-haspopup', 'true');
             })
-            ->prepend(
-                '<div id="m_aside_left" class="m-grid__item	m-aside-left m-aside-left--skin-dark">' .
-                '<div id="m_ver_menu" class="m-aside-menu m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark" m-menu-vertical="1" m-menu-scrollable="1" m-menu-dropdown-timeout="500" style="position: relative;">'
-            )
             ->setActive(url()->current())
             ->setActiveClass('m-menu__item--active')
-        ;
+            ;
     }
 
     /**
-     * Return an array whit the permissions.
+     * Return a list of permissions in the menu.
      *
      * @param array $options
      * @return array
      */
-    private function permissions(array $options)
+    public function permissions(array $options = null)
     {
+        $options = is_null($options) ? $this->menu : $options;
+
         $permissions = [];
 
         foreach ($options as $option) {
@@ -148,60 +230,60 @@ class Base
     }
 
     /**
-     * Returns an array with permissions grouped by roles..
-     *
-     * @return array
-     */
-    public function roles()
-    {
-        $roles = [];
-
-        foreach (config('menu') as $section) if (isset($section['name'])) array_push($roles, $section['name']);
-
-        return $roles;
-    }
-
-    /**
      * Dynamic instance of the models.
      *
      * @param string $model
      * @return Model
      */
-    public static function dynamicInstanceModel(string $model)
+    public static function dynamicModelInstance(string $model)
     {
         $model = '\\App\\' . str_replace('_', '', ucwords(str_replace('_id', '', $model), '_'));
         return  new $model;
     }
 
     /**
-     * Return data for the specified select.
+     * Dynamic instance of the requests.
      *
-     * @param string $model
-     * @return \Illuminate\Http\Response
+     * @param string $request
+     * @return FormRequest
      */
-    public static function select(string $model)
+    public static function dynamicRequestInstance(string $request)
     {
-        return Base::dynamicInstanceModel($model)->select();
+        $words = explode('_', $request);
+        $requestName = '';
+
+        foreach ($words as $word) $requestName .= ucwords(strtolower(str_singular($word)));
+
+        $request = '\\App\\Http\\Requests\\' . $requestName . 'Request';
+
+        return  new $request;
     }
 
     /**
-     * Return an array for the menu and bread crumbs.
+     * Return data for the specified select.
      *
-     * @return array
+     * @param string $model
+     * @param string $where
+     * @param string $value
+     * @return int
      */
-    private function sections()
+    public static function findBy(string $model, string $where, $value)
     {
-        $menu = [];
+        $entity = Base::dynamicInstanceModel($model);
+        $entity = $entity->where($where, $value)->first();
+        return is_null($entity) ? -1 : $entity->id;
+    }
 
-        foreach (config('menu') as $section) {
-            if (!isset($section['name'])) {
-                $menu = array_merge($menu, $section['menu']);
-            } else if (Auth::user()->hasRole($section['name'])) {
-                array_push($menu, ['section' => $section['name']]);
-                $menu = array_merge($menu, $section['menu']);
-            }
-        }
-
-        return $menu;
+    /**
+     * Return data for the specified select.
+     *
+     * @param string $model
+     * @param string|null $field
+     * @return \Illuminate\Http\Response
+     */
+    public static function select(string $model, string $field = null)
+    {
+        $entity = Base::dynamicInstanceModel($model);
+        return is_null($field) ? $entity->select() : $entity->select($field);
     }
 }

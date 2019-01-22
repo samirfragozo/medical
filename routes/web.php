@@ -35,4 +35,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('relatives', 'RelativeController', ['except' => ['create', 'edit']]);
 
     Route::resource('supplies', 'SupplyController', ['except' => ['create', 'edit']]);
+
+    Route::resource('turns', 'TurnController', ['except' => ['create', 'edit']]);
 });

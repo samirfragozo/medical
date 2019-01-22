@@ -48,6 +48,7 @@ return [
         'professional_specialties' => 'Especialidades',
         'relatives' => 'Familiares - :name',
         'supplies' => 'Insumos',
+        'turns' => 'Turnos',
     ],
 
     'roles' => [
