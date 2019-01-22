@@ -161,6 +161,7 @@ return [
         'document' => 'Documento',
         'document_type' => 'Tipo de Documento',
         'end' => 'Fin',
+        'hour' => 'Hora',
         'last_name' => 'Apellidos',
         'medication_allergies' => 'Alergias a Medicamentos',
         'medication_allergies_description' => 'Descripción de Alergias a Medicamentos',
