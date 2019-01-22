@@ -41,6 +41,8 @@ return [
     ],
 
     'titles' => [
+        'configuration' => 'Configuración',
+        'home' => 'Inicio',
         'medical_appointments' => 'Citas Médicas',
         'patients' => 'Pacientes',
         'professionals' => 'Profesionales',
