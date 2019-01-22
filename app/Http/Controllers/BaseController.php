@@ -54,14 +54,7 @@ class BaseController extends Controller
      */
     public function show(int $id)
     {
-        $entity = $this->entity->find($id);
-        $user = $entity;
-
-        foreach ($this->user as $value) $user = $user->$value;
-
-        if ($user !== auth()->id()) return abort(403);
-
-        return response()->json($entity);
+        return response()->json($this->entity->find($id));
     }
 
     /**
