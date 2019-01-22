@@ -27,6 +27,6 @@ class PersonController extends BaseController
     public function show(int $id)
     {
         $entity = $this->entity->find($id);
-        return response()->json(array_merge(json_decode($entity, true), json_decode($entity->person, true)));
+        return response()->json(json_decode($entity, true) + json_decode($entity->person, true));
     }
 }

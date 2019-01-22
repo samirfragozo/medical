@@ -239,11 +239,14 @@ function reloadSelect(results) {
 }
 
 $(document).ready( function () {
+    $('li.m-menu__item > div > ul > li.m-menu__item--active').parents('li.m-menu__item').addClass('m-menu__item--open m-menu__item--expanded');
+
     $('.select-reload').each(function() {
         dataSelect($(this));
     });
 
-    $('li.m-menu__item > div > ul > li.m-menu__item--active').parents('li.m-menu__item').addClass('m-menu__item--open m-menu__item--expanded');
+    //Init bootstrap switch
+    $('.switch').bootstrapSwitch();
 
     if (form.length !== 0) disableForm(true);
     if (table.length === 0) ajaxRequest(routes.data.url, null, routes.data.method, show, formPortlet);
