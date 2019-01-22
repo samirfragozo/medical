@@ -25,7 +25,7 @@ class MedicalAppointment extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['date', 'start', 'professional_specialty_id', 'professional_id', 'state'],
+            'fields' => ['date', 'hour', 'professional_specialty_id', 'professional_id', 'state'],
             'active' => false,
             'actions' => true,
         ],
