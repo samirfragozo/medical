@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\doctor::class, function (Faker $faker) {
+$factory->define(App\Turn::class, function (Faker $faker) {
     return [
         //
     ];

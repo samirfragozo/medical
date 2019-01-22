@@ -15,8 +15,8 @@ class CreateSuppliesTable extends Migration
     {
         Schema::create('supplies', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('code',10);
-            $table->string('name',100);
+            $table->string('code',10)->unique();
+            $table->string('name',100)->unique();
             $table->double('content');
             $table->enum('unit',array_keys(__('app.selects.supply.unit')));
             $table->boolean('active')->default(1);

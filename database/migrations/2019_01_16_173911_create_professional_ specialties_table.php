@@ -15,8 +15,8 @@ class CreateProfessionalSpecialtiesTable extends Migration
     {
         Schema::create('professional_specialties', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('code',10);
-            $table->string('name',50);
+            $table->string('code',10)->unique();
+            $table->string('name',50)->unique();
             $table->string('description',200)->nullable();
             $table->boolean('active')->default(1);
             $table->unsignedInteger('professional_type_id');
