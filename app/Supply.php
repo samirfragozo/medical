@@ -10,7 +10,7 @@ class Supply extends Base
      * @var array
      */
     protected $appends = [
-        'actions', 'translated_unit'
+        'actions', 'full_name', 'translated_unit'
     ];
 
     /**
