@@ -3,83 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\person;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
-class PersonController extends Controller
+class PersonController extends BaseController
 {
     /**
-     * Display a listing of the resource.
+     * Create a controller instance.
      *
-     * @return \Illuminate\Http\Response
+     * @param Model $entity
      */
-    public function index()
+    public function __construct(Model $entity)
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        parent::__construct($entity);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\person  $person
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(person $person)
+    public function show(int $id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\person  $person
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(person $person)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\person  $person
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, person $person)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\person  $person
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(person $person)
-    {
-        //
+        $entity = $this->entity->find($id);
+        return response()->json(array_merge(json_decode($entity, true), json_decode($entity->person, true)));
     }
 }

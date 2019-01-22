@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\patient;
 use Illuminate\Http\Request;
 
-class PatientController extends BaseController
+class PatientController extends PersonController
 {
     /**
      * Create a controller instance.

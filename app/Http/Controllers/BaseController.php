@@ -35,7 +35,7 @@ class BaseController extends Controller
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */
-    public function index(Request $request)
+    protected function index(Request $request)
     {
         if ($request->ajax()) return Datatables::of($this->model)->make(true);
 
@@ -52,7 +52,7 @@ class BaseController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(int $id)
+    protected function show(int $id)
     {
         return response()->json($this->entity->find($id));
     }
@@ -110,7 +110,7 @@ class BaseController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function status(Request $request)
+    protected function status(Request $request)
     {
         foreach($request->massive as $item){
             $entity = $this->entity->find($item);

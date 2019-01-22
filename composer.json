@@ -15,7 +15,8 @@
         "laravelcollective/html": "^5.7",
         "spatie/laravel-menu": "^3.2",
         "spatie/laravel-permission": "^2.29",
-        "yajra/laravel-datatables-oracle": "^8.13"
+        "yajra/laravel-datatables-oracle": "^8.13",
+      "ext-json": "*"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
