@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests;
 
+/**
+ * @property mixed id
+ */
 class SupplyRequest extends BaseRequest
 {
     /**
@@ -12,7 +15,9 @@ class SupplyRequest extends BaseRequest
     public function rules()
     {
         return [
-            //
+            'code' => 'required|max:12|unique:positions,code,' . $this->id,
+            'description' => 'max:200',
+            'name' => 'required|max:50|unique:positions,name,' . $this->id
         ];
     }
 }
