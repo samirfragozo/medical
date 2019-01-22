@@ -121,6 +121,14 @@
                         ])}}
                     </div>
                 </div>
+            @elseif($field['type'] == 'switch')
+                {{Form::checkbox($field['name'], 1, false, [
+                    'id' => $field['name'] . '_' . $suffix,
+                    'class' => 'switch',
+                    'data-switch' => 'true',
+                    'data-size' => 'small',
+                    'data-on-text' => 'Sí', 'data-off-text' => 'No',
+                ])}}
             @elseif($field['type'] == 'text')
                 @php( $only_view = (isset($field['only-view']) and $field['only-view']) ?  'only-view' : '')
                 {{Form::text($field['name'], null, [

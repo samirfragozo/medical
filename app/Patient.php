@@ -39,12 +39,16 @@ class Patient extends Base
                 'type' => 'select_reload',
             ],
             [
+                'name' => 'medicines',
+                'type' => 'switch',
+            ],
+            [
+                'name' => 'medicines_description',
+                'type' => 'textarea',
+            ],
+            [
                 'name' => 'allergies',
-                'type' => 'radio',
-                'value' => [
-                    'yes',
-                    'no',
-                ],
+                'type' => 'switch',
             ],
             [
                 'name' => 'allergies_description',
@@ -52,26 +56,10 @@ class Patient extends Base
             ],
             [
                 'name' => 'medication_allergies',
-                'type' => 'radio',
-                'value' => [
-                    'yes',
-                    'no',
-                ],
+                'type' => 'switch',
             ],
             [
                 'name' => 'medication_allergies_description',
-                'type' => 'textarea',
-            ],
-            [
-                'name' => 'medicines',
-                'type' => 'radio',
-                'value' => [
-                    'yes',
-                    'no',
-                ],
-            ],
-            [
-                'name' => 'medicines_description',
                 'type' => 'textarea',
             ],
         ],
