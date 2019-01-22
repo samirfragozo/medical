@@ -10,7 +10,7 @@ class ProfessionalType extends Base
      * @var array
      */
     protected $appends = [
-        'actions'
+        'actions', 'full_name',
     ];
 
     /**

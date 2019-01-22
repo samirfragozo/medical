@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Professional;
 use Illuminate\Http\Request;
 
-class ProfessionalController extends BaseController
+class ProfessionalController extends PersonController
 {
 
     /**

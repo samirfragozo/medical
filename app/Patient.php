@@ -10,7 +10,7 @@ class Patient extends Base
      * @var array
      */
     protected $appends = [
-        'actions'
+        'actions', 'full_name',
     ];
 
     /**
@@ -107,6 +107,16 @@ class Patient extends Base
             'id' => $this->id,
             'active' => $this->active,
         ];
+    }
+
+    /**
+     * Mutator for the full name
+     *
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        return $this->person->full_name;
     }
 
     // Relationships

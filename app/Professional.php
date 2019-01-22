@@ -10,7 +10,7 @@ class Professional extends Base
      * @var array
      */
     protected $appends = [
-        'actions'
+        'actions', 'full_name',
     ];
 
     /**
@@ -91,6 +91,16 @@ class Professional extends Base
             'id' => $this->id,
             'active' => $this->active,
         ];
+    }
+
+    /**
+     * Mutator for the full name
+     *
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        return $this->person->full_name;
     }
 
     // Relationships

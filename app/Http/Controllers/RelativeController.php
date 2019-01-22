@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\relative;
 use Illuminate\Http\Request;
 
-class RelativeController extends BaseController
+class RelativeController extends PersonController
 {
     /**
      * Create a controller instance.

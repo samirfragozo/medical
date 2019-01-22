@@ -10,7 +10,7 @@ class MedicalAppointment extends Base
      * @var array
      */
     protected $appends = [
-        'actions', 'translated_state'
+        'actions', 'translated_state', 'full_name',
     ];
 
     /**
@@ -72,6 +72,15 @@ class MedicalAppointment extends Base
         ];
     }
 
+    /**
+     * Mutator for the full name
+     *
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        return $this->date . ' ' . $this->start . ' ' . $this->professional->professional_specialty->name;
+    }
 
     /**
      * Mutator for the actions
