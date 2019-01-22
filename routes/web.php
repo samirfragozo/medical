@@ -22,17 +22,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Home
     Route::redirect('home', 'patients')->name('home');
 
+    Route::resource('medical_appointments', 'MedicalAppointmentController', ['except' => ['create', 'edit']]);
+
     Route::resource('patients', 'PatientController', ['except' => ['create', 'edit']]);
 
     Route::resource('professionals', 'ProfessionalController', ['except' => ['create', 'edit']]);
 
-    Route::resource('professional_types', 'ProfessionalTypeController', ['except' => ['create', 'edit']]);
-
     Route::resource('professional_specialties', 'ProfessionalSpecialtyController', ['except' => ['create', 'edit']]);
+
+    Route::resource('professional_types', 'ProfessionalTypeController', ['except' => ['create', 'edit']]);
 
     Route::resource('relatives', 'RelativeController', ['except' => ['create', 'edit']]);
 
     Route::resource('supplies', 'SupplyController', ['except' => ['create', 'edit']]);
-
-    Route::resource('medical_appointments', 'MedicalAppointmentController', ['except' => ['create', 'edit']]);
 });

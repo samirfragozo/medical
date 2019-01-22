@@ -41,25 +41,13 @@ return [
     ],
 
     'titles' => [
-        'cart' => 'Mi Carrito',
-        'home' => 'Inicio',
-        'orders' => 'Mis Pedidos',
-        'products' => 'Productos',
-        'stores' => 'Tiendas',
-        'provider' => [
-            'orders' => 'Pedidos',
-            'products' => 'Mis Productos',
-        ],
-        'providers_cart' => 'Mi Carrito - Proveedores',
-        'providers_rol' => 'Mi Empresa - Proveedores',
-        'storekeeper' => [
-            'cart' => 'Mi Carrito - Proveedores',
-            'orders' => 'Mis Pedidos',
-            'products' => 'Productos',
-            'providers' => 'Proveedores',
-            'stores' => 'Mis Tiendas',
-        ],
-        'user' => 'Mi Usuario',
+        'medical_appointments' => 'Citas Médicas',
+        'patients' => 'Pacientes',
+        'professionals' => 'Profesionales',
+        'professional_types' => 'Tipos de Profesional',
+        'professional_specialties' => 'Especialidades',
+        'relatives' => 'Familiares - :name',
+        'supplies' => 'Insumos',
     ],
 
     'roles' => [
