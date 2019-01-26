@@ -10,7 +10,7 @@ class Professional extends Base
      * @var array
      */
     protected $appends = [
-        'actions', 'full_name',
+        'actions', 'full_name', 'professional_type_id',
     ];
 
     /**
@@ -63,6 +63,8 @@ class Professional extends Base
         ],
     ];
 
+    // Methods
+
     /**
      * Get the data to build the layout.
      *
@@ -101,6 +103,16 @@ class Professional extends Base
     public function getFullNameAttribute()
     {
         return $this->person->full_name;
+    }
+
+    /**
+     * Mutator for the actions
+     *
+     * @return array
+     */
+    public function getProfessionalTypeIdAttribute()
+    {
+        return $this->professional_specialty->professional_type_id;
     }
 
     // Relationships

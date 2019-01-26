@@ -12,5 +12,6 @@ $factory->define(App\Professional::class, function (Faker $faker) {
         'person_id' => function () {
             return factory(\App\Person::class)->create()->id;
         },
+        'active' => $faker->boolean,
     ];
 });

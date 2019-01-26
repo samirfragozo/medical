@@ -93,7 +93,7 @@ class Patient extends Base
     {
         return [
             'id' => $this->id,
-            'active' => $this->active,
+            'active' => $this->active ? 0 : 1,
         ];
     }
 

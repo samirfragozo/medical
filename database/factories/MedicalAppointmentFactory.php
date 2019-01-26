@@ -16,6 +16,5 @@ $factory->define(App\MedicalAppointment::class, function (Faker $faker) {
         'patient_id' => function () {
             return factory(\App\Patient::class)->create()->id;
         },
-
     ];
 });

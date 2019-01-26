@@ -22,11 +22,18 @@ function getStatus(column, value) {
         return value ? '<i class="fa fa-check-square m--font-success"></i>' : '<i class="fa fa-window-close m--font-danger"></i>'
     } else if (column === 5) {
         return (
-            '<a href="javascript:" onclick="active(' + value.id + ',' + value.active + ')" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-' + (value.active ? 'warning' : 'success') + '" title="' + (value.active ? 'Desactivar' : 'Activar') + '">' +
-            '<i class="fa fa-shopping-basket"></i>' +
-            '</a>' +
-            '<a href="javascript:" onclick="delete(' + value.id + ')" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-danger" title="Eliminar">' +
-            '<i class="fa fa-trash-alt"></i>' +
+            '<span class="dropdown">' +
+                '<a href="javascript:" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown" aria-expanded="true">' +
+                    '<i class="la la-ellipsis-h"></i>' +
+                '</a>' +
+                '<div class="dropdown-menu dropdown-menu-right">' +
+                    '<a class="dropdown-item" href="' + crud + '/' + value.id + '/turns"><i class="fa fa-notes-medical"></i> Turnos</a>' +
+                    '<a class="dropdown-item" href="' + crud + '/' + value.id + '/medical_appointments"><i class="fa fa-briefcase-medical"></i> Citas Médicas</a>' +
+                    '<a class="dropdown-item" href="' + crud + '/' + value.id + '/relatives"><i class="fa fa-users"></i> Familiares</a>' +
+                '</div>' +
+            '</span>' +
+            '<a href="javascript:" onclick="active(' + value.id + ',' + value.active + ')" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-' + (value.active ? 'danger' : 'success') + '" title="' + (value.active ? 'Desactivar' : 'Activar') + '">' +
+                '<i class="fa ' + (value.active ? 'fa-window-close' : 'fa-check-square') + '"></i>' +
             '</a>'
         );
     }

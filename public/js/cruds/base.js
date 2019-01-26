@@ -11,23 +11,9 @@ let crud = window.location.pathname,
     formReset = $('#formReset'),
     formTitle = $('#formTitle'),
     routes = {
-        cart: {
-            add: {
-                url : crud + '/:id/add',
-                method : 'GET'
-            },
-            minus: {
-                url : crud + '/:id/minus',
-                method : 'GET'
-            },
-            plus: {
-                url : crud + '/:id/plus',
-                method : 'GET'
-            },
-            remove: {
-                url : crud + '/:id/remove',
-                method : 'GET'
-            },
+        active: {
+            url : crud + '/:id',
+            method : 'POST'
         },
         create: {
             url : crud,

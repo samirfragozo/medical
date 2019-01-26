@@ -1,3 +1,11 @@
+function active(id, active) {
+    let formData = new FormData();
+    let url = routes.active.url.replace(':id', id);
+
+    formData.append('active', active);
+    ajaxRequest(url, formData, routes.active.method, createRow, formPortlet);
+}
+
 function create() {
     resetForm();
     $('#form .form-group:first .form-control').focus();

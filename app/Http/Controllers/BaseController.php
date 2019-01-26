@@ -86,21 +86,14 @@ class BaseController extends Controller
      */
     protected function updateBase(FormRequest $request, int $id)
     {
-        $entity = $this->entity->find($id);
-        $user = $entity;
-
-        foreach ($this->user as $value) $user = $user->$value;
-
-        if ($user !== auth()->id()) return abort(403);
-
-        $entity->fill($request->all());
+        $entity = $this->entity->find($id)->fill($request->all());
         $entity->save();
 
         $this->image($request, $entity->id);
 
         return response()->json([
             'data' => $entity,
-            'message' => __('base.messages.update', ['name' => $entity->fullName]),
+            'message' => __('base.messages.update', ['name' => $entity->full_name]),
         ]);
     }
 
@@ -108,24 +101,17 @@ class BaseController extends Controller
      * Change status the specified resource from storage.
      *
      * @param Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    protected function status(Request $request)
+    protected function active(Request $request, int $id)
     {
-        foreach($request->massive as $item){
-            $entity = $this->entity->find($item);
-            $user = $entity;
-
-            foreach ($this->user as $value) $user = $user->$value;
-
-            if ($user === auth()->id()) {
-                $entity->active = $request->status;
-                $entity->save();
-            }
-        }
+        $entity = $this->entity->find($id);
+        $entity->active = $request->input('active');
+        $entity->save();
 
         return response()->json([
-            'message' => __('base.messages.changeStatus.' . $request->status),
+            'message' => __('base.messages.active.' . $request->input('active'), ['name' => $entity->full_name]),
         ]);
     }
 

@@ -60,12 +60,14 @@ return [
     ],
 
     'messages' => [
-        'store' => ':name  - Agregado',
-        'update' => ':name - Actualizado',
-        'changeStatus' => [
-           '1' => 'Registros Activados',
-           '0' => 'Registros Desactivados',
+        'active' => [
+            '1' => ':name - Activado',
+            '0' => ':name - Desactivado',
         ],
+        'massive' => 'Debe elegir al menos un registro',
+        'store' => ':name  - Agregado',
+        'invalid_request' => 'Los datos proporcionados no son válidos',
+        'update' => ':name - Actualizado',
     ],
 
     'placeholder' => 'Seleccione una opción',

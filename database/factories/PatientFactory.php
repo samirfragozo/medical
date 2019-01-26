@@ -14,5 +14,6 @@ $factory->define(App\Patient::class, function (Faker $faker) {
             return factory(\App\Person::class)->create()->id;
         },
         'social_security_entity_id' => random_int(1, \App\SocialSecurityEntity::count()),
+        'active' => $faker->boolean,
     ];
 });

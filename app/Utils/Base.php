@@ -278,12 +278,10 @@ class Base
      * Return data for the specified select.
      *
      * @param string $model
-     * @param string|null $field
      * @return \Illuminate\Http\Response
      */
-    public static function select(string $model, string $field = null)
+    public static function select(string $model)
     {
-        $entity = Base::dynamicInstanceModel($model);
-        return is_null($field) ? $entity->select() : $entity->select($field);
+        return Base::dynamicModelInstance($model)->select();
     }
 }

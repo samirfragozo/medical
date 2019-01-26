@@ -104,7 +104,7 @@ function aoColumnDefs(currentDataTable) {
             },
             {
                 'orderable': false,
-                'width': '20%',
+                'width': '12%',
                 'targets': -1,
                 'sClass': 'dt-center'
             }
@@ -118,7 +118,7 @@ function aoColumnDefs(currentDataTable) {
     } else if (actions) {
         aoColumnDefs.push({
             'orderable': false,
-            'width': '20%',
+            'width': '12%',
             'targets': -1,
             'sClass': 'dt-center'
         })

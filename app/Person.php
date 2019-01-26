@@ -2,9 +2,7 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Person extends Model
+class Person extends Base
 {
     /**
      * The mutated attributes that should be added for arrays.
@@ -33,13 +31,11 @@ class Person extends Model
             ],
             [
                 'name' => 'document_type',
-                'only-view' => true,
                 'type' => 'select',
                 'value' => 'app.selects.person.document_type',
             ],
             [
                 'name' => 'document',
-                'only-view' => true,
                 'type' => 'text',
             ],
             [
@@ -53,18 +49,6 @@ class Person extends Model
             [
                 'name' => 'birth_date',
                 'type' => 'date',
-            ],
-            [
-                'name' => 'country_id',
-                'type' => 'select_reload',
-            ],
-            [
-                'name' => 'state_id',
-                'type' => 'select_reload',
-            ],
-            [
-                'name' => 'city_id',
-                'type' => 'select_reload',
             ],
             [
                 'name' => 'sex',
@@ -87,14 +71,6 @@ class Person extends Model
             [
                 'name' => 'neighborhood',
                 'type' => 'text'
-            ],
-            [
-                'name' => 'state_id',
-                'type' => 'select_reload',
-            ],
-            [
-                'name' => 'city_id',
-                'type' => 'select_reload',
             ],
             [
                 'name' => 'phone',

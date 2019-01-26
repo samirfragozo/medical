@@ -2,12 +2,13 @@
 
 namespace App;
 
+use App\Traits\Uppercase;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Base extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, Uppercase;
 
     /**
      * The mutated attributes that should be added for arrays.
@@ -35,6 +36,16 @@ class Base extends Model
     public function getLayout(): array
     {
         return $this->layout;
+    }
+
+    /**
+     * Set baseQuery variable
+     *
+     * @return array
+     */
+    public function select()
+    {
+        return $this->get()->sortBy('name')->pluck('name', 'id');
     }
 
     // Mutator
