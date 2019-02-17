@@ -30,6 +30,30 @@ class MedicalAppointmentController extends BaseController
                 $request->request->add(['data' => [
                     'title' => __('app.titles.patients'),
                     'subtitle' => __('app.titles.patient.medical_appointments', ['name' => $patient->full_name]),
+                    'tools' => [
+                        'create' => true,
+                        'reload' => false,
+                    ],
+                    'table' => [
+                        'check' => false,
+                        'fields' => ['date', 'professional_specialty_id', 'professional_id', 'state'],
+                        'active' => false,
+                        'actions' => true,
+                    ],
+                    'form' => [
+                        [
+                            'name' => 'date',
+                            'type' => 'datetime',
+                        ],
+                        [
+                            'name' => 'observations',
+                            'type' => 'textarea',
+                        ],
+                        [
+                            'name' => 'professional_id',
+                            'type' => 'select_reload',
+                        ],
+                    ],
                 ]]);
                 $request->request->add(['patient_id' => $patient->id]);
                 $this->model = $patient->medical_appointments->sortByDesc('date');
@@ -83,12 +107,12 @@ class MedicalAppointmentController extends BaseController
      */
     public function statusUpdate(Request $request)
     {
-        $medical_appointment = $this->entity::find($request->id);
+        $medical_appointment = $this->entity::find($request->input('id'));
 
         if ( is_null($medical_appointment) ) return abort(404);
 
-        if ($request->state == 'CANCELADA' and $medical_appointment->state == 'PENDIENTE') {
-            $medical_appointment->state = $request->state;
+        if ($request->input('state') == 'CANCELADA' and $medical_appointment->state == 'PENDIENTE') {
+            $medical_appointment->state = $request->input('state');
             $medical_appointment->save();
         }
 

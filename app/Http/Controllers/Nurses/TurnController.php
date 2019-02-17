@@ -111,17 +111,17 @@ class TurnController extends BaseController
      */
     public function statusUpdate(Request $request)
     {
-        $medical_appointment = $this->entity::find($request->id);
+        $turn = $this->entity::find($request->input('id'));
 
-        if ( is_null($medical_appointment) ) return abort(404);
+        if ( is_null($turn) ) return abort(404);
 
-        if ($request->state == 'CANCELADA' and $medical_appointment->state == 'PENDIENTE') {
-            $medical_appointment->state = $request->state;
-            $medical_appointment->save();
+        if ($request->input('state') == 'CANCELADA' and $turn->state == 'PENDIENTE') {
+            $turn->state = $request->input('state');
+            $turn->save();
         }
 
         return response()->json([
-            'message' => __('app.messages.turns.' . $medical_appointment->state),
+            'message' => __('app.messages.turns.' . $turn->state),
         ]);
     }
 }

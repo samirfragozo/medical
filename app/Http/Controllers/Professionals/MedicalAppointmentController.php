@@ -107,12 +107,12 @@ class MedicalAppointmentController extends BaseController
      */
     public function statusUpdate(Request $request)
     {
-        $medical_appointment = $this->entity::find($request->id);
+        $medical_appointment = $this->entity::find($request->input('id'));
 
         if ( is_null($medical_appointment) ) return abort(404);
 
-        if ($request->state == 'CANCELADA' and $medical_appointment->state == 'PENDIENTE') {
-            $medical_appointment->state = $request->state;
+        if ($request->input('state') == 'CANCELADA' and $medical_appointment->state == 'PENDIENTE') {
+            $medical_appointment->state = $request->input('state');
             $medical_appointment->save();
         }
 
