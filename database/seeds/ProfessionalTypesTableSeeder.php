@@ -38,11 +38,6 @@ class ProfessionalTypesTableSeeder extends Seeder
                 'code' => 'TIP-004',
                 'name' => 'Enfermera Jefe'
             ],
-            [
-                'id' => 5,
-                'code' => 'TIP-005',
-                'name' => 'Enfermera'
-            ],
         ]);
 
         Model::reguard();

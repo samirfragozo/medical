@@ -24,6 +24,10 @@ return [
         'icon' => 'fa fa-user-md',
     ],
     [
+        'crud' => 'nurses',
+        'icon' => 'fa fa-file-medical-alt',
+    ],
+    [
         'icon' => 'fa fa-cog',
         'name' => 'configuration',
         'submenu' => [

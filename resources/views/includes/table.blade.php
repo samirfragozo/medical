@@ -1,4 +1,4 @@
-<div class="m-portlet" style="margin-bottom: 0" id="table-portlet">
+<div class="m-portlet" id="table-portlet">
     <div class="m-portlet__head">
         <div class="m-portlet__head-caption">
             <div class="m-portlet__head-title">

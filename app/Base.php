@@ -6,9 +6,13 @@ use App\Traits\Uppercase;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * @property string name
+ * @property mixed layout
+ */
 class Base extends Model
 {
-    use SoftDeletes, Uppercase;
+    use Uppercase;
 
     /**
      * The mutated attributes that should be added for arrays.
@@ -16,7 +20,7 @@ class Base extends Model
      * @var array
      */
     protected $appends = [
-        'full_name'
+        'full_name', 'select_value'
     ];
 
     /**
@@ -24,7 +28,7 @@ class Base extends Model
      *
      * @var array
      */
-    protected $guarded = [];
+    protected $guarded = ['data'];
 
     // Methods
 
@@ -41,11 +45,12 @@ class Base extends Model
     /**
      * Set baseQuery variable
      *
+     * @param string $field
      * @return array
      */
-    public function select()
+    public function select($field = 'select_value')
     {
-        return $this->get()->sortBy('name')->pluck('name', 'id');
+        return $this->active()->get()->sortBy($field)->pluck($field, 'id');
     }
 
     // Mutator
@@ -58,5 +63,28 @@ class Base extends Model
     public function getFullNameAttribute()
     {
         return $this->name;
+    }
+
+    /**
+     * Mutator for the value to show in the select
+     *
+     * @return string
+     */
+    public function getSelectValueAttribute()
+    {
+        return $this->name;
+    }
+
+    // Scopes
+
+    /**
+     * Return enabled elements.
+     *
+     * @param $query
+     * @return array
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('active', true);
     }
 }

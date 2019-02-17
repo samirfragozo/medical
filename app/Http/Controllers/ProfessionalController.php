@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProfessionalRequest;
 use App\Professional;
-use Illuminate\Http\Request;
 
-class ProfessionalController extends PersonController
+class ProfessionalController extends BaseController
 {
-
     /**
      * ProfessionalController constructor.
      * @param Professional $entity
@@ -15,61 +14,29 @@ class ProfessionalController extends PersonController
     public function __construct(Professional $entity)
     {
         parent::__construct($entity);
-        $this->model = $this->entity->with('person', 'professional_specialty.professional_type')->orderBy('created_at');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $this->model = $this->entity->with('professional_specialty.professional_type')->orderBy('name');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param ProfessionalRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProfessionalRequest $request)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param Professional $professional
-     * @return void
-     */
-    public function edit(Professional $professional)
-    {
-        //
+        return parent::storeBase($request);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param Professional $professional
-     * @return void
+     * @param ProfessionalRequest $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, professional $professional)
+    public function update(ProfessionalRequest $request, int $id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param Professional $professional
-     * @return void
-     */
-    public function destroy(professional $professional)
-    {
-        //
+        return parent::updateBase($request, $id);
     }
 }

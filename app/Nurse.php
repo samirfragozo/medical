@@ -2,7 +2,14 @@
 
 namespace App;
 
-class Person extends Base
+/**
+ * @property integer id
+ * @property string document
+ * @property string name
+ * @property string last_name
+ * @property boolean active
+ */
+class Nurse extends Base
 {
     /**
      * The mutated attributes that should be added for arrays.
@@ -10,7 +17,7 @@ class Person extends Base
      * @var array
      */
     protected $appends = [
-        'full_name', 'picture'
+        'actions', 'full_name', 'picture',
     ];
 
     /**
@@ -18,14 +25,25 @@ class Person extends Base
      *
      * @var array
      */
+
     protected $layout = [
+        'tools' => [
+            'create' => true,
+            'reload' => false,
+        ],
+        'table' => [
+            'check' => false,
+            'fields' => ['picture', 'document', 'name'],
+            'active' => true,
+            'actions' => true,
+        ],
         'form' => [
             [
                 'type' => 'section',
                 'value' => 'app.sections.personal_information',
             ],
             [
-                'default' => '/img/people/default.jpg',
+                'default' => '/img/professionals/default.jpg',
                 'name' => 'picture',
                 'type' => 'picture',
             ],
@@ -47,10 +65,6 @@ class Person extends Base
                 'type' => 'text',
             ],
             [
-                'name' => 'birth_date',
-                'type' => 'date',
-            ],
-            [
                 'name' => 'sex',
                 'type' => 'select',
                 'value' => 'app.selects.person.sex',
@@ -59,6 +73,10 @@ class Person extends Base
                 'name' => 'civil_status',
                 'type' => 'select',
                 'value' => 'app.selects.person.civil_status',
+            ],
+            [
+                'name' => 'birth_date',
+                'type' => 'date',
             ],
             [
                 'type' => 'section',
@@ -80,23 +98,23 @@ class Person extends Base
                 'name' => 'cellphone',
                 'type' => 'text'
             ],
-
         ],
     ];
 
-    // Methods
+    // Mutator
 
     /**
-     * Get the data to build the layout.
+     * Mutator for the actions
      *
      * @return array
      */
-    public function getLayout(): array
+    public function getActionsAttribute()
     {
-        return $this->layout;
+        return [
+            'id' => $this->id,
+            'active' => $this->active ? 0 : 1,
+        ];
     }
-
-    // Mutator
 
     /**
      * Mutator for the full name
@@ -115,41 +133,30 @@ class Person extends Base
      */
     public function getPictureAttribute()
     {
-        if(file_exists(storage_path('app/public/people/' . $this->id . '.jpg'))){
-            return asset('storage/people/' . $this->id . '.jpg');
+        if(file_exists(storage_path('app/public/nurses/' . $this->id . '.jpg'))){
+            return asset('storage/nurses/' . $this->id . '.jpg');
         }
-        return asset('/img/people/default.jpg');
+        return asset('/img/nurses/default.jpg');
+    }
+    /**
+     * Mutator for the value to show in the select
+     *
+     * @return string
+     */
+    public function getSelectValueAttribute()
+    {
+        return 'Enfermera - ' . $this->name . ' ' . $this->last_name;
     }
 
     // Relationships
 
     /**
-     * Patient relationship
+     * Turn relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function patient()
+    public function turns()
     {
-        return $this->hasOne(Patient::class);
-    }
-
-    /**
-     * Professional relationship
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function professional()
-    {
-        return $this->hasOne(Professional::class);
-    }
-
-    /**
-     * Relative relationship
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function relative()
-    {
-        return $this->hasOne(Relative::class);
+        return $this->hasMany(Turn::class);
     }
 }

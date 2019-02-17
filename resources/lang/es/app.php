@@ -14,29 +14,17 @@ return [
     */
 
     'buttons' => [
-        'orders' => 'Ordenar',
-        'roles' => [
-            'provider' => 'Convertirse en Proveedor',
-            'storekeeper' => 'Convertirse en Tendero',
-        ],
+
     ],
 
     'messages' => [
-        'cart' => [
-            'add' => ':name  - Agregado al Carrito',
-            'order' => '{1} Se ha agregado una nueva orden|[2,*] Se han agregado :value nuevas ordenes',
-            'remove' => ':name  - Eliminado del Carrito',
+        'medical_appointments' => [
+            'ATENDIDA' => 'Cita Médica Atendida',
+            'CANCELADA' => 'Cita Médica Cancelada',
         ],
-        'orders' => [
-            'cancelled' => 'Orden Cancelada',
-            'cancelled_user' => 'Orden Cancelada',
-            'dispatched' => 'Orden Enviada',
-            'delivered' => 'Orden Entregada',
-            'pending' => 'Orden Pendiente',
-        ],
-        'roles' => [
-            'provider' => 'Te has convertido en Proveedor',
-            'storekeeper' => 'Te has convertido en Tendero',
+        'turns' => [
+            'ATENDIDA' => 'Turno Atendido',
+            'CANCELADA' => 'Turno Cancelado',
         ],
     ],
 
@@ -44,11 +32,16 @@ return [
         'configuration' => 'Configuración',
         'home' => 'Inicio',
         'medical_appointments' => 'Citas Médicas',
+        'nurses' => 'Enfermeras',
+        'patient' => [
+            'medical_appointments' => 'Citas Médicas - :name',
+            'relatives' => 'Familiares - :name',
+            'turns' => 'Turnos - :name',
+        ],
         'patients' => 'Pacientes',
         'professionals' => 'Profesionales',
         'professional_types' => 'Tipos de Profesional',
         'professional_specialties' => 'Especialidades',
-        'relatives' => 'Familiares - :name',
         'supplies' => 'Insumos',
         'turns' => 'Turnos',
     ],
@@ -77,36 +70,35 @@ return [
                 'CANCELADA' => 'danger',
                 'PENDIENTE' => 'warning',
             ],
+            'state_next' => [
+                'ATENDIDA' => '',
+                'CANCELADA' => '',
+                'PENDIENTE' => 'ATENDIDA',
+            ],
         ],
         'person' => [
             'civil_status' => [
-                'MARRIED' => 'CASADO(A)',
-                'SINGLE' => 'SOLTERO(A)',
-                'FREE_UNION' => 'UNION LIBRE'
+                'CASADO(A)' => 'CASADO(A)',
+                'SOLTERO(A)' => 'SOLTERO(A)',
+                'UNION LIBRE' => 'UNION LIBRE'
             ],
             'document_type' => [
                 'CC' => 'CÉDULA DE CIUDADANÍA',
                 'CE' => 'CÉDULA DE EXTRANJERÍA'
             ],
             'sex' => [
-                'FEMALE' => 'FEMENINO',
-                'MALE' => 'MASCULINO',
+                'FEMENINO' => 'FEMENINO',
+                'MASCULINO' => 'MASCULINO',
             ],
         ],
         'professional' => [
-            'type' => [
-                'DOCTOR' => 'MÉDICO',
-                'NURSE' => 'ENFERMERA',
-                'NURSE BOOS' => 'ENFERMERA JEFE',
-                'THERAPIST' => 'TERAPEUTA',
-            ],
             'title_type' => [
-                'TECHNICAL' => 'TÉCNICO',
-                'TECHNOLOGIST' => 'TECNÓLOGO',
-                'PROFESSIONAL' => 'PROFESIONAL',
-                'SPECIALIST' => 'ESPECIALISTA',
-                'MASTER' => 'MAESTRÍA',
-                'DOCTORATE' => 'DOCTORADO',
+                'TÉCNICO' => 'TÉCNICO',
+                'TECNÓLOGO' => 'TECNÓLOGO',
+                'PROFESIONAL' => 'PROFESIONAL',
+                'ESPECIALISTA' => 'ESPECIALISTA',
+                'MAESTRÍA' => 'MAESTRÍA',
+                'DOCTORADO' => 'DOCTORADO',
             ],
             'doctor_type' => [
                 'MG' => 'MEDICINA GENERAL',
@@ -125,15 +117,16 @@ return [
         ],
         'relative' => [
             'relationship' => [
-                'AUNT' => 'TÍA',
-                'BROTHER' => 'HERMANO',
-                'COUSIN' => 'PRIMO O PRIMA',
-                'FATHER' => 'PAPÁ',
-                'GRANDFATHER' => 'ABUELO',
-                'GRANDMA' => 'ABUELA',
-                'MOM' => 'MAMÁ',
-                'SISTER' => 'HERMANA',
-                'UNCLE' => 'TÍO',
+                'ABUELA' => 'ABUELA',
+                'ABUELO' => 'ABUELO',
+                'HERMANA' => 'HERMANA',
+                'HERMANO' => 'HERMANO',
+                'MAMÁ' => 'MAMÁ',
+                'OTRO' => 'OTRO',
+                'PAPÁ' => 'PAPÁ',
+                'PRIMO O PRIMA' => 'PRIMO O PRIMA',
+                'TÍA' => 'TÍA',
+                'TÍO' => 'TÍO',
             ],
         ],
         'social_security_entities' => [
@@ -153,9 +146,22 @@ return [
                 'ML' => 'MILILITRO',
             ],
         ],
-    ],
-
-    'singular_titles' => [
-        'stores' => 'Tienda',
+        'turns' => [
+            'state' => [
+                'ATENDIDA' => 'ATENDIDA',
+                'CANCELADA' => 'CANCELADA',
+                'PENDIENTE' => 'PENDIENTE',
+            ],
+            'state_class' => [
+                'ATENDIDA' => 'success',
+                'CANCELADA' => 'danger',
+                'PENDIENTE' => 'warning',
+            ],
+            'state_next' => [
+                'ATENDIDA' => '',
+                'CANCELADA' => '',
+                'PENDIENTE' => 'ATENDIDA',
+            ],
+        ],
     ],
 ];

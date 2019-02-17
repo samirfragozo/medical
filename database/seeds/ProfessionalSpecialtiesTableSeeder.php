@@ -80,17 +80,17 @@ class ProfessionalSpecialtiesTableSeeder extends Seeder
             ],
             [
                 'code' => 'ESP-013',
-                'name' => 'Física',
+                'name' => 'Terapia Física',
                 'professional_type_id' => 2,
             ],
             [
                 'code' => 'ESP-014',
-                'name' => 'Respiratoria',
+                'name' => 'Terapia Respiratoria',
                 'professional_type_id' => 2,
             ],
             [
                 'code' => 'ESP-015',
-                'name' => 'Ocupacional',
+                'name' => 'Terapia Ocupacional',
                 'professional_type_id' => 2,
             ],
             [
@@ -102,11 +102,6 @@ class ProfessionalSpecialtiesTableSeeder extends Seeder
                 'code' => 'ESP-017',
                 'name' => 'Enfermera Jefe',
                 'professional_type_id' => 4,
-            ],
-            [
-                'code' => 'ESP-018',
-                'name' => 'Enfermera',
-                'professional_type_id' => 5,
             ],
         ]);
 

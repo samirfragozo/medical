@@ -2,6 +2,15 @@
 
 namespace App;
 
+use Carbon\Carbon;
+
+/**
+ * @property integer id
+ * @property string date
+ * @property string date_table
+ * @property string state
+ * @property mixed professional
+ */
 class MedicalAppointment extends Base
 {
     /**
@@ -10,7 +19,16 @@ class MedicalAppointment extends Base
      * @var array
      */
     protected $appends = [
-        'actions', 'translated_state', 'full_name',
+        'actions', 'date_table', 'full_name', 'patient_name',  'professional_specialty_id', 'translated_state',
+    ];
+
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = [
+        'data',
     ];
 
     /**
@@ -25,30 +43,18 @@ class MedicalAppointment extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['date', 'hour', 'professional_specialty_id', 'professional_id', 'state'],
+            'fields' => ['date', 'professional_specialty_id', 'professional_id', 'state'],
             'active' => false,
             'actions' => true,
         ],
         'form' => [
             [
                 'name' => 'date',
-                'type' => 'date',
-            ],
-            [
-                'name' => 'start',
-                'type' => 'text',
-            ],
-            [
-                'name' => 'end',
-                'type' => 'text',
+                'type' => 'datetime',
             ],
             [
                 'name' => 'observations',
                 'type' => 'textarea',
-            ],
-            [
-                'name' => 'professional_specialty_id',
-                'type' => 'select_reload',
             ],
             [
                 'name' => 'professional_id',
@@ -59,6 +65,16 @@ class MedicalAppointment extends Base
 
     // Mutator
 
+    public function getDateAttribute($value)
+    {
+        return Carbon::parse($value)->format('Y-m-d\TH:i');
+    }
+
+    public function getDateTableAttribute()
+    {
+        return Carbon::parse($this->date)->format('Y-m-d H:i');
+    }
+
     /**
      * Mutator for the actions
      *
@@ -68,7 +84,8 @@ class MedicalAppointment extends Base
     {
         return [
             'id' => $this->id,
-            'cancel' => $this->state == 'ATENDIDA' or $this->state == 'PENDIENTE',
+            'cancel' => $this->state == 'PENDIENTE',
+            'next' => __('app.selects.medical_appointment.state_next.' . $this->state),
         ];
     }
 
@@ -79,7 +96,27 @@ class MedicalAppointment extends Base
      */
     public function getFullNameAttribute()
     {
-        return $this->date . ' ' . $this->start . ' ' . $this->professional->professional_specialty->name;
+        return $this->date_table;
+    }
+
+    /**
+     * Mutator for the actions
+     *
+     * @return array
+     */
+    public function getProfessionalSpecialtyIdAttribute()
+    {
+        return $this->professional->professional_specialty_id;
+    }
+
+    /**
+     * Mutator for the actions
+     *
+     * @return array
+     */
+    public function getPatientNameAttribute()
+    {
+        return $this->patient->name;
     }
 
     /**
@@ -98,6 +135,16 @@ class MedicalAppointment extends Base
     // Relationships
 
     /**
+     * Patient relationship
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function patient()
+    {
+        return $this->belongsTo(Patient::class);
+    }
+
+    /**
      * Professional relationship
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -105,16 +152,5 @@ class MedicalAppointment extends Base
     public function professional()
     {
         return $this->belongsTo(Professional::class);
-    }
-
-    /**
-     * Patient relationship
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-
-    public function patient()
-    {
-        return $this->belongsTo(Patient::class);
     }
 }

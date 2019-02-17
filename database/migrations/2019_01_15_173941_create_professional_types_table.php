@@ -20,7 +20,6 @@ class CreateProfessionalTypesTable extends Migration
             $table->string('description', 200)->nullable();
             $table->boolean('active')->default(1);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

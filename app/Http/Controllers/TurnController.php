@@ -2,84 +2,66 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TurnRequest;
 use App\Turn;
 use Illuminate\Http\Request;
 
-class TurnController extends Controller
+class TurnController extends BaseController
 {
     /**
-     * Display a listing of the resource.
+     * Create a controller instance.
      *
-     * @return \Illuminate\Http\Response
+     * @param Turn $entity
      */
-    public function index()
+    public function __construct(Turn $entity)
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        parent::__construct($entity);
+        $this->model = $this->entity->orderBy('start', 'desc');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param TurnRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TurnRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Turn  $turn
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Turn $turn)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Turn  $turn
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Turn $turn)
-    {
-        //
+        return parent::storeBase($request);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Turn  $turn
+     * @param TurnRequest $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Turn $turn)
+    public function update(TurnRequest $request, int $id)
     {
-        //
+        return parent::updateBase($request,$id);
     }
 
+
     /**
-     * Remove the specified resource from storage.
+     * Update the specified resource in storage.
      *
-     * @param  \App\Turn  $turn
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Turn $turn)
+    public function statusUpdate(Request $request)
     {
-        //
+        $medical_appointment = $this->entity::find($request->id);
+
+        if ( is_null($medical_appointment) ) return abort(404);
+
+        if ($request->state == 'CANCELADA' and $medical_appointment->state == 'PENDIENTE') {
+            $medical_appointment->state = $request->state;
+            $medical_appointment->save();
+        }
+
+        return response()->json([
+            'message' => __('app.messages.turns.' . $medical_appointment->state),
+        ]);
     }
 }

@@ -64,6 +64,7 @@ return [
             '1' => ':name - Activado',
             '0' => ':name - Desactivado',
         ],
+        'delete' => ':name - Eliminado',
         'massive' => 'Debe elegir al menos un registro',
         'store' => ':name  - Agregado',
         'invalid_request' => 'Los datos proporcionados no son válidos',

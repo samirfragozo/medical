@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PatientRequest;
 use App\patient;
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Request;
 
-class PatientController extends PersonController
+class PatientController extends BaseController
 {
     /**
      * Create a controller instance.
@@ -16,29 +15,33 @@ class PatientController extends PersonController
     public function __construct(Patient $entity)
     {
         parent::__construct($entity);
-        $this->model = $this->entity->with('person', 'social_security_entity')->orderBy('created_at');
+        $this->model = $this->entity->with('social_security_entity')->orderBy('name');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @return void
+     * @param PatientRequest $request
+     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PatientRequest $request)
     {
-        //
+        return parent::storeBase($request);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param FormRequest $request
+     * @param PatientRequest $request
      * @param int $id
-     * @return void
+     * @return \Illuminate\Http\Response
      */
-    public function update(FormRequest $request, int $id)
+    public function update(PatientRequest $request, int $id)
     {
-        parent::updateBase($request, $id);
+        $request['allergies'] = isset($request['allergies']) ? 1 : 0;
+        $request['medication_allergies'] = isset($request['medication_allergies']) ? 1 : 0;
+        $request['medicines'] = isset($request['medicines']) ? 1 : 0;
+
+        return parent::updateBase($request, $id);
     }
 }

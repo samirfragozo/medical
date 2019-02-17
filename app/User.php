@@ -17,10 +17,10 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasRoles, Notifiable, SoftDeletes;
 
     /**
- * The attributes that aren't mass assignable.
- *
- * @var array
- */
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
     protected $guarded = [];
 
     /**

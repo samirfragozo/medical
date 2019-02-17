@@ -7,6 +7,7 @@ $.ajaxSetup({
 let crud = window.location.pathname,
     form = $('#form'),
     formButton = $('#formButton'),
+    formName = $('#formName'),
     formPortlet = $('#form-portlet'),
     formReset = $('#formReset'),
     formTitle = $('#formTitle'),
@@ -22,6 +23,10 @@ let crud = window.location.pathname,
         data: {
             url : crud,
             method : 'GET'
+        },
+        delete: {
+            url : crud + '/:id',
+            method : 'DELETE'
         },
         select: {
             url : '/select',
@@ -106,7 +111,7 @@ formButton.on("click", function () {
         disableForm(false);
         $('#form .form-group:first .form-control').focus();
         formReset.removeClass("m--hide");
-        formTitle.html(Lang.get('cruds/base.titles.update', {name: $('#name_form').val()}));
+        formTitle.html(Lang.get('cruds/base.titles.update', {name: ' '}));
         formButton.html(Lang.get('cruds/base.buttons.update')).attr('data-action', 'update');
     } else {
         let url = routes['update'].url.replace(':id', id);
@@ -143,7 +148,8 @@ function resetForm(action = 'create', name) {
     } else if (action === 'show') {
         disableForm(true, false);
         formReset.addClass("m--hide");
-        formTitle.html(Lang.get('cruds/base.titles.show', {name: name}));
+        formTitle.html(Lang.get('cruds/base.titles.show', {name: ' '}));
+        formName.html(name);
     }
 
     formButton.html(Lang.get('cruds/base.buttons.' + action)).attr('data-action', action);
@@ -174,6 +180,18 @@ function unblock(element){
 
 //Init select picker
 $(".m_selectpicker").selectpicker();
+
+//Init date picker
+$('.datepicker').datepicker({
+    autoclose: true,
+    format : "yyyy-mm-dd",
+});
+
+$('.yyyy-mm').datepicker({
+    autoclose: true,
+    format : "yyyy-mm",
+    minViewMode: 1
+});
 
 //Init wizard
 let wizard = new mWizard('m_wizard', {
@@ -224,6 +242,15 @@ function reloadSelect(results) {
     select.selectpicker('refresh');
 }
 
+function state(id, next) {
+    let formData = new FormData();
+    formData.append('state', next);
+    formData.append('id', id);
+
+    let url = routes.update.url.replace(':id', '');
+    ajaxRequest(url, formData, routes.update.method, createRow, tablePortlet);
+}
+
 $(document).ready( function () {
     $('li.m-menu__item > div > ul > li.m-menu__item--active').parents('li.m-menu__item').addClass('m-menu__item--open m-menu__item--expanded');
 
@@ -237,11 +264,3 @@ $(document).ready( function () {
     if (form.length !== 0) disableForm(true);
     if (table.length === 0) ajaxRequest(routes.data.url, null, routes.data.method, show, formPortlet);
 });
-
-function storekeeper(result) {
-    if (result == null) ajaxRequest('/storekeeper', null, 'GET', storekeeper, formPortlet);
-    else {
-        if (result.message) showMessage(result.message);
-        location.reload();
-    }
-}

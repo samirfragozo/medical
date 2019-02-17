@@ -2,6 +2,12 @@
 
 namespace App;
 
+/**
+ * @property integer id
+ * @property string name
+ * @property string last_name
+ * @property boolean active
+ */
 class Patient extends Base
 {
     /**
@@ -10,7 +16,7 @@ class Patient extends Base
      * @var array
      */
     protected $appends = [
-        'actions', 'full_name',
+        'actions', 'full_name', 'picture', 'social_security_entity_name'
     ];
 
     /**
@@ -30,6 +36,66 @@ class Patient extends Base
             'actions' => true,
         ],
         'form' => [
+            [
+                'type' => 'section',
+                'value' => 'app.sections.personal_information',
+            ],
+            [
+                'default' => '/img/patients/default.jpg',
+                'name' => 'picture',
+                'type' => 'picture',
+            ],
+            [
+                'name' => 'document_type',
+                'type' => 'select',
+                'value' => 'app.selects.person.document_type',
+            ],
+            [
+                'name' => 'document',
+                'type' => 'text',
+            ],
+            [
+                'name' => 'name',
+                'type' => 'text',
+            ],
+            [
+                'name' => 'last_name',
+                'type' => 'text',
+            ],
+            [
+                'name' => 'sex',
+                'type' => 'select',
+                'value' => 'app.selects.person.sex',
+            ],
+            [
+                'name' => 'civil_status',
+                'type' => 'select',
+                'value' => 'app.selects.person.civil_status',
+            ],
+            [
+                'name' => 'birth_date',
+                'type' => 'date',
+            ],
+            [
+                'type' => 'section',
+                'value' => 'app.sections.contact_information',
+            ],
+            [
+                'name' => 'address',
+                'type' => 'text'
+            ],
+            [
+                'name' => 'neighborhood',
+                'type' => 'text'
+            ],
+            [
+                'name' => 'phone',
+                'type' => 'text'
+            ],
+            [
+                'name' => 'cellphone',
+                'type' => 'text'
+            ],
             [
                 'type' => 'section',
                 'value' => 'app.sections.medical_information',
@@ -65,23 +131,6 @@ class Patient extends Base
         ],
     ];
 
-    // Methods
-
-    /**
-     * Get the data to build the layout.
-     *
-     * @return array
-     */
-    public function getLayout(): array
-    {
-        $layout = $this->layout;
-        $personLayout = (new Person)->getLayout();
-
-        foreach ($personLayout as $key =>$value) $layout[$key] = array_merge($personLayout[$key], $this->layout[$key]);
-
-        return array_merge($layout);
-    }
-
     // Mutator
 
     /**
@@ -104,7 +153,40 @@ class Patient extends Base
      */
     public function getFullNameAttribute()
     {
-        return $this->person->full_name;
+        return $this->name . ' ' . $this->last_name;
+    }
+
+    /**
+     * Mutator for the picture route
+     *
+     * @return string
+     */
+    public function getPictureAttribute()
+    {
+        if(file_exists(storage_path('app/public/patients/' . $this->id . '.jpg'))){
+            return asset('storage/patients/' . $this->id . '.jpg');
+        }
+        return asset('/img/patients/default.jpg');
+    }
+
+    /**
+     * Mutator for the value to show in the select
+     *
+     * @return string
+     */
+    public function getSelectValueAttribute()
+    {
+        return $this->full_name;
+    }
+
+    /**
+     * Mutator for the value to show in the select
+     *
+     * @return string
+     */
+    public function getSocialSecurityEntityNameAttribute()
+    {
+        return $this->social_security_entity->name;
     }
 
     // Relationships
@@ -114,27 +196,17 @@ class Patient extends Base
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function medical_appointment()
+    public function medical_appointments()
     {
         return $this->hasMany(MedicalAppointment::class);
     }
 
     /**
-     * Person relationship
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function person()
-    {
-        return $this->belongsTo(Person::class);
-    }
-
-    /**
-     * Relative relationship
+     * Relatives relationship
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function relative()
+    public function relatives()
     {
         return $this->hasMany(Relative::class);
     }
@@ -147,5 +219,15 @@ class Patient extends Base
     public function social_security_entity()
     {
         return $this->belongsTo(SocialSecurityEntity::class);
+    }
+
+    /**
+     * Turns relationship
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function turns()
+    {
+        return $this->hasMany(Turn::class);
     }
 }

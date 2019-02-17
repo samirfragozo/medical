@@ -21,7 +21,6 @@ class CreateSuppliesTable extends Migration
             $table->enum('unit',array_keys(__('app.selects.supply.unit')));
             $table->boolean('active')->default(1);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

@@ -2,6 +2,14 @@
 
 namespace App;
 
+/**
+ * @property integer id
+ * @property string document
+ * @property string name
+ * @property string last_name
+ * @property boolean active
+ * @property mixed professional_specialty
+ */
 class Professional extends Base
 {
     /**
@@ -10,7 +18,16 @@ class Professional extends Base
      * @var array
      */
     protected $appends = [
-        'actions', 'full_name', 'professional_type_id',
+        'actions', 'full_name', 'professional_type_id', 'picture', 'select_value'
+    ];
+
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = [
+        'professional_type_id',
     ];
 
     /**
@@ -33,11 +50,67 @@ class Professional extends Base
         'form' => [
             [
                 'type' => 'section',
-                'value' => 'app.sections.academic_information',
+                'value' => 'app.sections.personal_information',
             ],
             [
-                'name' => 'professional_type_id',
-                'type' => 'select_reload',
+                'default' => '/img/professionals/default.jpg',
+                'name' => 'picture',
+                'type' => 'picture',
+            ],
+            [
+                'name' => 'document_type',
+                'type' => 'select',
+                'value' => 'app.selects.person.document_type',
+            ],
+            [
+                'name' => 'document',
+                'type' => 'text',
+            ],
+            [
+                'name' => 'name',
+                'type' => 'text',
+            ],
+            [
+                'name' => 'last_name',
+                'type' => 'text',
+            ],
+            [
+                'name' => 'sex',
+                'type' => 'select',
+                'value' => 'app.selects.person.sex',
+            ],
+            [
+                'name' => 'civil_status',
+                'type' => 'select',
+                'value' => 'app.selects.person.civil_status',
+            ],
+            [
+                'name' => 'birth_date',
+                'type' => 'date',
+            ],
+            [
+                'type' => 'section',
+                'value' => 'app.sections.contact_information',
+            ],
+            [
+                'name' => 'address',
+                'type' => 'text'
+            ],
+            [
+                'name' => 'neighborhood',
+                'type' => 'text'
+            ],
+            [
+                'name' => 'phone',
+                'type' => 'text'
+            ],
+            [
+                'name' => 'cellphone',
+                'type' => 'text'
+            ],
+            [
+                'type' => 'section',
+                'value' => 'app.sections.academic_information',
             ],
             [
                 'name' => 'professional_specialty_id',
@@ -63,23 +136,6 @@ class Professional extends Base
         ],
     ];
 
-    // Methods
-
-    /**
-     * Get the data to build the layout.
-     *
-     * @return array
-     */
-    public function getLayout(): array
-    {
-        $layout = $this->layout;
-        $personLayout = (new Person)->getLayout();
-
-        foreach ($personLayout as $key =>$value) $layout[$key] = array_merge($personLayout[$key], $this->layout[$key]);
-
-        return array_merge($layout);
-    }
-
     // Mutator
 
     /**
@@ -91,7 +147,7 @@ class Professional extends Base
     {
         return [
             'id' => $this->id,
-            'active' => $this->active,
+            'active' => $this->active ? 0 : 1,
         ];
     }
 
@@ -102,7 +158,20 @@ class Professional extends Base
      */
     public function getFullNameAttribute()
     {
-        return $this->person->full_name;
+        return $this->name . ' ' . $this->last_name;
+    }
+
+    /**
+     * Mutator for the picture route
+     *
+     * @return string
+     */
+    public function getPictureAttribute()
+    {
+        if(file_exists(storage_path('app/public/professionals/' . $this->id . '.jpg'))){
+            return asset('storage/professionals/' . $this->id . '.jpg');
+        }
+        return asset('/img/professionals/default.jpg');
     }
 
     /**
@@ -115,6 +184,16 @@ class Professional extends Base
         return $this->professional_specialty->professional_type_id;
     }
 
+    /**
+     * Mutator for the value to show in the select
+     *
+     * @return string
+     */
+    public function getSelectValueAttribute()
+    {
+        return $this->professional_specialty->professional_type->name . ' - ' . $this->professional_specialty->name . ' - ' . $this->full_name;
+    }
+
     // Relationships
 
     /**
@@ -122,19 +201,9 @@ class Professional extends Base
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function medical_appointment()
+    public function medical_appointments()
     {
         return $this->hasMany(MedicalAppointment::class);
-    }
-
-    /**
-     * Person relationship
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function person()
-    {
-        return $this->belongsTo(Person::class);
     }
 
     /**

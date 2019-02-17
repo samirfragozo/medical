@@ -22,7 +22,6 @@ class CreateProfessionalSpecialtiesTable extends Migration
             $table->unsignedInteger('professional_type_id');
             $table->foreign('professional_type_id')->references('id')->on('professional_types');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

@@ -98,6 +98,23 @@ class BaseController extends Controller
     }
 
     /**
+     * Delete the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $entity = $this->entity->find($id);
+
+        $entity->delete();
+
+        return response()->json([
+            'message' => __('base.messages.delete', ['name' => $entity->full_name]),
+        ]);
+    }
+
+    /**
      * Change status the specified resource from storage.
      *
      * @param Request $request

@@ -58,11 +58,11 @@
             </div>
         </div>
     @elseif($field['type'] == 'section')
-        <div class="form-group {{$size ?? 'col-12'}}">
+        <div class="form-group m-form__group {{$size ?? 'col-12'}}">
             <h5>{{ __($field['value']) }}</h5>
         </div>
     @else
-        <div class="form-group {{$size ?? 'col-12'}}">
+        <div class="form-group m-form__group {{$size ?? 'col-12'}}">
             @php($text = $field['text'] ?? __($route . $field['name']))
             {{Form::label($field['name'] . '_' . $suffix, $text)}}
             @if($field['type'] == 'checkbox')
@@ -86,6 +86,8 @@
                     'style' => 'width: 100%',
                     'autocomplete' => 'off'
                 ])}}
+            @elseif($field['type'] == 'datetime')
+                <input name="{{ $field['name'] }}" class="form-control m-input" type="datetime-local" value="{{ date("yyyy-MM-dd'T'HH:mm:ss") }}" id="{{ $field['name'] . '_' . $suffix }}">
             @elseif($field['type'] == 'file')
                 {{Form::file($field['name'], [
                     'id' => $field['name'] . '_' . $suffix,
@@ -141,6 +143,12 @@
                     'id' => $field['name'] . '_' . $suffix,
                     'class' => 'form-control',
                     'rows' => '5',
+                    'autocomplete' => 'off'
+                ])}}
+            @elseif($field['type'] == 'time')
+                {{Form::time($field['name'], null, [
+                    'id' => $field['name'] . '_' . $suffix,
+                    'class' => 'form-control m-input',
                     'autocomplete' => 'off'
                 ])}}
             @endif

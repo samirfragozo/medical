@@ -1,8 +1,8 @@
-<div class="m-portlet" style="margin-bottom: 0" id="form-portlet">
+<div class="m-portlet" id="form-portlet">
     <div class="m-portlet__head">
         <div class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
-                <h3 id="formTitle" class="m-portlet__head-text m--font-brand">@yield('subtitle_form')</h3>
+                <h3 class="m-portlet__head-text m--font-brand"><b id="formTitle">@yield('subtitle_form')</b><b id="formName"></b></h3>
             </div>
         </div>
     </div>

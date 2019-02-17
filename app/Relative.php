@@ -2,6 +2,10 @@
 
 namespace App;
 
+/**
+ * @property string name
+ * @property string last_name
+ */
 class Relative extends Base
 {
     /**
@@ -25,11 +29,57 @@ class Relative extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['picture', 'document', 'name', 'cellphone'],
+            'fields' => ['document', 'name', 'relationship', 'cellphone'],
             'active' => false,
             'actions' => true,
         ],
         'form' => [
+            [
+                'type' => 'section',
+                'value' => 'app.sections.personal_information',
+            ],
+            [
+                'name' => 'document_type',
+                'type' => 'select',
+                'value' => 'app.selects.person.document_type',
+            ],
+            [
+                'name' => 'document',
+                'type' => 'text',
+            ],
+            [
+                'name' => 'name',
+                'type' => 'text',
+            ],
+            [
+                'name' => 'last_name',
+                'type' => 'text',
+            ],
+            [
+                'name' => 'sex',
+                'type' => 'select',
+                'value' => 'app.selects.person.sex',
+            ],
+            [
+                'type' => 'section',
+                'value' => 'app.sections.contact_information',
+            ],
+            [
+                'name' => 'address',
+                'type' => 'text'
+            ],
+            [
+                'name' => 'neighborhood',
+                'type' => 'text'
+            ],
+            [
+                'name' => 'phone',
+                'type' => 'text'
+            ],
+            [
+                'name' => 'cellphone',
+                'type' => 'text'
+            ],
             [
                 'name' => 'relationship',
                 'type' => 'select',
@@ -38,22 +88,7 @@ class Relative extends Base
         ],
     ];
 
-    // Methods
-
-    /**
-     * Get the data to build the layout.
-     *
-     * @return array
-     */
-    public function getLayout(): array
-    {
-        $layout = $this->layout;
-        $personLayout = (new Person)->getLayout();
-
-        foreach ($personLayout as $key => $value) $layout[$key] = array_merge($personLayout[$key], $this->layout[$key]);
-
-        return array_merge($layout);
-    }
+    // Mutator
 
     /**
      * Mutator for the full name
@@ -62,7 +97,7 @@ class Relative extends Base
      */
     public function getFullNameAttribute()
     {
-        return $this->person->full_name;
+        return $this->name . ' ' . $this->last_name;
     }
 
     // Relationships
@@ -72,11 +107,6 @@ class Relative extends Base
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function person()
-    {
-        return $this->belongsTo(Person::class);
-    }
-
     public function patient()
     {
         return $this->belongsTo(Patient::class);

@@ -64,6 +64,16 @@ class ProfessionalSpecialty extends Base
         ];
     }
 
+    /**
+     * Mutator for the value to show in the select
+     *
+     * @return string
+     */
+    public function getSelectValueAttribute()
+    {
+        return $this->professional_type->name . ' - ' . $this->name;
+    }
+
     // Relationships
 
     /**

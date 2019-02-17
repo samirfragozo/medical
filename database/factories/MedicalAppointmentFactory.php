@@ -3,13 +3,10 @@
 use Faker\Generator as Faker;
 
 $factory->define(App\MedicalAppointment::class, function (Faker $faker) {
-    $start = $faker->time($format = 'H:i:s');
-    $end = date('H:i:s', strtotime($start) + (30 * 60));
     return [
-        'date' => $faker->dateTime($max = 'now'),
-        'start' => $start,
-        'end' => $end,
+        'date' => $faker->dateTimeBetween($startDate = '-1 year', $endDate = 'now', $timezone = null),
         'observations' => $faker->text($maxNbChars = 200),
+        'state' => $faker->randomElement(array_keys(__('app.selects.medical_appointment.state'))),
         'professional_id' => function () {
             return factory(\App\Professional::class)->create()->id;
         },
