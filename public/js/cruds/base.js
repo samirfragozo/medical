@@ -7,7 +7,6 @@ $.ajaxSetup({
 let crud = window.location.pathname,
     form = $('#form'),
     formButton = $('#formButton'),
-    formName = $('#formName'),
     formPortlet = $('#form-portlet'),
     formReset = $('#formReset'),
     formTitle = $('#formTitle'),
@@ -76,6 +75,7 @@ function ajaxRequest(url, data, method, callback, element) {
         },
         error: function(results){
             if(results.status === 422){
+                // noinspection JSUnresolvedVariable
                 showValidations(results.responseJSON.errors);
             }
         },
@@ -111,7 +111,7 @@ formButton.on("click", function () {
         disableForm(false);
         $('#form .form-group:first .form-control').focus();
         formReset.removeClass("m--hide");
-        formTitle.html(Lang.get('cruds/base.titles.update', {name: ' '}));
+        formTitle.html(Lang.get('cruds/base.titles.update', {name: formTitle.attr('data-name')}));
         formButton.html(Lang.get('cruds/base.buttons.update')).attr('data-action', 'update');
     } else {
         let url = routes['update'].url.replace(':id', id);
@@ -148,8 +148,7 @@ function resetForm(action = 'create', name) {
     } else if (action === 'show') {
         disableForm(true, false);
         formReset.addClass("m--hide");
-        formTitle.html(Lang.get('cruds/base.titles.show', {name: ' '}));
-        formName.html(name);
+        formTitle.html(Lang.get('cruds/base.titles.show', {name: name})).attr('data-name', name);
     }
 
     formButton.html(Lang.get('cruds/base.buttons.' + action)).attr('data-action', action);

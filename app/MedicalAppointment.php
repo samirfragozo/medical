@@ -60,6 +60,10 @@ class MedicalAppointment extends Base
                 'name' => 'professional_id',
                 'type' => 'select_reload',
             ],
+            [
+                'name' => 'patient_id',
+                'type' => 'select_reload',
+            ],
         ],
     ];
 

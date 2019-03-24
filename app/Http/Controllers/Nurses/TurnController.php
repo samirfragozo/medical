@@ -115,7 +115,7 @@ class TurnController extends BaseController
 
         if ( is_null($turn) ) return abort(404);
 
-        if ($request->input('state') == 'CANCELADA' and $turn->state == 'PENDIENTE') {
+        if ($request->input('state') == 'CANCELADO' and $turn->state == 'PENDIENTE') {
             $turn->state = $request->input('state');
             $turn->save();
         }

@@ -11,7 +11,7 @@ $factory->define(App\Turn::class, function (Faker $faker) {
         'start' => $start,
         'end' => $end,
         'observations' => $faker->text($maxNbChars = 200),
-        'state' => $faker->randomElement(array_keys(__('app.selects.medical_appointment.state'))),
+        'state' => $faker->randomElement(array_keys(__('app.selects.turns.state'))),
         'nurse_id' => function () {
             return factory(\App\Nurse::class)->create()->id;
         },

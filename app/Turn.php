@@ -65,6 +65,10 @@ class Turn extends Base
                 'name' => 'nurse_id',
                 'type' => 'select_reload',
             ],
+            [
+                'name' => 'patient_id',
+                'type' => 'select_reload',
+            ],
         ],
     ];
 
@@ -143,7 +147,7 @@ class Turn extends Base
     {
         return [
             'state' => $this->state,
-            'class' => __('app.selects.medical_appointment.state_class.' . $this->state),
+            'class' => __('app.selects.turns.state_class.' . $this->state),
         ];
     }
 

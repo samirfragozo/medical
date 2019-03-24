@@ -16,7 +16,6 @@ class SupplyRequest extends BaseRequest
     {
         return [
             'code' => 'required|max:12|unique:positions,code,' . $this->id,
-            'description' => 'max:200',
             'name' => 'required|max:50|unique:positions,name,' . $this->id
         ];
     }

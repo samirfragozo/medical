@@ -23,8 +23,8 @@ return [
             'CANCELADA' => 'Cita Médica Cancelada',
         ],
         'turns' => [
-            'ATENDIDA' => 'Turno Atendido',
-            'CANCELADA' => 'Turno Cancelado',
+            'ATENDIDO' => 'Turno Atendido',
+            'CANCELADO' => 'Turno Cancelado',
         ],
     ],
 
@@ -148,19 +148,22 @@ return [
         ],
         'turns' => [
             'state' => [
-                'ATENDIDA' => 'ATENDIDA',
-                'CANCELADA' => 'CANCELADA',
+                'ATENDIDO' => 'ATENDIDO',
+                'CANCELADO' => 'CANCELADO',
+                'EN PROGRESO' => 'EN PROGRESO',
                 'PENDIENTE' => 'PENDIENTE',
             ],
             'state_class' => [
-                'ATENDIDA' => 'success',
-                'CANCELADA' => 'danger',
+                'ATENDIDO' => 'success',
+                'CANCELADO' => 'danger',
+                'EN PROGRESO' => 'primary',
                 'PENDIENTE' => 'warning',
             ],
             'state_next' => [
-                'ATENDIDA' => '',
-                'CANCELADA' => '',
-                'PENDIENTE' => 'ATENDIDA',
+                'ATENDIDO' => '',
+                'CANCELADO' => '',
+                'EN PROGRESO' => 'ATENDIDO',
+                'PENDIENTE' => 'EN PROGRESO',
             ],
         ],
     ],
