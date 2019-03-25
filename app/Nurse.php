@@ -7,25 +7,14 @@ namespace App;
  * @property string document
  * @property string name
  * @property string last_name
- * @property boolean active
  */
 class Nurse extends Base
 {
-    /**
-     * The mutated attributes that should be added for arrays.
-     *
-     * @var array
-     */
-    protected $appends = [
-        'actions', 'full_name',
-    ];
-
     /**
      * The data to build the layout.
      *
      * @var array
      */
-
     protected $layout = [
         'tools' => [
             'create' => true,
@@ -34,7 +23,7 @@ class Nurse extends Base
         'table' => [
             'check' => false,
             'fields' => ['document', 'name'],
-            'active' => true,
+            'active' => false,
             'actions' => true,
         ],
         'form' => [
@@ -97,19 +86,6 @@ class Nurse extends Base
     ];
 
     // Mutator
-
-    /**
-     * Mutator for the actions
-     *
-     * @return array
-     */
-    public function getActionsAttribute()
-    {
-        return [
-            'id' => $this->id,
-            'active' => $this->active ? 0 : 1,
-        ];
-    }
 
     /**
      * Mutator for the full name

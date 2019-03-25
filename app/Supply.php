@@ -10,7 +10,7 @@ class Supply extends Base
      * @var array
      */
     protected $appends = [
-        'actions', 'full_name', 'translated_unit'
+        'full_name', 'translated_unit'
     ];
 
     /**
@@ -26,8 +26,8 @@ class Supply extends Base
         'table' => [
             'check' => false,
             'fields' => ['code', 'name', 'content', 'unit'],
-            'active' => true,
-            'actions' => true,
+            'active' => false,
+            'actions' => false,
         ],
         'form' => [
             [
@@ -51,19 +51,6 @@ class Supply extends Base
     ];
 
     // Mutator
-
-    /**
-     * Mutator for the actions
-     *
-     * @return array
-     */
-    public function getActionsAttribute()
-    {
-        return [
-            'id' => $this->id,
-            'active' => $this->active,
-        ];
-    }
 
     /**
      * Mutator for the actions

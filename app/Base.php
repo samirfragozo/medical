@@ -4,7 +4,6 @@ namespace App;
 
 use App\Traits\Uppercase;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property string name
@@ -50,7 +49,7 @@ class Base extends Model
      */
     public function select($field = 'select_value')
     {
-        return $this->active()->get()->sortBy($field)->pluck($field, 'id');
+        return $this->get()->sortBy($field)->pluck($field, 'id');
     }
 
     // Mutator
@@ -73,18 +72,5 @@ class Base extends Model
     public function getSelectValueAttribute()
     {
         return $this->name;
-    }
-
-    // Scopes
-
-    /**
-     * Return enabled elements.
-     *
-     * @param $query
-     * @return array
-     */
-    public function scopeActive($query)
-    {
-        return $query->where('active', true);
     }
 }

@@ -6,7 +6,8 @@ namespace App;
  * @property integer id
  * @property string name
  * @property string last_name
- * @property boolean active
+ * @property string full_name
+ * @property mixed social_security_entity
  */
 class Patient extends Base
 {
@@ -16,7 +17,7 @@ class Patient extends Base
      * @var array
      */
     protected $appends = [
-        'actions', 'full_name', 'social_security_entity_name'
+        'full_name', 'social_security_entity_name'
     ];
 
     /**
@@ -32,7 +33,7 @@ class Patient extends Base
         'table' => [
             'check' => false,
             'fields' => ['document', 'name', 'social_security_entity_id'],
-            'active' => true,
+            'active' => false,
             'actions' => true,
         ],
         'form' => [
@@ -127,19 +128,6 @@ class Patient extends Base
     ];
 
     // Mutator
-
-    /**
-     * Mutator for the actions
-     *
-     * @return array
-     */
-    public function getActionsAttribute()
-    {
-        return [
-            'id' => $this->id,
-            'active' => $this->active ? 0 : 1,
-        ];
-    }
 
     /**
      * Mutator for the full name

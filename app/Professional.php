@@ -7,8 +7,8 @@ namespace App;
  * @property string document
  * @property string name
  * @property string last_name
- * @property boolean active
  * @property mixed professional_specialty
+ * @property mixed full_name
  */
 class Professional extends Base
 {
@@ -18,7 +18,7 @@ class Professional extends Base
      * @var array
      */
     protected $appends = [
-        'actions', 'full_name', 'professional_type_id', 'select_value',
+        'full_name', 'professional_type_id', 'select_value',
     ];
 
     /**
@@ -44,7 +44,7 @@ class Professional extends Base
         'table' => [
             'check' => false,
             'fields' => ['document', 'name', 'professional_type_id'],
-            'active' => true,
+            'active' => false,
             'actions' => true,
         ],
         'form' => [
@@ -132,19 +132,6 @@ class Professional extends Base
     ];
 
     // Mutator
-
-    /**
-     * Mutator for the actions
-     *
-     * @return array
-     */
-    public function getActionsAttribute()
-    {
-        return [
-            'id' => $this->id,
-            'active' => $this->active ? 0 : 1,
-        ];
-    }
 
     /**
      * Mutator for the full name

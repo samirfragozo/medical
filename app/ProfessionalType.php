@@ -5,15 +5,6 @@ namespace App;
 class ProfessionalType extends Base
 {
     /**
-     * The mutated attributes that should be added for arrays.
-     *
-     * @var array
-     */
-    protected $appends = [
-        'actions', 'full_name',
-    ];
-
-    /**
      * The data to build the layout.
      *
      * @var array
@@ -26,8 +17,8 @@ class ProfessionalType extends Base
         'table' => [
             'check' => false,
             'fields' => ['code', 'name'],
-            'active' => true,
-            'actions' => true,
+            'active' => false,
+            'actions' => false,
         ],
         'form' => [
             [
@@ -44,21 +35,6 @@ class ProfessionalType extends Base
             ],
         ],
     ];
-
-    // Mutator
-
-    /**
-     * Mutator for the actions
-     *
-     * @return array
-     */
-    public function getActionsAttribute()
-    {
-        return [
-            'id' => $this->id,
-            'active' => $this->active,
-        ];
-    }
 
     // Relationships
 
