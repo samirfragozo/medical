@@ -16,7 +16,7 @@ class Patient extends Base
      * @var array
      */
     protected $appends = [
-        'actions', 'full_name', 'picture', 'social_security_entity_name'
+        'actions', 'full_name', 'social_security_entity_name'
     ];
 
     /**
@@ -31,7 +31,7 @@ class Patient extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['picture', 'document', 'name', 'social_security_entity_id'],
+            'fields' => ['document', 'name', 'social_security_entity_id'],
             'active' => true,
             'actions' => true,
         ],
@@ -39,11 +39,6 @@ class Patient extends Base
             [
                 'type' => 'section',
                 'value' => 'app.sections.personal_information',
-            ],
-            [
-                'default' => '/img/patients/default.jpg',
-                'name' => 'picture',
-                'type' => 'picture',
             ],
             [
                 'name' => 'document_type',
@@ -154,19 +149,6 @@ class Patient extends Base
     public function getFullNameAttribute()
     {
         return $this->name . ' ' . $this->last_name;
-    }
-
-    /**
-     * Mutator for the picture route
-     *
-     * @return string
-     */
-    public function getPictureAttribute()
-    {
-        if(file_exists(storage_path('app/public/patients/' . $this->id . '.jpg'))){
-            return asset('storage/patients/' . $this->id . '.jpg');
-        }
-        return asset('/img/patients/default.jpg');
     }
 
     /**

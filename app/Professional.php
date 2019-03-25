@@ -18,7 +18,7 @@ class Professional extends Base
      * @var array
      */
     protected $appends = [
-        'actions', 'full_name', 'professional_type_id', 'picture', 'select_value'
+        'actions', 'full_name', 'professional_type_id', 'select_value',
     ];
 
     /**
@@ -43,7 +43,7 @@ class Professional extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['picture', 'document', 'name', 'professional_type_id'],
+            'fields' => ['document', 'name', 'professional_type_id'],
             'active' => true,
             'actions' => true,
         ],
@@ -51,11 +51,6 @@ class Professional extends Base
             [
                 'type' => 'section',
                 'value' => 'app.sections.personal_information',
-            ],
-            [
-                'default' => '/img/professionals/default.jpg',
-                'name' => 'picture',
-                'type' => 'picture',
             ],
             [
                 'name' => 'document_type',
@@ -159,19 +154,6 @@ class Professional extends Base
     public function getFullNameAttribute()
     {
         return $this->name . ' ' . $this->last_name;
-    }
-
-    /**
-     * Mutator for the picture route
-     *
-     * @return string
-     */
-    public function getPictureAttribute()
-    {
-        if(file_exists(storage_path('app/public/professionals/' . $this->id . '.jpg'))){
-            return asset('storage/professionals/' . $this->id . '.jpg');
-        }
-        return asset('/img/professionals/default.jpg');
     }
 
     /**

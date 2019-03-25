@@ -68,8 +68,6 @@ class BaseController extends Controller
     {
         $entity = $this->entity->create($request->all());
 
-        $this->image($request, $entity->id);
-
         return response()->json([
             'data' => $entity,
             'message' => __('base.messages.store', ['name' => $entity->fullName]),
@@ -88,8 +86,6 @@ class BaseController extends Controller
     {
         $entity = $this->entity->find($id)->fill($request->all());
         $entity->save();
-
-        $this->image($request, $entity->id);
 
         return response()->json([
             'data' => $entity,
@@ -130,20 +126,5 @@ class BaseController extends Controller
         return response()->json([
             'message' => __('base.messages.active.' . $request->input('active'), ['name' => $entity->full_name]),
         ]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param FormRequest $request
-     * @param int $id
-     * @return void
-     */
-    protected function image(FormRequest $request, int $id)
-    {
-        if($request->has('picture')) {
-            $file = $request->file('picture');
-            $file->move('storage\\' . $this->images, $id . '.' . $file->getClientOriginalExtension());
-        }
     }
 }

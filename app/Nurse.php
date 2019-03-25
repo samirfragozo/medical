@@ -17,7 +17,7 @@ class Nurse extends Base
      * @var array
      */
     protected $appends = [
-        'actions', 'full_name', 'picture',
+        'actions', 'full_name',
     ];
 
     /**
@@ -33,7 +33,7 @@ class Nurse extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['picture', 'document', 'name'],
+            'fields' => ['document', 'name'],
             'active' => true,
             'actions' => true,
         ],
@@ -41,11 +41,6 @@ class Nurse extends Base
             [
                 'type' => 'section',
                 'value' => 'app.sections.personal_information',
-            ],
-            [
-                'default' => '/img/professionals/default.jpg',
-                'name' => 'picture',
-                'type' => 'picture',
             ],
             [
                 'name' => 'document_type',
@@ -126,18 +121,6 @@ class Nurse extends Base
         return $this->name . ' ' . $this->last_name;
     }
 
-    /**
-     * Mutator for the picture route
-     *
-     * @return string
-     */
-    public function getPictureAttribute()
-    {
-        if(file_exists(storage_path('app/public/nurses/' . $this->id . '.jpg'))){
-            return asset('storage/nurses/' . $this->id . '.jpg');
-        }
-        return asset('/img/nurses/default.jpg');
-    }
     /**
      * Mutator for the value to show in the select
      *

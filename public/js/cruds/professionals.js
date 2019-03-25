@@ -1,5 +1,4 @@
 columnsDataTable = [
-    {data: 'picture', searchable: false, className: 'dt-center', customValue: true},
     {data: 'document'},
     {data: 'full_name'},
     {data: 'professional_specialty.professional_type.name'},
@@ -16,11 +15,9 @@ columnsDataTable = [
  * @returns {String} The HTML string with the status
  */
 function getStatus(column, value) {
-    if (column === 0) {
-        return '<img width="35" height="35" src="' + value + '" class="m--img-rounded m--marginless" alt="Picture">';
-    } else if (column === 4) {
+    if (column === 3) {
         return value ? '<i class="fa fa-check-square m--font-success"></i>' : '<i class="fa fa-window-close m--font-danger"></i>'
-    } else if (column === 5) {
+    } else if (column === 4) {
         return (
             '<a href="' + crud + '/' + value.id + '/medical_appointments" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-brand" title="Citas Médicas">' +
                 '<i class="fa fa fa-briefcase-medical"></i>' +
