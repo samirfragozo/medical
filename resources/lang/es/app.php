@@ -21,10 +21,12 @@ return [
         'medical_appointments' => [
             'ATENDIDA' => 'Cita Médica Atendida',
             'CANCELADA' => 'Cita Médica Cancelada',
+            'PENDIENTE' => 'Cita Médica Pendiente',
         ],
         'turns' => [
             'ATENDIDO' => 'Turno Atendido',
             'CANCELADO' => 'Turno Cancelado',
+            'PENDIENTE' => 'Turno Pendiente',
         ],
     ],
 

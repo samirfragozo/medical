@@ -22,8 +22,8 @@ function getStatus(column, value) {
 
         if (value.cancel) {
             actions =
-                '<a onclick="state(' + value.id + ',\'CANCELADA\')" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-danger" title="Cancelar">' +
-                '<i class="fa fa-window-close"></i>' +
+                '<a onclick="state(' + value.id + ',\'CANCELADO\')" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-danger" title="Cancelar">' +
+                    '<i class="fa fa-window-close"></i>' +
                 '</a>'
             ;
         }

@@ -246,7 +246,7 @@ function state(id, next) {
     formData.append('state', next);
     formData.append('id', id);
 
-    let url = routes.update.url.replace(':id', '');
+    let url = routes.update.url.replace('/:id', '');
     ajaxRequest(url, formData, routes.update.method, createRow, tablePortlet);
 }
 
