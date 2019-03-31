@@ -26,6 +26,7 @@ class CreateProfessionalsTable extends Migration
             $table->string('neighborhood', 50);
             $table->string('phone', 15)->nullable();
             $table->string('cellphone', 15)->nullable();
+            $table->string('email')->unique();
             $table->string('title', 100);
             $table->enum('title_type', array_keys(__('app.selects.professional.title_type')));
             $table->string('collage', 100);

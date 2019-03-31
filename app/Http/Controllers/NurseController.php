@@ -26,7 +26,7 @@ class NurseController extends BaseController
      */
     public function store(NurseRequest $request)
     {
-        return parent::storeBase($request);
+        return parent::storeBase($request, false, true);
     }
 
     /**

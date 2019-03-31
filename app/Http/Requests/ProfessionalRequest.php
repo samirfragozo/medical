@@ -2,20 +2,12 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-
-class ProfessionalRequest extends FormRequest
+/**
+ * @property mixed id
+ * @property mixed email
+ */
+class ProfessionalRequest extends BaseRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -35,6 +27,7 @@ class ProfessionalRequest extends FormRequest
             'neighborhood' => 'required|min:3|max:50',
             'phone' => 'required_without:cellphone|numeric|digits_between:6,12|bail',
             'cellphone' => 'nullable|numeric|digits_between:6,12|bail',
+            'email' => 'required|email|unique:users,email,' . $this->email,
             'professional_specialty_id' => 'required|exists:professional_specialties,id',
             'title' => 'required|min:3|max:50',
             'title_type' =>'required|in:' . implode(',', array_keys(__('app.selects.professional.title_type'))),

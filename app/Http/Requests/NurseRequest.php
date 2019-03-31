@@ -2,20 +2,12 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-
-class NurseRequest extends FormRequest
+/**
+ * @property mixed id
+ * @property mixed email
+ */
+class NurseRequest extends BaseRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -35,6 +27,7 @@ class NurseRequest extends FormRequest
             'neighborhood' => 'required|min:3|max:50',
             'phone' => 'required_without:cellphone|numeric|digits_between:6,12|bail',
             'cellphone' => 'nullable|numeric|digits_between:6,12|bail',
+            'email' => 'required|email|unique:users,email,' . $this->id . '|unique:nurses,email,' . $this->id,
         ];
     }
 }

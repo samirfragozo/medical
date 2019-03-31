@@ -161,6 +161,7 @@ return [
         'doctor_type' => 'Tipo de Doctor',
         'document' => 'Documento',
         'document_type' => 'Tipo de Documento',
+        'email' => 'Correo Electrónico',
         'end' => 'Fin',
         'hour' => 'Hora',
         'last_name' => 'Apellidos',

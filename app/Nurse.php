@@ -82,6 +82,10 @@ class Nurse extends Base
                 'name' => 'cellphone',
                 'type' => 'text'
             ],
+            [
+                'name' => 'email',
+                'type' => 'text'
+            ],
         ],
     ];
 

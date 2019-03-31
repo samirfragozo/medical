@@ -15,8 +15,10 @@ class SupplyRequest extends BaseRequest
     public function rules()
     {
         return [
-            'code' => 'required|max:12|unique:positions,code,' . $this->id,
-            'name' => 'required|max:50|unique:positions,name,' . $this->id
+            'code' => 'required|max:12|unique:supplies,code,' . $this->id,
+            'name' => 'required|max:50|unique:supplies,name,' . $this->id,
+            'content' => 'required|numeric|between:0.01,1000000',
+            'unit' => 'required|in:' . implode(',', array_keys(__('app.selects.supply.unit'))),
         ];
     }
 }

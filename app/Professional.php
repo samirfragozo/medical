@@ -104,6 +104,10 @@ class Professional extends Base
                 'type' => 'text'
             ],
             [
+                'name' => 'email',
+                'type' => 'text'
+            ],
+            [
                 'type' => 'section',
                 'value' => 'app.sections.academic_information',
             ],

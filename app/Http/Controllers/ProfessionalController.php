@@ -25,7 +25,7 @@ class ProfessionalController extends BaseController
      */
     public function store(ProfessionalRequest $request)
     {
-        return parent::storeBase($request);
+        return parent::storeBase($request, false, true);
     }
 
     /**

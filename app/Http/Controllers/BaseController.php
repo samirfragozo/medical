@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Yajra\DataTables\DataTables;
 
 class BaseController extends Controller
@@ -31,9 +34,9 @@ class BaseController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     * @throws \Exception
+     * @param Request $request
+     * @return Response
+     * @throws Exception
      */
     protected function index(Request $request)
     {
@@ -50,7 +53,7 @@ class BaseController extends Controller
      * Display the specified resource.
      *
      * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     protected function show(int $id)
     {
@@ -62,11 +65,21 @@ class BaseController extends Controller
      *
      * @param FormRequest $request
      * @param bool $reload
-     * @return \Illuminate\Http\Response
+     * @param bool $user
+     * @return Response
      */
-    protected function storeBase(FormRequest $request, $reload = false)
+    protected function storeBase(FormRequest $request, $reload = false, $user = false)
     {
         $entity = $this->entity->create($request->all());
+
+        if ($user) {
+            $className = get_class($this->entity);
+
+            User::create(array_merge($request->all(), [
+                'model_type' => $className,
+                'model_id' => $entity->id,
+            ]));
+        }
 
         return response()->json([
             'data' => $entity,
@@ -80,7 +93,7 @@ class BaseController extends Controller
      *
      * @param FormRequest $request
      * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     protected function updateBase(FormRequest $request, int $id)
     {
@@ -97,7 +110,7 @@ class BaseController extends Controller
      * Delete the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {
@@ -115,7 +128,7 @@ class BaseController extends Controller
      *
      * @param Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     protected function active(Request $request, int $id)
     {

@@ -18,7 +18,10 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->default(bcrypt(str_random(10)));
+            $table->string('model_type')->nullable();
+            $table->unsignedBigInteger('model_id')->nullable();
+            $table->index(['model_id', 'model_type']);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

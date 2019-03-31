@@ -26,6 +26,7 @@ class CreateNursesTable extends Migration
             $table->string('neighborhood', 50);
             $table->string('phone', 15)->nullable();
             $table->string('cellphone', 15)->nullable();
+            $table->string('email')->unique();
             $table->boolean('active')->default(1);
             $table->timestamps();
         });
