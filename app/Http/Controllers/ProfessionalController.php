@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfessionalRequest;
 use App\Professional;
+use Illuminate\Http\Response;
 
 class ProfessionalController extends BaseController
 {
@@ -13,19 +14,18 @@ class ProfessionalController extends BaseController
      */
     public function __construct(Professional $entity)
     {
-        parent::__construct($entity);
-        $this->model = $this->entity->with('professional_specialty.professional_type')->orderBy('name');
+        parent::__construct($entity, true);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param ProfessionalRequest $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(ProfessionalRequest $request)
     {
-        return parent::storeBase($request, false, true);
+        return parent::storeBase($request, false);
     }
 
     /**
@@ -33,7 +33,7 @@ class ProfessionalController extends BaseController
      *
      * @param ProfessionalRequest $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(ProfessionalRequest $request, int $id)
     {

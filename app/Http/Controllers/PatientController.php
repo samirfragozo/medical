@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PatientRequest;
 use App\patient;
+use Illuminate\Http\Response;
 
 class PatientController extends BaseController
 {
@@ -22,7 +23,7 @@ class PatientController extends BaseController
      * Store a newly created resource in storage.
      *
      * @param PatientRequest $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(PatientRequest $request)
     {
@@ -34,7 +35,7 @@ class PatientController extends BaseController
      *
      * @param PatientRequest $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(PatientRequest $request, int $id)
     {

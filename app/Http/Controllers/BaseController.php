@@ -22,12 +22,14 @@ class BaseController extends Controller
      * Create a controller instance.
      *
      * @param Model $entity
+     * @param bool $user
      */
-    protected function __construct(Model $entity)
+    protected function __construct(Model $entity, bool $user = false)
     {
         $this->entity = $entity;
         $this->crud = $this->entity->getTable();
         $this->model = $this->entity->orderBy('name');
+        $this->user = $user;
         $this->middleware('ajax')->except('index');
     }
 
@@ -65,20 +67,20 @@ class BaseController extends Controller
      *
      * @param FormRequest $request
      * @param bool $reload
-     * @param bool $user
      * @return Response
      */
-    protected function storeBase(FormRequest $request, $reload = false, $user = false)
+    protected function storeBase(FormRequest $request, $reload = false)
     {
         $entity = $this->entity->create($request->all());
 
-        if ($user) {
+        if ($this->user) {
             $className = get_class($this->entity);
 
             User::create(array_merge($request->all(), [
+                'name' => $entity->full_name,
                 'model_type' => $className,
                 'model_id' => $entity->id,
-            ]));
+            ]))->assignRole($this->crud);
         }
 
         return response()->json([
@@ -92,13 +94,22 @@ class BaseController extends Controller
      * Update the specified resource in storage.
      *
      * @param FormRequest $request
-     * @param  int $id
+     * @param int $id
      * @return Response
      */
     protected function updateBase(FormRequest $request, int $id)
     {
         $entity = $this->entity->find($id)->fill($request->all());
         $entity->save();
+
+        if ($this->user) {
+            $className = get_class($this->entity);
+
+            $user = User::where([['model_type', $className], ['model_id', $entity->id]])->first();
+            $user->fill(array_merge($request->all(), [
+                'name' => $entity->full_name,
+            ]))->save();
+        }
 
         return response()->json([
             'data' => $entity,

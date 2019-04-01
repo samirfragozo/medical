@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\NurseRequest;
 use App\Nurse;
+use Illuminate\Http\Response;
 
 class NurseController extends BaseController
 {
@@ -14,19 +15,18 @@ class NurseController extends BaseController
      */
     public function __construct(Nurse $entity)
     {
-        parent::__construct($entity);
-        $this->model = $this->entity->orderBy('name');
+        parent::__construct($entity, true);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param NurseRequest $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(NurseRequest $request)
     {
-        return parent::storeBase($request, false, true);
+        return parent::storeBase($request, false);
     }
 
     /**
@@ -34,7 +34,7 @@ class NurseController extends BaseController
      *
      * @param NurseRequest $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(NurseRequest $request, int $id)
     {

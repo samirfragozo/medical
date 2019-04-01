@@ -7,6 +7,7 @@ use App\Professional;
 use App\Relative;
 use App\Supply;
 use App\Turn;
+use App\User;
 use Illuminate\Database\Seeder;
 
 class TestSeeder extends Seeder
@@ -20,8 +21,26 @@ class TestSeeder extends Seeder
     public function run()
     {
         factory(Patient::class, 50)->create();
-        factory(Professional::class, 25)->create();
-        factory(Nurse::class, 25)->create();
+
+        for ($i = 0; $i < 25; $i++) {
+            $professional = factory(Professional::class)->create();
+
+            factory(User::class)->create([
+                'name' => $professional->full_name,
+                'email' => $professional->email,
+                'model_type' => 'App\Professional',
+                'model_id' => $professional->id,
+            ])->assignRole('professionals');
+
+            $nurse = factory(Nurse::class)->create();
+
+            factory(User::class)->create([
+                'name' => $nurse->full_name,
+                'email' => $nurse->email,
+                'model_type' => 'App\Nurse',
+                'model_id' => $nurse->id,
+            ])->assignRole('nurses');
+        }
 
         for ($i = 0; $i < 500; $i++) {
             factory(MedicalAppointment::class)->create([

@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -16,13 +17,15 @@ class UsersTableSeeder extends Seeder
     {
         Model::unguard();
 
-        DB::table((new \App\User)->getTable())->delete();
+        DB::table((new User)->getTable())->delete();
 
-        $role = Role::create(['name' => 'Admin']);
+        Role::create(['name' => 'admin']);
+        Role::create(['name' => 'nurses']);
+        Role::create(['name' => 'professionals']);
 
-        factory(App\User::class)->create([
+        factory(User::class)->create([
             'email' => 'admin@admin.com',
-        ])->assignRole($role);
+        ])->assignRole('admin');
 
         Model::reguard();
     }
