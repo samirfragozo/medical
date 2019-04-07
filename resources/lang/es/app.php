@@ -41,6 +41,9 @@ return [
             'turns' => 'Turnos - :name',
         ],
         'patients' => 'Pacientes',
+        'professional' => [
+            'medical_appointments' => 'Mis Citas Médicas',
+        ],
         'professionals' => 'Profesionales',
         'professional_types' => 'Tipos de Profesional',
         'professional_specialties' => 'Especialidades',
@@ -49,8 +52,9 @@ return [
     ],
 
     'roles' => [
-        'provider' => 'Proveedor',
-        'storekeeper' => 'Tendero',
+        'admin' => 'Administrador',
+        'nurses' => 'Enfermera',
+        'professionals' => 'Profesional',
     ],
 
     'sections' => [

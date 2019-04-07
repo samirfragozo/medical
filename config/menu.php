@@ -3,47 +3,56 @@
 return [
 
     [
-        'crud' => 'home',
-        'route' => 'home',
-        'icon' => 'fa fa-home',
-    ],
-    [
-        'crud' => 'turns',
-        'icon' => 'fa fa-notes-medical',
-    ],
-    [
-        'crud' => 'medical_appointments',
-        'icon' => 'fa fa-briefcase-medical',
-    ],
-    [
-        'crud' => 'patients',
-        'icon' => 'fa fa-user',
-    ],
-    [
-        'crud' => 'professionals',
-        'icon' => 'fa fa-user-md',
-    ],
-    [
-        'crud' => 'nurses',
-        'icon' => 'fa fa-file-medical-alt',
-    ],
-    [
-        'icon' => 'fa fa-cog',
-        'name' => 'configuration',
-        'submenu' => [
+        'name' => 'professionals',
+        'menu' => [
             [
-                'crud' => 'supplies',
+                'crud' => 'professional.medical_appointments',
+                'icon' => 'fa fa-briefcase-medical',
+            ],
+        ],
+    ],
+    [
+        'name' => 'admin',
+        'menu' => [
+            [
+                'crud' => 'turns',
+                'icon' => 'fa fa-notes-medical',
             ],
             [
-                'name' => 'professionals',
+                'crud' => 'medical_appointments',
+                'icon' => 'fa fa-briefcase-medical',
+            ],
+            [
+                'crud' => 'patients',
+                'icon' => 'fa fa-user',
+            ],
+            [
+                'crud' => 'professionals',
+                'icon' => 'fa fa-user-md',
+            ],
+            [
+                'crud' => 'nurses',
+                'icon' => 'fa fa-file-medical-alt',
+            ],
+            [
+                'icon' => 'fa fa-cog',
+                'name' => 'configuration',
                 'submenu' => [
                     [
-                        'crud' => 'professional_specialties',
+                        'crud' => 'supplies',
                     ],
                     [
-                        'crud' => 'professional_types',
+                        'name' => 'professionals',
+                        'submenu' => [
+                            [
+                                'crud' => 'professional_specialties',
+                            ],
+                            [
+                                'crud' => 'professional_types',
+                            ],
+                        ]
                     ],
-                ]
+                ],
             ],
         ],
     ],

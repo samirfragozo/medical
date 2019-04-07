@@ -75,18 +75,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     ]);
     Route::put('nurses/{nurse}/turns', 'Nurses\TurnController@statusUpdate');
 
-
-
     Route::resource('professional_specialties', 'ProfessionalSpecialtyController', ['except' => ['create', 'edit']]);
 
     Route::resource('professional_types', 'ProfessionalTypeController', ['except' => ['create', 'edit']]);
 
     Route::resource('supplies', 'SupplyController', ['except' => ['create', 'edit']]);
 
-    Route::get('select', function (Request $request)
-    {
-        $request->request->add(['data' => Base::select($request->input('name'))]);
-
-        return response()->json($request);
-    })->middleware('ajax');
+    Route::get('select', 'SelectController@index');
 });

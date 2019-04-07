@@ -2,8 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Validation\ValidationException;
 
 class BaseRequest extends FormRequest
 {
@@ -20,16 +22,16 @@ class BaseRequest extends FormRequest
     /**
      * Throw an exception on invalid data
      *
-     * @param \Illuminate\Contracts\Validation\Validator $validator
+     * @param Validator $validator
      * @return void
-     * @throws \Illuminate\Validation\ValidationException
+     * @throws ValidationException
      */
-    protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
+    protected function failedValidation(Validator $validator)
     {
         $response = new JsonResponse([
             'message' => __('base.messages.invalid_request'),
             'errors' => $validator->errors()], 422);
 
-        throw new \Illuminate\Validation\ValidationException($validator, $response);
+        throw new ValidationException($validator, $response);
     }
 }
