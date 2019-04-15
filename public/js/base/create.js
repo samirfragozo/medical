@@ -22,7 +22,7 @@ function createRow(results) {
         else resetForm('creating');
     }
 
-    if (results.message) showMessage(results.message);
+    if (results.message) showMessage(results.message, !!results.error);
 
     if (results.reload) location.reload();
 }

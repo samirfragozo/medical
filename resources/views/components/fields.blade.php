@@ -1,6 +1,7 @@
 @php($route = 'validation.attributes.')
 
 @foreach($fields as $field)
+    @php( $only_view = (isset($field['only-view']) and $field['only-view']) ?  ' only-view' : '')
     @if($field['type'] == 'button')
         <div class="form-group {{$size ?? 'col-12'}}">
             {{
@@ -87,7 +88,7 @@
                     'autocomplete' => 'off'
                 ])}}
             @elseif($field['type'] == 'datetime')
-                <input name="{{ $field['name'] }}" class="form-control m-input" type="datetime-local" value="{{ date("yyyy-MM-dd'T'HH:mm:ss") }}" id="{{ $field['name'] . '_' . $suffix }}">
+                <input name="{{ $field['name'] }}" class="form-control m-input{{ $only_view }}" type="datetime-local" value="{{ date("yyyy-MM-dd'T'HH:mm:ss") }}" id="{{ $field['name'] . '_' . $suffix }}">
             @elseif($field['type'] == 'file')
                 {{Form::file($field['name'], [
                     'id' => $field['name'] . '_' . $suffix,
@@ -113,7 +114,7 @@
                 <div class="input-group">
                     {{Form::select($field['name'], isset($field['value']) ? $field['value'] : [], null, [
                         'id' => $field['name'] . '_' . $suffix,
-                        'class' => 'form-control m-bootstrap-select m_selectpicker',
+                        'class' => 'form-control m-bootstrap-select m_selectpicker' . $only_view,
                         'placeholder' => __('base.placeholder'),
                         'data-live-search' => 'true'
                     ])}}
@@ -132,23 +133,22 @@
                     'data-on-text' => 'Sí', 'data-off-text' => 'No',
                 ])}}
             @elseif($field['type'] == 'text')
-                @php( $only_view = (isset($field['only-view']) and $field['only-view']) ?  'only-view' : '')
                 {{Form::text($field['name'], null, [
                     'id' => $field['name'] . '_' . $suffix,
-                    'class' => 'form-control m-input ' . $only_view,
+                    'class' => 'form-control m-input' . $only_view,
                     'autocomplete' => 'off'
                 ])}}
             @elseif($field['type'] == 'textarea')
                 {{Form::textarea($field['name'], null, [
                     'id' => $field['name'] . '_' . $suffix,
-                    'class' => 'form-control',
+                    'class' => 'form-control m-input' . $only_view,
                     'rows' => '5',
                     'autocomplete' => 'off'
                 ])}}
             @elseif($field['type'] == 'time')
                 {{Form::time($field['name'], null, [
                     'id' => $field['name'] . '_' . $suffix,
-                    'class' => 'form-control m-input',
+                    'class' => 'form-control m-input' . $only_view,
                     'autocomplete' => 'off'
                 ])}}
             @endif

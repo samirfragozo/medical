@@ -22,6 +22,7 @@ return [
             'ATENDIDA' => 'Cita Médica Atendida',
             'CANCELADA' => 'Cita Médica Cancelada',
             'PENDIENTE' => 'Cita Médica Pendiente',
+            'update' => 'No se puede atender una Cita Médica CANCELADA',
         ],
         'turns' => [
             'ATENDIDO' => 'Turno Atendido',

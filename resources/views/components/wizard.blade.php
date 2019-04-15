@@ -112,14 +112,12 @@
         @endcomponent
         {{Form::close()}}
     </div>
-    @if($crud !== 'professional.medical_appointments')
-        <div class="m-portlet__foot">
-            <div class="row align-items-center">
-                <div class="col-lg-12">
-                    {{Form::button(__('base.buttons.create'), ['id' => 'formButton', 'class' => 'btn btn-primary', 'data-action' => 'create'])}}
-                    {{Form::button(__('base.buttons.cancel'), ['id' => 'formReset', 'class' => 'btn btn-secondary'])}}
-                </div>
+    <div class="m-portlet__foot">
+        <div class="row align-items-center">
+            <div class="col-lg-12">
+                {{Form::button(__('base.buttons.create'), ['id' => 'formButton', 'class' => 'btn btn-primary', 'data-action' => 'create'])}}
+                {{Form::button(__('base.buttons.cancel'), ['id' => 'formReset', 'class' => 'btn btn-secondary'])}}
             </div>
         </div>
-    @endif
+    </div>
 @endif

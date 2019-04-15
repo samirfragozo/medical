@@ -36,7 +36,7 @@ class MedicalAppointmentController extends BaseController
                         'check' => false,
                         'fields' => ['date', 'patient_id', 'state'],
                         'active' => false,
-                        'actions' => true,
+                        'actions' => false,
                     ],
                     'form' => [
                         [
@@ -46,14 +46,12 @@ class MedicalAppointmentController extends BaseController
                         [
                             'name' => 'date',
                             'type' => 'datetime',
+                            'only-view' => true,
                         ],
                         [
                             'name' => 'observations',
                             'type' => 'textarea',
-                        ],
-                        [
-                            'name' => 'patient_id',
-                            'type' => 'select_reload',
+                            'only-view' => true,
                         ],
                     ],
                 ]]);
@@ -70,34 +68,34 @@ class MedicalAppointmentController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param MedicalAppointmentRequest $request
-     * @return Response
-     */
-    public function update(MedicalAppointmentRequest $request)
-    {
-        return parent::updateBase($request, $this->id);
-    }
-
-
-    /**
-     * Update the specified resource in storage.
-     *
      * @param Request $request
      * @return Response
      */
-    public function statusUpdate(Request $request)
+    public function update(Request $request)
     {
         $medical_appointment = $this->entity::find($request->input('id'));
 
         if ( is_null($medical_appointment) ) return abort(404);
 
-        if ($request->input('state') == 'CANCELADA' and $medical_appointment->state == 'PENDIENTE') {
-            $medical_appointment->state = $request->input('state');
+        if ($medical_appointment->state !== 'CANCELADA') {
+            $request->validate([
+                'diagnosis' => 'required|alpha_num|max:500',
+            ]);
+            $medical_appointment->diagnosis = $request->input('diagnosis');
+            $medical_appointment->state = 'ATENDIDA';
+
             $medical_appointment->save();
+
+            return response()->json([
+                'data' => $medical_appointment,
+                'message' => __('app.messages.medical_appointments.ATENDIDA'),
+            ]);
+        } else {
+            return response()->json([
+                'error' => true,
+                'message' => __('app.messages.medical_appointments.update'),
+            ]);
         }
 
-        return response()->json([
-            'message' => __('app.messages.medical_appointments.' . $medical_appointment->state),
-        ]);
     }
 }

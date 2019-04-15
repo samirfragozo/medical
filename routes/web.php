@@ -87,13 +87,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Nurse
     Route::middleware(['role:nurse'])->name('nurse.')->namespace('Nurse')->prefix('nurse')->group(function () {
         // Turns
-        Route::resource('turns', 'TurnController', ['except' => ['create', 'destroy', 'edit']]);
+        Route::resource('turns', 'TurnController', ['except' => ['create', 'destroy', 'edit', 'store']]);
     });
 
     // Professional
     Route::middleware(['role:professional'])->name('professional.')->namespace('Professional')->prefix('professional')->group(function () {
         // Medical appointments
-        Route::resource('medical_appointments', 'MedicalAppointmentController', ['except' => ['create', 'destroy', 'edit']]);
+        Route::resource('medical_appointments', 'MedicalAppointmentController', ['except' => ['create', 'destroy', 'edit', 'store']]);
     });
 
     Route::get('select', 'SelectController@index');
