@@ -40,6 +40,10 @@ class MedicalAppointmentController extends BaseController
                     ],
                     'form' => [
                         [
+                            'name' => 'diagnosis',
+                            'type' => 'textarea',
+                        ],
+                        [
                             'name' => 'date',
                             'type' => 'datetime',
                         ],
@@ -71,7 +75,7 @@ class MedicalAppointmentController extends BaseController
      */
     public function update(MedicalAppointmentRequest $request)
     {
-        return parent::updateBase($request,$this->id);
+        return parent::updateBase($request, $this->id);
     }
 
 

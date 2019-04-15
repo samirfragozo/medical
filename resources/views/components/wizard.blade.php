@@ -1,6 +1,6 @@
 @php
     $files = false;
-    $numFields = 5;
+    $numFields = 7;
     $valFields = array();
 @endphp
 @foreach($fields as $field)
@@ -112,12 +112,14 @@
         @endcomponent
         {{Form::close()}}
     </div>
-    <div class="m-portlet__foot">
-        <div class="row align-items-center">
-            <div class="col-lg-12">
-                {{Form::button(__('base.buttons.create'), ['id' => 'formButton', 'class' => 'btn btn-primary', 'data-action' => 'create'])}}
-                {{Form::button(__('base.buttons.cancel'), ['id' => 'formReset', 'class' => 'btn btn-secondary'])}}
+    @if($crud !== 'professional.medical_appointments')
+        <div class="m-portlet__foot">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    {{Form::button(__('base.buttons.create'), ['id' => 'formButton', 'class' => 'btn btn-primary', 'data-action' => 'create'])}}
+                    {{Form::button(__('base.buttons.cancel'), ['id' => 'formReset', 'class' => 'btn btn-secondary'])}}
+                </div>
             </div>
         </div>
-    </div>
+    @endif
 @endif

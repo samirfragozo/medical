@@ -158,6 +158,7 @@ return [
         'country_id' => 'País',
         'date' => 'Fecha',
         'description' => 'Descripción',
+        'diagnosis' => 'Diagnostico',
         'doctor_type' => 'Tipo de Doctor',
         'document' => 'Documento',
         'document_type' => 'Tipo de Documento',

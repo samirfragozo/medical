@@ -33,6 +33,7 @@
 @section('form')
     @component('components.wizard', [
         'crud' => $crud,
+        'edit' => $tools['edit'] ?? false,
         'fields' => $form ?? [],
     ])@endcomponent
 @endsection

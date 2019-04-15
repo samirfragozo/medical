@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Patients;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\MedicalAppointmentRequest;
 use App\MedicalAppointment;
+use App\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class MedicalAppointmentController extends BaseController
 {
@@ -24,7 +26,7 @@ class MedicalAppointmentController extends BaseController
 
         $this->middleware(function ($request, $next) {
             $this->id = $request->medical_appointment;
-            $patient = \App\Patient::find($request->patient);
+            $patient = Patient::find($request->patient);
 
             if ( !is_null($patient) ) {
                 $request->request->add(['data' => [
@@ -69,7 +71,7 @@ class MedicalAppointmentController extends BaseController
      * Display the specified resource.
      *
      * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show(int $id)
     {
@@ -80,7 +82,7 @@ class MedicalAppointmentController extends BaseController
      * Store a newly created resource in storage.
      *
      * @param MedicalAppointmentRequest $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(MedicalAppointmentRequest $request)
     {
@@ -91,7 +93,7 @@ class MedicalAppointmentController extends BaseController
      * Update the specified resource in storage.
      *
      * @param MedicalAppointmentRequest $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(MedicalAppointmentRequest $request)
     {
@@ -103,7 +105,7 @@ class MedicalAppointmentController extends BaseController
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function statusUpdate(Request $request)
     {

@@ -17,6 +17,7 @@ class CreateMedicalAppointmentsTable extends Migration
             $table->increments('id');
             $table->dateTime('date');
             $table->string('observations', 200)->nullable();
+            $table->text('diagnosis')->nullable();
             $table->enum('state',  array_keys(__('app.selects.medical_appointment.state')))->default('PENDIENTE');
             $table->unsignedInteger('professional_id');
             $table->foreign('professional_id')->references('id')->on('professionals');

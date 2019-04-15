@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Patients;
 
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\TurnRequest;
+use App\Patient;
 use App\Turn;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class TurnController extends BaseController
 {
@@ -24,7 +26,7 @@ class TurnController extends BaseController
 
         $this->middleware(function ($request, $next) {
             $this->id = $request->turn;
-            $patient = \App\Patient::find($request->patient);
+            $patient = Patient::find($request->patient);
 
             if ( !is_null($patient) ) {
                 $request->request->add(['data' => [
@@ -73,7 +75,7 @@ class TurnController extends BaseController
      * Display the specified resource.
      *
      * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show(int $id)
     {
@@ -84,7 +86,7 @@ class TurnController extends BaseController
      * Store a newly created resource in storage.
      *
      * @param TurnRequest $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(TurnRequest $request)
     {
@@ -95,7 +97,7 @@ class TurnController extends BaseController
      * Update the specified resource in storage.
      *
      * @param TurnRequest $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(TurnRequest $request)
     {
@@ -107,7 +109,7 @@ class TurnController extends BaseController
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function statusUpdate(Request $request)
     {
