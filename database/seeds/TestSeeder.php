@@ -22,6 +22,28 @@ class TestSeeder extends Seeder
     {
         factory(Patient::class, 50)->create();
 
+        $nurse = factory(Nurse::class)->create([
+            'email' => 'nurse@admin.com'
+        ]);
+
+        factory(User::class)->create([
+            'name' => $nurse->full_name,
+            'email' => $nurse->email,
+            'model_type' => 'App\Nurse',
+            'model_id' => $nurse->id,
+        ])->assignRole('nurse');
+
+        $professional = factory(Professional::class)->create([
+            'email' => 'professional@admin.com'
+        ]);
+
+        factory(User::class)->create([
+            'name' => $professional->full_name,
+            'email' => $professional->email,
+            'model_type' => 'App\Professional',
+            'model_id' => $professional->id,
+        ])->assignRole('professional');
+
         for ($i = 0; $i < 25; $i++) {
             $professional = factory(Professional::class)->create();
 
@@ -30,7 +52,7 @@ class TestSeeder extends Seeder
                 'email' => $professional->email,
                 'model_type' => 'App\Professional',
                 'model_id' => $professional->id,
-            ])->assignRole('professionals');
+            ])->assignRole('professional');
 
             $nurse = factory(Nurse::class)->create();
 
@@ -39,7 +61,7 @@ class TestSeeder extends Seeder
                 'email' => $nurse->email,
                 'model_type' => 'App\Nurse',
                 'model_id' => $nurse->id,
-            ])->assignRole('nurses');
+            ])->assignRole('nurse');
         }
 
         for ($i = 0; $i < 500; $i++) {

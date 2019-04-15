@@ -35,6 +35,9 @@ return [
         'home' => 'Inicio',
         'medical_appointments' => 'Citas Médicas',
         'nurses' => 'Enfermeras',
+        'nurse' => [
+            'turns' => 'Mis Turnos',
+        ],
         'patient' => [
             'medical_appointments' => 'Citas Médicas - :name',
             'relatives' => 'Familiares - :name',
@@ -53,8 +56,8 @@ return [
 
     'roles' => [
         'admin' => 'Administrador',
-        'nurses' => 'Enfermera',
-        'professionals' => 'Profesional',
+        'nurse' => 'Enfermera',
+        'professional' => 'Profesional',
     ],
 
     'sections' => [

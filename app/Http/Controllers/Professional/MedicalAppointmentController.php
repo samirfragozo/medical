@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Professionals;
+namespace App\Http\Controllers\Professional;
 
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\MedicalAppointmentRequest;
@@ -8,11 +8,10 @@ use App\MedicalAppointment;
 use App\Professional;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class MedicalAppointmentController extends BaseController
 {
-    private $id;
-
     /**
      * Create a controller instance.
      *
@@ -22,23 +21,20 @@ class MedicalAppointmentController extends BaseController
     {
         parent::__construct($entity);
 
-        $this->crud = 'professionals.medical_appointments';
+        $this->crud = 'professional.medical_appointments';
 
         $this->middleware(function ($request, $next) {
-            $this->id = $request->medical_appointment;
-            $professional = Professional::find($request->professional);
+            $professional = Professional::find(Auth::user()['model_id']);
 
             if ( !is_null($professional) ) {
                 $request->request->add(['data' => [
-                    'title' => __('app.titles.professionals'),
-                    'subtitle' => __('app.titles.patient.medical_appointments', ['name' => $professional->select_value]),
                     'tools' => [
-                        'create' => true,
-                        'reload' => false,
+                        'create' => false,
+                        'reload' => true,
                     ],
                     'table' => [
                         'check' => false,
-                        'fields' => ['date', 'patient_id', 'social_security_entity_id', 'state'],
+                        'fields' => ['date', 'patient_id', 'state'],
                         'active' => false,
                         'actions' => true,
                     ],
@@ -65,28 +61,6 @@ class MedicalAppointmentController extends BaseController
 
             return abort(404);
         });
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return Response
-     */
-    public function show(int $id)
-    {
-        return parent::show($this->id);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param MedicalAppointmentRequest $request
-     * @return Response
-     */
-    public function store(MedicalAppointmentRequest $request)
-    {
-        return parent::storeBase($request);
     }
 
     /**

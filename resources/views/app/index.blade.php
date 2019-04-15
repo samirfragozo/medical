@@ -39,11 +39,7 @@
 
 @push('scripts')
     @include('includes.scripts')
-    @if (file_exists('js/cruds/' . $crud . '.js'))
-        <script type="text/javascript" language="javascript" src="{{ asset('js/cruds/' . $crud . '.js') }}" defer></script>
-    @endif
-    @if($crud === 'stores' or $crud === 'storekeeper.stores')
-        <script type="text/javascript" language="javascript" src="{{ asset('js/cruds/map.js') }}" defer></script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlwXdHpCibPpppRQS4xhLOB7KxQvq-hL8" type="text/javascript"></script>
+    @if (file_exists('js/app/' . $crud . '.js'))
+        <script type="text/javascript" src="{{ asset('js/app/' . $crud . '.js') }}" defer></script>
     @endif
 @endpush

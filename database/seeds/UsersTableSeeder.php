@@ -20,8 +20,8 @@ class UsersTableSeeder extends Seeder
         DB::table((new User)->getTable())->delete();
 
         Role::create(['name' => 'admin']);
-        Role::create(['name' => 'nurses']);
-        Role::create(['name' => 'professionals']);
+        Role::create(['name' => 'nurse']);
+        Role::create(['name' => 'professional']);
 
         factory(User::class)->create([
             'email' => 'admin@admin.com',

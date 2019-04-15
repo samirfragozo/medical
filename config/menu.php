@@ -3,7 +3,16 @@
 return [
 
     [
-        'name' => 'professionals',
+        'name' => 'nurse',
+        'menu' => [
+            [
+                'crud' => 'nurse.turns',
+                'icon' => 'fa fa-notes-medical',
+            ],
+        ],
+    ],
+    [
+        'name' => 'professional',
         'menu' => [
             [
                 'crud' => 'professional.medical_appointments',
