@@ -5,7 +5,7 @@
                 <div class="m-stack m-stack--ver m-stack--general">
                     <div class="m-stack__item m-stack__item--middle m-brand__logo">
                         <a href="{{ route('home') }}" class="m-brand__logo-wrapper">
-                            <img src="{{ asset('img/logo_default_dark.png') }}" />
+                            <img src="{{ asset('img/logo_default_dark.png') }}"  alt="Logo"/>
                         </a>
                     </div>
                     <div class="m-stack__item m-stack__item--middle m-brand__tools">
@@ -27,7 +27,7 @@
                         <div class="d-flex align-items-center">
                             <div class="mr-auto">
                                 <h3 class="m-subheader__title m-subheader__title--separator">@yield('title')</h3>
-                                {{ (new \App\Utils\Base())->breadCrumbs() }}
+                                {{ (new App\Utils\Base())->breadCrumbs() }}
                             </div>
                         </div>
                     </div>
@@ -39,10 +39,10 @@
                                 <a href="#" class="m-nav__link m-dropdown__toggle">
                                     <span class="m-topbar__userpic">
                                         <span class="m-type m--bg-brand">
-                                            <span class="m--font-light">{{ str_limit(Auth::user()->full_name, 1, '') }}</span>
+                                            <span class="m--font-light">{{ str_limit(Auth::user()->name, 1, '') }}</span>
                                         </span>
                                     </span>
-                                    <span class="m-topbar__username m--hide">{{ Auth::user()->full_name }}</span>
+                                    <span class="m-topbar__username m--hide">{{ Auth::user()->name }}</span>
                                 </a>
                                 <div class="m-dropdown__wrapper">
                                     <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
@@ -51,11 +51,11 @@
                                             <div class="m-card-user m-card-user--skin-dark">
                                                 <div class="m-card-user__pic">
                                                     <span class="m-type m-type--lg m--bg-danger">
-                                                        <span class="m--font-light">{{ str_limit(Auth::user()->full_name, 1, '') }}</span>
+                                                        <span class="m--font-light">{{ str_limit(Auth::user()->name, 1, '') }}</span>
                                                     </span>
                                                 </div>
                                                 <div class="m-card-user__details">
-                                                    <span class="m-card-user__name m--font-weight-500">{{ str_limit(Auth::user()->full_name, 30, '...') }}</span>
+                                                    <span class="m-card-user__name m--font-weight-500">{{ str_limit(Auth::user()->name, 30, '...') }}</span>
                                                     <a class="m-card-user__email m--font-weight-300 m-link">{{ str_limit(Auth::user()->email, 50, '...') }}</a>
                                                 </div>
                                             </div>
