@@ -27,6 +27,7 @@ return [
         'turns' => [
             'ATENDIDO' => 'Turno Atendido',
             'CANCELADO' => 'Turno Cancelado',
+            'EN PROGRESO' => 'Turno En Progreso',
             'PENDIENTE' => 'Turno Pendiente',
         ],
     ],
@@ -145,7 +146,7 @@ return [
                 'EPS' => 'ENTIDAD PROMOTORA DE SALUD',
             ],
         ],
-        'supply' => [
+        'supplies' => [
             'unit' => [
                 'DL' => 'DECILITRO',
                 'G' => 'GRAMO',

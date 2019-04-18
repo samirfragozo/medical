@@ -3,6 +3,7 @@
 namespace App;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property integer id
@@ -11,6 +12,7 @@ use Carbon\Carbon;
  * @property string end
  * @property string state
  * @property mixed nurse
+ * @property mixed patient
  */
 class Turn extends Base
 {
@@ -105,6 +107,7 @@ class Turn extends Base
             'id' => $this->id,
             'cancel' => $this->state == 'PENDIENTE',
             'next' => __('app.selects.turns.state_next.' . $this->state),
+            'state' => __('app.selects.turns.state.' . $this->state),
         ];
     }
 
@@ -156,7 +159,7 @@ class Turn extends Base
     /**
      * Patient relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function patient()
     {
@@ -166,7 +169,7 @@ class Turn extends Base
     /**
      * Nurse relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function nurse()
     {

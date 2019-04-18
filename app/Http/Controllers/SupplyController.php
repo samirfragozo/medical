@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SupplyRequest;
 use App\Supply;
+use Illuminate\Http\Response;
 
 class SupplyController extends BaseController
 {
@@ -21,7 +22,7 @@ class SupplyController extends BaseController
      * Store a newly created resource in storage.
      *
      * @param SupplyRequest $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(SupplyRequest $request)
     {
@@ -33,7 +34,7 @@ class SupplyController extends BaseController
      *
      * @param SupplyRequest $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(SupplyRequest $request, int $id)
     {

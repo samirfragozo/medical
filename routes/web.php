@@ -88,6 +88,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::middleware(['role:nurse'])->name('nurse.')->namespace('Nurse')->prefix('nurse')->group(function () {
         // Turns
         Route::resource('turns', 'TurnController', ['except' => ['create', 'destroy', 'edit', 'store']]);
+        Route::put('turns', 'TurnController@statusUpdate');
     });
 
     // Professional

@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 /**
  * @property integer id
  * @property string document
@@ -116,7 +118,7 @@ class Nurse extends Base
     /**
      * Turn relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function turns()
     {

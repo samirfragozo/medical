@@ -18,7 +18,7 @@ class CreateSuppliesTable extends Migration
             $table->string('code',10)->unique();
             $table->string('name',100)->unique();
             $table->double('content');
-            $table->enum('unit',array_keys(__('app.selects.supply.unit')));
+            $table->enum('unit',array_keys(__('app.selects.supplies.unit')));
             $table->boolean('active')->default(1);
             $table->timestamps();
         });

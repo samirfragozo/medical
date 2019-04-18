@@ -7,6 +7,7 @@ use App\Http\Requests\TurnRequest;
 use App\Nurse;
 use App\Turn;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class TurnController extends BaseController
@@ -72,7 +73,7 @@ class TurnController extends BaseController
      * Update the specified resource in storage.
      *
      * @param TurnRequest $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(TurnRequest $request)
     {
@@ -84,7 +85,7 @@ class TurnController extends BaseController
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function statusUpdate(Request $request)
     {
@@ -92,7 +93,7 @@ class TurnController extends BaseController
 
         if ( is_null($turn) ) return abort(404);
 
-        if ($request->input('state') == 'CANCELADO' and $turn->state == 'PENDIENTE') {
+        if ($request->input('state') == __('app.selects.turns.state_next.' . $turn->state)) {
             $turn->state = $request->input('state');
             $turn->save();
         }

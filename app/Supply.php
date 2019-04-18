@@ -45,7 +45,7 @@ class Supply extends Base
             [
                 'name' => 'unit',
                 'type' => 'select',
-                'value' => 'app.selects.supply.unit',
+                'value' => 'app.selects.supplies.unit',
             ],
         ],
     ];
@@ -59,6 +59,6 @@ class Supply extends Base
      */
     public function getTranslatedUnitAttribute()
     {
-        return __('app.selects.supply.unit.' . $this->unit);
+        return __('app.selects.supplies.unit.' . $this->unit);
     }
 }
