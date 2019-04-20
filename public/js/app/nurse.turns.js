@@ -25,6 +25,7 @@ function getStatus(column, value) {
                 '</a>' +
                 '<div class="dropdown-menu dropdown-menu-right">' +
                     '<a class="dropdown-item" href="' + crud + '/' + value['id'] + '/medicines">Administración de Medicamentos</a>' +
+                    '<a class="dropdown-item" href="' + crud + '/' + value['id'] + '/supplies">Control de Insumos</a>' +
                     '<a class="dropdown-item" href="' + crud + '/' + value['id'] + '/fluids">Control de Líquidos</a>' +
                     '<a class="dropdown-item" href="' + crud + '/' + value['id'] + '/vital_signs">Control de Signos Vitales</a>' +
                     '<a class="dropdown-item" href="' + crud + '/' + value['id'] + '/cures">Evolución de Curaciones</a>' +

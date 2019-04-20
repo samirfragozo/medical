@@ -17,7 +17,7 @@ $factory->define(App\Relative::class, function (Faker $faker) {
         'cellphone' => '3' . random_int (0, 2) . random_int (0, 9) . $faker->unique()->randomNumber($nbDigits = 7),
         'relationship' => $faker->randomElement(array_keys(__('app.selects.relative.relationship'))),
         'patient_id' => function () {
-            return factory(\App\Patient::class)->create()->id;
+            return factory(App\Patient::class)->create()->id;
         },
     ];
 });

@@ -25,7 +25,7 @@ class Relative extends Base
     protected $layout = [
         'tools' => [
             'create' => true,
-            'reload' => false,
+            'reload' => true,
         ],
         'table' => [
             'check' => false,

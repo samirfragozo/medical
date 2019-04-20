@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Nurse;
 
 use App\Http\Controllers\BaseController;
-use App\Http\Requests\TurnRequest;
 use App\Nurse;
 use App\Turn;
 use Illuminate\Http\Request;
@@ -12,8 +11,6 @@ use Illuminate\Support\Facades\Auth;
 
 class TurnController extends BaseController
 {
-    private $id;
-
     /**
      * Create a controller instance.
      *
@@ -68,18 +65,6 @@ class TurnController extends BaseController
             return abort(404);
         });
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param TurnRequest $request
-     * @return Response
-     */
-    public function update(TurnRequest $request)
-    {
-        return parent::updateBase($request,$this->id);
-    }
-
 
     /**
      * Update the specified resource in storage.

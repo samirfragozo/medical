@@ -34,7 +34,7 @@ class TurnController extends BaseController
                     'subtitle' => __('app.titles.patient.turns', ['name' => $patient->full_name]),
                     'tools' => [
                         'create' => true,
-                        'reload' => false,
+                        'reload' => true,
                     ],
                     'table' => [
                         'check' => false,
@@ -103,7 +103,6 @@ class TurnController extends BaseController
     {
         return parent::updateBase($request,$this->id);
     }
-
 
     /**
      * Update the specified resource in storage.

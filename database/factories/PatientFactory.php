@@ -26,6 +26,6 @@ $factory->define(App\Patient::class, function (Faker $faker) {
         'medicines' => $faker->boolean,
         'medicines_description' => $faker->text($maxNbChars = 200),
         'active' => $faker->boolean,
-        'social_security_entity_id' => random_int(1, \App\SocialSecurityEntity::count()),
+        'social_security_entity_id' => random_int(1, App\SocialSecurityEntity::count()),
     ];
 });

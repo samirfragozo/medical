@@ -4,6 +4,7 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property integer id
@@ -13,6 +14,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string state
  * @property mixed nurse
  * @property mixed patient
+ * @property mixed start_table
+ * @property mixed end_table
  */
 class Turn extends Base
 {
@@ -42,7 +45,7 @@ class Turn extends Base
     protected $layout = [
         'tools' => [
             'create' => true,
-            'reload' => false,
+            'reload' => true,
         ],
         'table' => [
             'check' => false,
@@ -76,21 +79,43 @@ class Turn extends Base
 
     // Mutator
 
+    /**
+     * Mutator for the start date
+     *
+     * @param $value
+     * @return string
+     */
     public function getStartAttribute($value)
     {
         return Carbon::parse($value)->format('Y-m-d\TH:i');
     }
 
+    /**
+     * Mutator for the end date
+     *
+     * @param $value
+     * @return string
+     */
     public function getEndAttribute($value)
     {
         return Carbon::parse($value)->format('Y-m-d\TH:i');
     }
 
+    /**
+     * Mutator for the start date of the table
+     *
+     * @return string
+     */
     public function getStartTableAttribute()
     {
         return Carbon::parse($this->start)->format('Y-m-d H:i');
     }
 
+    /**
+     * Mutator for the end date of the table
+     *
+     * @return string
+     */
     public function getEndTableAttribute()
     {
         return Carbon::parse($this->end)->format('Y-m-d H:i');
@@ -174,5 +199,15 @@ class Turn extends Base
     public function nurse()
     {
         return $this->belongsTo(Nurse::class);
+    }
+
+    /**
+     * Notes relationship
+     *
+     * @return HasMany
+     */
+    public function notes()
+    {
+        return $this->hasMany(TurnNote::class);
     }
 }

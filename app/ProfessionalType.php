@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 class ProfessionalType extends Base
 {
     /**
@@ -12,7 +14,7 @@ class ProfessionalType extends Base
     protected $layout = [
         'tools' => [
             'create' => true,
-            'reload' => false,
+            'reload' => true,
         ],
         'table' => [
             'check' => false,
@@ -41,7 +43,7 @@ class ProfessionalType extends Base
     /**
      * Professional Specialty relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function professional_specialty()
     {

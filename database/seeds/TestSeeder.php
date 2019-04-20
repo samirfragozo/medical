@@ -7,6 +7,7 @@ use App\Professional;
 use App\Relative;
 use App\Supply;
 use App\Turn;
+use App\TurnNote;
 use App\User;
 use Illuminate\Database\Seeder;
 
@@ -80,6 +81,14 @@ class TestSeeder extends Seeder
             factory(Relative::class, random_int(1, 5))->create([
                 'patient_id' => $i,
             ]);
+        }
+
+        foreach (Turn::all() as $turn) {
+            if ($turn->state !== 'CANCELADO' and $turn->state !== 'PENDIENTE') {
+                factory(TurnNote::class, random_int(1, 5))->create([
+                    'turn_id' => $turn->id,
+                ]);
+            }
         }
 
         factory(Supply::class, 5)->create();

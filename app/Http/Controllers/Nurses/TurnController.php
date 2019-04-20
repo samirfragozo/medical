@@ -34,7 +34,7 @@ class TurnController extends BaseController
                     'subtitle' => __('app.titles.patient.turns', ['name' => $nurse->select_value]),
                     'tools' => [
                         'create' => true,
-                        'reload' => false,
+                        'reload' => true,
                     ],
                     'table' => [
                         'check' => false,

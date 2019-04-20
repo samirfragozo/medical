@@ -10,7 +10,7 @@ $factory->define(App\Professional::class, function (Faker $faker) {
         'document' => $faker->unique()->randomNumber($nbDigits = 9),
         'name' => $faker->firstName($gender),
         'last_name' => $faker->lastName . ' ' . $faker->lastName,
-        'birth_date' => $faker->dateTimeBetween($startDate = '-60 years', $endDate = '-18 years', $timezone = null),
+        'birth_date' => $faker->dateTimeBetween($startDate = '-60 years', $endDate = '-18 years'),
         'sex' => $gender,
         'civil_status' => $faker->randomElement(array_keys(__('app.selects.person.civil_status'))),
         'address' => $faker->streetAddress,
@@ -23,6 +23,6 @@ $factory->define(App\Professional::class, function (Faker $faker) {
         'collage' => $faker->company,
         'year' => $faker->year($max = 'now'),
         'active' => $faker->boolean,
-        'professional_specialty_id' => random_int(1, \App\ProfessionalSpecialty::count()),
+        'professional_specialty_id' => random_int(1, App\ProfessionalSpecialty::count()),
     ];
 });

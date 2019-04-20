@@ -34,7 +34,7 @@ class MedicalAppointmentController extends BaseController
                     'subtitle' => __('app.titles.patient.medical_appointments', ['name' => $patient->full_name]),
                     'tools' => [
                         'create' => true,
-                        'reload' => false,
+                        'reload' => true,
                     ],
                     'table' => [
                         'check' => false,
