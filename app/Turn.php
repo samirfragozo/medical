@@ -182,6 +182,16 @@ class Turn extends Base
     // Relationships
 
     /**
+     * Notes relationship
+     *
+     * @return HasMany
+     */
+    public function cures()
+    {
+        return $this->hasMany(TurnCure::class);
+    }
+
+    /**
      * Patient relationship
      *
      * @return BelongsTo

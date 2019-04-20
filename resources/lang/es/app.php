@@ -39,6 +39,7 @@ return [
         'nurses' => 'Enfermeras',
         'nurse' => [
             'turns' => 'Mis Turnos',
+            'turn_cures' => 'Evolución de Curaciones - Turno :name',
             'turn_notes' => 'Notas de Enfermería - Turno :name',
         ],
         'patient' => [
