@@ -3,84 +3,74 @@
 namespace App\Http\Controllers\Nurse;
 
 use App\Http\Controllers\BaseController;
+use App\Http\Requests\TurnVitalSignRequest;
+use App\Turn;
 use App\TurnVitalSign;
-use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class TurnVitalSignController extends BaseController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+    private $id;
 
     /**
-     * Show the form for creating a new resource.
+     * Create a controller instance.
      *
-     * @return \Illuminate\Http\Response
+     * @param TurnVitalSign $entity
      */
-    public function create()
+    public function __construct(TurnVitalSign $entity)
     {
-        //
-    }
+        parent::__construct($entity);
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        $this->middleware(function ($request, $next) {
+            $this->id = $request->vital_sign;
+            $turn = Turn::where([['id', $request->turn], ['nurse_id', Auth::user()['model_id']]])->first();
+
+            if ( !is_null($turn) ) {
+                $request->request->add(['data' => [
+                    'title' => __('app.titles.nurse.turns'),
+                    'subtitle' => __('app.titles.nurse.turn_vital_signs', ['name' => $turn->full_name]),
+                ]]);
+                $request->request->add(['turn_id' => $turn->id]);
+                $this->model = $turn->vital_signs->sortByDesc('start');
+
+                return $next($request);
+            }
+
+            return abort(404);
+        });
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\TurnVitalSign  $turnVitalSign
-     * @return \Illuminate\Http\Response
+     * @param  int $id
+     * @return Response
      */
-    public function show(TurnVitalSign $turnVitalSign)
+    public function show(int $id)
     {
-        //
+        return parent::show($this->id);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Store a newly created resource in storage.
      *
-     * @param  \App\TurnVitalSign  $turnVitalSign
-     * @return \Illuminate\Http\Response
+     * @param TurnVitalSignRequest $request
+     * @return Response
      */
-    public function edit(TurnVitalSign $turnVitalSign)
+    public function store(TurnVitalSignRequest $request)
     {
-        //
+        return parent::storeBase($request);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\TurnVitalSign  $turnVitalSign
-     * @return \Illuminate\Http\Response
+     * @param TurnVitalSignRequest $request
+     * @return Response
      */
-    public function update(Request $request, TurnVitalSign $turnVitalSign)
+    public function update(TurnVitalSignRequest $request)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\TurnVitalSign  $turnVitalSign
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(TurnVitalSign $turnVitalSign)
-    {
-        //
+        return parent::updateBase($request, $this->id);
     }
 }

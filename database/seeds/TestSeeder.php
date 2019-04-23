@@ -86,11 +86,27 @@ class TestSeeder extends Seeder
 
         foreach (Turn::all() as $turn) {
             if ($turn->state !== 'CANCELADO' and $turn->state !== 'PENDIENTE') {
+                factory(TurnCure::class, random_int(1, 5))->create([
+                    'turn_id' => $turn->id,
+                ]);
+
+                factory(App\TurnFluid::class, random_int(1, 5))->create([
+                    'turn_id' => $turn->id,
+                ]);
+
+                factory(App\TurnMedicine::class, random_int(1, 5))->create([
+                    'turn_id' => $turn->id,
+                ]);
+
                 factory(TurnNote::class, random_int(1, 5))->create([
                     'turn_id' => $turn->id,
                 ]);
 
-                factory(TurnCure::class, random_int(1, 5))->create([
+                factory(App\TurnSupply::class, random_int(1, 5))->create([
+                    'turn_id' => $turn->id,
+                ]);
+
+                factory(App\TurnVitalSign::class, random_int(1, 5))->create([
                     'turn_id' => $turn->id,
                 ]);
             }

@@ -40,7 +40,11 @@ return [
         'nurse' => [
             'turns' => 'Mis Turnos',
             'turn_cures' => 'Evolución de Curaciones - Turno :name',
+            'turn_fluids' => 'Control de Líquidos - Turno :name',
+            'turn_medicines' => 'Administración de Medicamentos - Turno :name',
             'turn_notes' => 'Notas de Enfermería - Turno :name',
+            'turn_supplies' => 'Control de Insumos - Turno :name',
+            'turn_vital_signs' => 'Control de Signos Vitales - Turno :name',
         ],
         'patient' => [
             'medical_appointments' => 'Citas Médicas - :name',

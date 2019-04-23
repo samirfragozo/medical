@@ -182,7 +182,7 @@ class Turn extends Base
     // Relationships
 
     /**
-     * Notes relationship
+     * Turn Cures relationship
      *
      * @return HasMany
      */
@@ -192,13 +192,33 @@ class Turn extends Base
     }
 
     /**
-     * Patient relationship
+     * Turn Fluids relationship
      *
-     * @return BelongsTo
+     * @return HasMany
      */
-    public function patient()
+    public function fluids()
     {
-        return $this->belongsTo(Patient::class);
+        return $this->hasMany(TurnFluid::class);
+    }
+
+    /**
+     * Turn Medicines relationship
+     *
+     * @return HasMany
+     */
+    public function medicines()
+    {
+        return $this->hasMany(TurnMedicine::class);
+    }
+
+    /**
+     * Turn Notes relationship
+     *
+     * @return HasMany
+     */
+    public function notes()
+    {
+        return $this->hasMany(TurnNote::class);
     }
 
     /**
@@ -212,12 +232,32 @@ class Turn extends Base
     }
 
     /**
-     * Notes relationship
+     * Patient relationship
+     *
+     * @return BelongsTo
+     */
+    public function patient()
+    {
+        return $this->belongsTo(Patient::class);
+    }
+
+    /**
+     * Turn Supplies relationship
      *
      * @return HasMany
      */
-    public function notes()
+    public function supplies()
     {
-        return $this->hasMany(TurnNote::class);
+        return $this->hasMany(TurnSupply::class);
+    }
+
+    /**
+     * Turn Vital Signs relationship
+     *
+     * @return HasMany
+     */
+    public function vital_signs()
+    {
+        return $this->hasMany(TurnVitalSign::class);
     }
 }
