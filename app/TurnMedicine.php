@@ -41,7 +41,7 @@ class TurnMedicine extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['date', 'observations'],
+            'fields' => ['date', 'medicine_name', 'dose', 'unit'],
             'active' => false,
             'actions' => false,
         ],
@@ -49,6 +49,23 @@ class TurnMedicine extends Base
             [
                 'name' => 'date',
                 'type' => 'datetime',
+            ],
+            [
+                'name' => 'medicine_name',
+                'type' => 'text',
+            ],
+            [
+                'name' => 'dose',
+                'type' => 'text',
+            ],
+            [
+                'name' => 'unit',
+                'type' => 'text',
+            ],
+            [
+                'name' => 'route',
+                'type' => 'select',
+                'value' => 'app.selects.turn_medicines.routes',
             ],
             [
                 'name' => 'observations',

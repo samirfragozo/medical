@@ -1,4 +1,6 @@
 columnsDataTable = [
     {data: 'date_table'},
-    {data: 'observations'},
+    {data: 'medicine_name'},
+    {data: 'dose'},
+    {data: 'unit'},
 ];

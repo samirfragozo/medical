@@ -183,5 +183,20 @@ return [
                 'PENDIENTE' => 'EN PROGRESO',
             ],
         ],
+        'turn_medicines' => [
+            'routes' => [
+                'O' => 'ORAL',
+                'S' => 'SUBLINGUAL',
+                'T' => 'TÓPICA',
+                'R' => 'RECTAL',
+                'V' => 'VAGINAL',
+                'P' => 'PARENTERAL',
+                'OT' => 'ÓTICA',
+                'OF' => 'OFTÁLMICA',
+                'TD' => 'TRANSDÉRMICA',
+                'I' => 'INHALATORIA',
+                'IN' => 'INTRANASAL',
+            ],
+        ],
     ],
 ];
