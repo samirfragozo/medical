@@ -1,4 +1,5 @@
 columnsDataTable = [
     {data: 'date_table'},
-    {data: 'observations'},
+    {data: 'type'},
+    {data: 'total', className: 'dt-right'},
 ];

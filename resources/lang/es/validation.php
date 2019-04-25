@@ -192,6 +192,7 @@ return [
         'state_id' => 'Departamento',
         'title' => 'Título',
         'title_type' => 'Tipo de Título',
+        'total' => 'Total (ml)',
         'type' => 'Tipo',
         'unit' => 'Unidad',
         'year' => 'Año',

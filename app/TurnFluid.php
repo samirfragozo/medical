@@ -41,7 +41,7 @@ class TurnFluid extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['date', 'observations'],
+            'fields' => ['date', 'type', 'total'],
             'active' => false,
             'actions' => false,
         ],
@@ -49,6 +49,15 @@ class TurnFluid extends Base
             [
                 'name' => 'date',
                 'type' => 'datetime',
+            ],
+            [
+                'name' => 'type',
+                'type' => 'select',
+                'value' => 'app.selects.turn_fluids.types',
+            ],
+            [
+                'name' => 'total',
+                'type' => 'text',
             ],
             [
                 'name' => 'observations',

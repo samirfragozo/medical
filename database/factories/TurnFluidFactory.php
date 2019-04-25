@@ -9,6 +9,8 @@ $factory->define(App\TurnFluid::class, function (Faker $faker) {
 
     return [
         'date' => $date,
+        'type' => $faker->randomElement(array_keys(__('app.selects.turn_fluids.types'))),
+        'total' => $faker->randomFloat($nbMaxDecimals = 2, $min = 100, $max = 1000),
         'observations' => $faker->text($maxNbChars = 200),
         'turn_id' => $turn->id,
     ];
