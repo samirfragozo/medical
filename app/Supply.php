@@ -5,15 +5,6 @@ namespace App;
 class Supply extends Base
 {
     /**
-     * The mutated attributes that should be added for arrays.
-     *
-     * @var array
-     */
-    protected $appends = [
-        'full_name', 'translated_unit'
-    ];
-
-    /**
      * The data to build the layout.
      *
      * @var array
@@ -44,21 +35,8 @@ class Supply extends Base
             ],
             [
                 'name' => 'unit',
-                'type' => 'select',
-                'value' => 'app.selects.supplies.unit',
+                'type' => 'text',
             ],
         ],
     ];
-
-    // Mutator
-
-    /**
-     * Mutator for the actions
-     *
-     * @return array
-     */
-    public function getTranslatedUnitAttribute()
-    {
-        return __('app.selects.supplies.unit.' . $this->unit);
-    }
 }
