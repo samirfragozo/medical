@@ -20,7 +20,13 @@ class TurnVitalSignRequest extends BaseRequest
 
         return [
             'date' => 'required|date|after_or_equal:' . $turn->start_table . '|before_or_equal:' . $turn->end_table,
-            'observations' => 'required|max:200',
+            'TA_S' => 'required|integer|between:0,300',
+            'TA_D' => 'required|integer|between:0,200',
+            'FR' => 'required|integer|between:0,50',
+            'FC' => 'required|integer|between:0,300',
+            'SPO2' => 'required|integer|between:0,100',
+            'T' => 'required|numeric|between:25,50',
+            'observations' => 'nullable|max:200',
             'turn_id' => 'required|exists:turns,id',
         ];
     }

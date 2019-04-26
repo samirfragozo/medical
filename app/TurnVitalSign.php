@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * @property mixed date
  * @property mixed date_table
+ * @property mixed TA_D
+ * @property mixed TA_S
  */
 class TurnVitalSign extends Base
 {
@@ -17,7 +19,7 @@ class TurnVitalSign extends Base
      * @var array
      */
     protected $appends = [
-        'date_table', 'full_name',
+        'date_table', 'full_name', 'TA',
     ];
 
     /**
@@ -41,7 +43,7 @@ class TurnVitalSign extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['date', 'observations'],
+            'fields' => ['date', '_TA', '_FR', '_FC', '_SPO2', '_T'],
             'active' => false,
             'actions' => false,
         ],
@@ -49,6 +51,30 @@ class TurnVitalSign extends Base
             [
                 'name' => 'date',
                 'type' => 'datetime',
+            ],
+            [
+                'name' => 'TA_S',
+                'type' => 'text',
+            ],
+            [
+                'name' => 'TA_D',
+                'type' => 'text',
+            ],
+            [
+                'name' => 'FR',
+                'type' => 'text',
+            ],
+            [
+                'name' => 'FC',
+                'type' => 'text',
+            ],
+            [
+                'name' => 'SPO2',
+                'type' => 'text',
+            ],
+            [
+                'name' => 'T',
+                'type' => 'text',
             ],
             [
                 'name' => 'observations',
@@ -88,6 +114,16 @@ class TurnVitalSign extends Base
     public function getFullNameAttribute()
     {
         return $this->date_table;
+    }
+
+    /**
+     * Mutator for the full name
+     *
+     * @return string
+     */
+    public function getTAAttribute()
+    {
+        return "{$this->TA_S}/{$this->TA_D}";
     }
 
     // Relationships

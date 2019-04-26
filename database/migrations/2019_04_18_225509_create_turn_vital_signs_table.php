@@ -16,7 +16,13 @@ class CreateTurnVitalSignsTable extends Migration
         Schema::create('turn_vital_signs', function (Blueprint $table) {
             $table->increments('id');
             $table->dateTime('date');
-            $table->string('observations', 200);
+            $table->integer('TA_S');
+            $table->integer('TA_D');
+            $table->integer('FR');
+            $table->integer('FC');
+            $table->integer('SPO2');
+            $table->decimal('T');
+            $table->string('observations', 200)->nullable();
             $table->unsignedInteger('turn_id');
             $table->foreign('turn_id')->references('id')->on('turns');
             $table->timestamps();
