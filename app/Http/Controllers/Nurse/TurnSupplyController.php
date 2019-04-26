@@ -24,7 +24,7 @@ class TurnSupplyController extends BaseController
 
         $this->middleware(function ($request, $next) {
             $this->id = $request->supply;
-            $turn = Turn::where([['id', $request->turn], ['nurse_id', Auth::user()['model_id']]])->first();
+            $turn = Turn::where([['id', $request->turn], ['nurse_id', Auth::user()['model_id']]])->with('supplies.supply')->first();
 
             if ( !is_null($turn) ) {
                 $request->request->add(['data' => [

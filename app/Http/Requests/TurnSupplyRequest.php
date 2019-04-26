@@ -20,7 +20,10 @@ class TurnSupplyRequest extends BaseRequest
 
         return [
             'date' => 'required|date|after_or_equal:' . $turn->start_table . '|before_or_equal:' . $turn->end_table,
-            'observations' => 'required|max:200',
+            'quantity' => 'required|numeric|between:0.01,1000',
+            'unit' => 'required|min:3|max:25|alpha_space',
+            'observations' => 'nullable|max:200',
+            'supply_id' => 'required|exists:supplies,id',
             'turn_id' => 'required|exists:turns,id',
         ];
     }

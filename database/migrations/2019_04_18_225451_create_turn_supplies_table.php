@@ -16,7 +16,11 @@ class CreateTurnSuppliesTable extends Migration
         Schema::create('turn_supplies', function (Blueprint $table) {
             $table->increments('id');
             $table->dateTime('date');
-            $table->string('observations', 200);
+            $table->decimal('quantity');
+            $table->string('unit', 25);
+            $table->string('observations', 200)->nullable();
+            $table->unsignedInteger('supply_id');
+            $table->foreign('supply_id')->references('id')->on('supplies');
             $table->unsignedInteger('turn_id');
             $table->foreign('turn_id')->references('id')->on('turns');
             $table->timestamps();

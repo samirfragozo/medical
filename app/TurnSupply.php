@@ -41,7 +41,7 @@ class TurnSupply extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['date', 'observations'],
+            'fields' => ['date', 'supply_id', 'quantity', 'unit'],
             'active' => false,
             'actions' => false,
         ],
@@ -49,6 +49,18 @@ class TurnSupply extends Base
             [
                 'name' => 'date',
                 'type' => 'datetime',
+            ],
+            [
+                'name' => 'supply_id',
+                'type' => 'select_reload',
+            ],
+            [
+                'name' => 'quantity',
+                'type' => 'text',
+            ],
+            [
+                'name' => 'unit',
+                'type' => 'text',
             ],
             [
                 'name' => 'observations',
@@ -91,6 +103,16 @@ class TurnSupply extends Base
     }
 
     // Relationships
+
+    /**
+     * Supply relationship
+     *
+     * @return BelongsTo
+     */
+    public function supply()
+    {
+        return $this->belongsTo(Supply::class);
+    }
 
     /**
      * Turn relationship

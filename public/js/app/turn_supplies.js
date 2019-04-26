@@ -1,4 +1,6 @@
 columnsDataTable = [
     {data: 'date_table'},
-    {data: 'observations'},
+    {data: 'supply.name'},
+    {data: 'quantity', className: 'dt-right'},
+    {data: 'unit'},
 ];

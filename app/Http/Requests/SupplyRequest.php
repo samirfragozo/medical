@@ -17,7 +17,7 @@ class SupplyRequest extends BaseRequest
         return [
             'code' => 'required|max:12|unique:supplies,code,' . $this->id,
             'name' => 'required|max:50|unique:supplies,name,' . $this->id,
-            'content' => 'required|numeric|between:0.01,1000000',
+            'content' => 'required|numeric|between:0.01,1000',
             'unit' => 'required|min:3|max:25|alpha_space',
         ];
     }

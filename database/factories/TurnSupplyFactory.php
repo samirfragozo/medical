@@ -9,7 +9,12 @@ $factory->define(App\TurnSupply::class, function (Faker $faker) {
 
     return [
         'date' => $date,
+        'quantity' => $faker->numberBetween($min = 1, $max = 5),
+        'unit' => $faker->text($maxNbChars = 25),
         'observations' => $faker->text($maxNbChars = 200),
+        'supply_id' => function () {
+            return factory(App\Supply::class)->create()->id;
+        },
         'turn_id' => $turn->id,
     ];
 });

@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 class Supply extends Base
 {
     /**
@@ -39,4 +41,16 @@ class Supply extends Base
             ],
         ],
     ];
+
+    // Relationships
+
+    /**
+     * Turn Supplies relationship
+     *
+     * @return HasMany
+     */
+    public function turn_supplies()
+    {
+        return $this->hasMany(TurnSupply::class);
+    }
 }

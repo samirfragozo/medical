@@ -36,7 +36,8 @@ class TestSeeder extends Seeder
         ])->assignRole('nurse');
 
         $professional = factory(Professional::class)->create([
-            'email' => 'professional@admin.com'
+            'email' => 'professional@admin.com',
+            'professional_specialty_id' => random_int(1, App\ProfessionalSpecialty::count()),
         ]);
 
         factory(User::class)->create([
