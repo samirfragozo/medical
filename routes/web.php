@@ -85,28 +85,30 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     // Nurse
-    Route::middleware(['role:nurse'])->name('nurse.')->namespace('Nurse')->prefix('nurse')->group(function () {
+    Route::middleware(['role:nurse'])->namespace('Nurse')->prefix('nurse')->group(function () {
         // Turns
-        Route::resource('turns', 'TurnController', ['except' => ['create', 'destroy', 'edit', 'store']]);
+        Route::resource('turns', 'TurnController', ['except' => ['create', 'destroy', 'edit', 'store']])->names('nurse.turns');
         Route::put('turns', 'TurnController@statusUpdate');
 
-        // Cures
-        Route::resource('turns/{turn}/cures', 'TurnCureController', ['except' => ['create', 'destroy', 'edit']]);
+        Route::name('turn_')->group(function () {
+            // Cures
+            Route::resource('turns/{turn}/cures', 'TurnCureController', ['except' => ['create', 'destroy', 'edit']]);
 
-        // Fluids
-        Route::resource('turns/{turn}/fluids', 'TurnFluidController', ['except' => ['create', 'destroy', 'edit']]);
+            // Fluids
+            Route::resource('turns/{turn}/fluids', 'TurnFluidController', ['except' => ['create', 'destroy', 'edit']]);
 
-        // Medicines
-        Route::resource('turns/{turn}/medicines', 'TurnMedicineController', ['except' => ['create', 'destroy', 'edit']]);
+            // Medicines
+            Route::resource('turns/{turn}/medicines', 'TurnMedicineController', ['except' => ['create', 'destroy', 'edit']]);
 
-        // Notes
-        Route::resource('turns/{turn}/notes', 'TurnNoteController', ['except' => ['create', 'destroy', 'edit']]);
+            // Notes
+            Route::resource('turns/{turn}/notes', 'TurnNoteController', ['except' => ['create', 'destroy', 'edit']]);
 
-        // Supplies
-        Route::resource('turns/{turn}/supplies', 'TurnSupplyController', ['except' => ['create', 'destroy', 'edit']]);
+            // Supplies
+            Route::resource('turns/{turn}/supplies', 'TurnSupplyController', ['except' => ['create', 'destroy', 'edit']]);
 
-        // Vital Signs
-        Route::resource('turns/{turn}/vital_signs', 'TurnVitalSignController', ['except' => ['create', 'destroy', 'edit']]);
+            // Vital Signs
+            Route::resource('turns/{turn}/vital_signs', 'TurnVitalSignController', ['except' => ['create', 'destroy', 'edit']]);
+        });
     });
 
     // Professional

@@ -23,13 +23,14 @@ class TurnController extends BaseController
         $this->crud = 'nurse.turns';
 
         $this->middleware(function ($request, $next) {
-            $nurse = Nurse::find(Auth::user()['model_id']);
+            $nurse = Nurse::where('id', Auth::user()['model_id'])->with('turns.patient', 'turns.nurse')->first();
 
             if ( !is_null($nurse) ) {
                 $request->request->add(['data' => [
                     'tools' => [
                         'create' => false,
                         'reload' => true,
+                        'export' => true,
                     ],
                     'table' => [
                         'check' => false,
@@ -58,6 +59,7 @@ class TurnController extends BaseController
                 ]]);
                 $request->request->add(['nurse_id' => $nurse->id]);
                 $this->model = $nurse->turns->sortByDesc('start');
+//                $this->model = Turn::where('nurse_id', $nurse->id)->with('patient', 'nurse')->orderBy('start');
 
                 return $next($request);
             }

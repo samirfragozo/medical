@@ -26,6 +26,7 @@ class Relative extends Base
         'tools' => [
             'create' => true,
             'reload' => true,
+                        'export' => true,
         ],
         'table' => [
             'check' => false,

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BaseExport;
 use App\User;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Yajra\DataTables\DataTables;
 
 class BaseController extends Controller
@@ -37,12 +39,13 @@ class BaseController extends Controller
      * Display a listing of the resource.
      *
      * @param Request $request
-     * @return Response
+     * @return BinaryFileResponse
      * @throws Exception
      */
     protected function index(Request $request)
     {
-        if ($request->ajax()) return Datatables::of($this->model)->make(true);
+        if ($request->input('download'))return $this->download();
+        else if ($request->ajax()) return Datatables::of($this->model)->make(true);
 
         return view('app.index')->with(array_merge(array_merge([
             'crud' => $this->crud,
@@ -135,20 +138,18 @@ class BaseController extends Controller
     }
 
     /**
-     * Change status the specified resource from storage.
+     * Download a listing of the resource.
      *
-     * @param Request $request
-     * @param int $id
-     * @return Response
+     * @return BinaryFileResponse
      */
-    protected function active(Request $request, int $id)
+    public function download()
     {
-        $entity = $this->entity->find($id);
-        $entity->active = $request->input('active');
-        $entity->save();
+        $collection = $this->model;
+        $fields = $this->entity->getExport();
+        $title = $this->entity->getTable();
+        $format = 'xlsx';
+        $fileName = config('app.name') . ' - ' . __('app.titles.' . $this->entity->getTable()) . ' - ' . date("Y-m-d H_i_s") . '.' . $format;
 
-        return response()->json([
-            'message' => __('base.messages.active.' . $request->input('active'), ['name' => $entity->full_name]),
-        ]);
+        return (new BaseExport($collection, $fields, $title))->download($fileName);
     }
 }

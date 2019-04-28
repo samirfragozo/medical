@@ -31,6 +31,7 @@ class MedicalAppointmentController extends BaseController
                     'tools' => [
                         'create' => false,
                         'reload' => true,
+                        'export' => true,
                     ],
                     'table' => [
                         'check' => false,

@@ -8,8 +8,10 @@
 
 @section('tools')
     @component('components.tools', [
+        'crud' => $crud,
         'create' => $tools['create'] ?? false and !empty($form),
         'reload' => $tools['reload'] ?? false,
+        'export' => $tools['export'] ?? false,
     ])@endcomponent
 @endsection
 

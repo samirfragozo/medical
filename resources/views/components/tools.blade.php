@@ -7,6 +7,15 @@
         </a>
     </li>
 @endif
+@if($export)
+    <li class="m-portlet__nav-item">
+        <a href="{{ URL::current() . '?download=true' }}" target="_blank"
+           data-toggle="m-tooltip" data-original-title="{{__('base.buttons.export')}}"
+           class="m-portlet__nav-link btn btn-lg btn-secondary m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill">
+            <i class="fa fa-download m--font-brand"></i>
+        </a>
+    </li>
+@endif
 @if($create)
     <li class="m-portlet__nav-item">
         <a onclick="create()"

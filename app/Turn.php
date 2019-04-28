@@ -38,6 +38,15 @@ class Turn extends Base
     ];
 
     /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $exported = [
+        'start_table', 'end_table', 'nurse_id', 'patient_id', 'state', 'observations',
+    ];
+
+    /**
      * The data to build the layout.
      *
      * @var array
@@ -46,6 +55,7 @@ class Turn extends Base
         'tools' => [
             'create' => true,
             'reload' => true,
+                        'export' => true,
         ],
         'table' => [
             'check' => false,

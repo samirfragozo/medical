@@ -29,7 +29,22 @@ class Base extends Model
      */
     protected $guarded = ['data'];
 
+    /**
+     * The attributes that should be exported.
+     *
+     * @var array
+     */
+    protected $exported = ['full_name'];
+
     // Methods
+
+    /**
+     * @return array
+     */
+    public function getExport(): array
+    {
+        return $this->exported;
+    }
 
     /**
      * Get the data to build the layout.

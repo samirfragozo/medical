@@ -28,6 +28,7 @@ return [
     'buttons' => [
         'cancel' => 'Cancelar',
         'create' => 'Agregar',
+        'export' => 'Exportar',
         'filters' => 'Filtros',
         'forget_password' => '¿Olvidó su contraseña?',
         'logout' => 'Cerrar sesión',
