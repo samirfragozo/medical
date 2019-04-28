@@ -16,7 +16,7 @@ class PatientController extends BaseController
     public function __construct(Patient $entity)
     {
         parent::__construct($entity);
-        $this->model = $this->entity->with('social_security_entity')->orderBy('name');
+        $this->model = $this->entity->with('social_security_entity')->orderBy('name')->get();
     }
 
     /**

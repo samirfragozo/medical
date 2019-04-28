@@ -26,7 +26,7 @@ class MedicalAppointmentController extends BaseController
 
         $this->middleware(function ($request, $next) {
             $this->id = $request->medical_appointment;
-            $patient = Patient::find($request->patient);
+            $patient = Patient::where('id', $request->patient)->with('medical_appointments.professional')->first();
 
             if ( !is_null($patient) ) {
                 $request->request->add(['data' => [

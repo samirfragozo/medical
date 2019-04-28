@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfessionalSpecialtyRequest;
 use App\ProfessionalSpecialty;
+use Illuminate\Http\Response;
 
 class ProfessionalSpecialtyController extends BaseController
 {
@@ -21,7 +22,7 @@ class ProfessionalSpecialtyController extends BaseController
      * Store a newly created resource in storage.
      *
      * @param ProfessionalSpecialtyRequest $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(ProfessionalSpecialtyRequest $request)
     {
@@ -33,7 +34,7 @@ class ProfessionalSpecialtyController extends BaseController
      *
      * @param ProfessionalSpecialtyRequest $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(ProfessionalSpecialtyRequest $request, int $id)
     {

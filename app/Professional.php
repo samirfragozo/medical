@@ -2,6 +2,9 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 /**
  * @property integer id
  * @property string document
@@ -26,6 +29,17 @@ class Professional extends Base
      *
      * @var array
      */
+    protected $exported = [
+        'document_type', 'document', 'name', 'last_name', 'sex', 'civil_status', 'birth_date', 'address', 'neighborhood', 'phone',
+        'cellphone', 'email', 'professional_specialty_id', 'title', 'title_type', 'allergies_description',
+        'medication_allergies', 'medication_allergies_description',
+    ];
+
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
     protected $guarded = [
         'professional_type_id',
     ];
@@ -40,7 +54,7 @@ class Professional extends Base
         'tools' => [
             'create' => true,
             'reload' => true,
-                        'export' => true,
+            'export' => true,
         ],
         'table' => [
             'check' => false,
@@ -149,16 +163,6 @@ class Professional extends Base
     }
 
     /**
-     * Mutator for the actions
-     *
-     * @return array
-     */
-    public function getProfessionalTypeIdAttribute()
-    {
-        return $this->professional_specialty->professional_type_id;
-    }
-
-    /**
      * Mutator for the value to show in the select
      *
      * @return string
@@ -173,7 +177,7 @@ class Professional extends Base
     /**
      * Medical Appointment relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function medical_appointments()
     {
@@ -183,7 +187,7 @@ class Professional extends Base
     /**
      * Professional Speciality relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function professional_specialty()
     {

@@ -9,15 +9,6 @@ use Illuminate\Http\Response;
 class SelectController extends Controller
 {
     /**
-     * Create a controller instance.
-     *
-     */
-    public function __construct()
-    {
-        $this->middleware('ajax');
-    }
-
-    /**
      * Display a listing of the resource.
      *
      * @param Request $request

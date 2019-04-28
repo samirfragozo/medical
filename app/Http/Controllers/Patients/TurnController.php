@@ -26,7 +26,7 @@ class TurnController extends BaseController
 
         $this->middleware(function ($request, $next) {
             $this->id = $request->turn;
-            $patient = Patient::find($request->patient);
+            $patient = Patient::where('id', $request->patient)->with('turns.nurse')->first();
 
             if ( !is_null($patient) ) {
                 $request->request->add(['data' => [

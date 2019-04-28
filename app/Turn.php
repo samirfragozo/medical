@@ -25,7 +25,7 @@ class Turn extends Base
      * @var array
      */
     protected $appends = [
-        'actions', 'end_table', 'full_name', 'nurse_name',  'patient_name', 'start_table', 'translated_state',
+        'actions', 'end_table', 'full_name', 'start_table', 'translated_state',
     ];
 
     /**
@@ -55,7 +55,7 @@ class Turn extends Base
         'tools' => [
             'create' => true,
             'reload' => true,
-                        'export' => true,
+            'export' => true,
         ],
         'table' => [
             'check' => false,
@@ -154,26 +154,6 @@ class Turn extends Base
     public function getFullNameAttribute()
     {
         return $this->start_table . ' a ' . $this->end_table;
-    }
-
-    /**
-     * Mutator for the full name
-     *
-     * @return string
-     */
-    public function getNurseNameAttribute()
-    {
-        return $this->nurse->full_name;
-    }
-
-    /**
-     * Mutator for the full name
-     *
-     * @return string
-     */
-    public function getPatientNameAttribute()
-    {
-        return $this->patient->full_name;
     }
 
     /**

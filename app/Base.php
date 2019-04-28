@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property string name
- * @property mixed layout
+ * @property string full_name
+ * @property array layout
  */
 class Base extends Model
 {
@@ -86,6 +87,6 @@ class Base extends Model
      */
     public function getSelectValueAttribute()
     {
-        return $this->name;
+        return $this->full_name;
     }
 }

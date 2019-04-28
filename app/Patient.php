@@ -2,6 +2,9 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 /**
  * @property integer id
  * @property string name
@@ -21,6 +24,17 @@ class Patient extends Base
     ];
 
     /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $exported = [
+        'document_type', 'document', 'name', 'last_name', 'sex', 'civil_status', 'birth_date', 'address', 'neighborhood', 'phone',
+        'cellphone', 'social_security_entity_id', 'medicines', 'medicines_description', 'allergies', 'allergies_description',
+        'medication_allergies', 'medication_allergies_description',
+    ];
+
+    /**
      * The data to build the layout.
      *
      * @var array
@@ -29,11 +43,11 @@ class Patient extends Base
         'tools' => [
             'create' => true,
             'reload' => true,
-                        'export' => true,
+            'export' => true,
         ],
         'table' => [
             'check' => false,
-            'fields' => ['document', 'name', 'social_security_entity_id'],
+            'fields' => ['document', 'name', 'last_name', 'social_security_entity_id'],
             'active' => false,
             'actions' => true,
         ],
@@ -137,7 +151,7 @@ class Patient extends Base
      */
     public function getFullNameAttribute()
     {
-        return $this->name . ' ' . $this->last_name;
+        return "{$this->name} {$this->last_name}";
     }
 
     /**
@@ -165,7 +179,7 @@ class Patient extends Base
     /**
      * Medical Appointment relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function medical_appointments()
     {
@@ -175,7 +189,7 @@ class Patient extends Base
     /**
      * Relatives relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function relatives()
     {
@@ -185,7 +199,7 @@ class Patient extends Base
     /**
      * Social Security relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function social_security_entity()
     {
@@ -195,7 +209,7 @@ class Patient extends Base
     /**
      * Turns relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function turns()
     {

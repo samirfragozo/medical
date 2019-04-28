@@ -59,7 +59,6 @@ class TurnController extends BaseController
                 ]]);
                 $request->request->add(['nurse_id' => $nurse->id]);
                 $this->model = $nurse->turns->sortByDesc('start');
-//                $this->model = Turn::where('nurse_id', $nurse->id)->with('patient', 'nurse')->orderBy('start');
 
                 return $next($request);
             }

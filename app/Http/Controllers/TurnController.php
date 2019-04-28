@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TurnRequest;
 use App\Turn;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class TurnController extends BaseController
 {
@@ -16,14 +17,14 @@ class TurnController extends BaseController
     public function __construct(Turn $entity)
     {
         parent::__construct($entity);
-        $this->model = $this->entity->orderBy('start', 'desc');
+        $this->model = $this->entity->with('nurse')->orderBy('start', 'desc')->get();
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param TurnRequest $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(TurnRequest $request)
     {
@@ -35,7 +36,7 @@ class TurnController extends BaseController
      *
      * @param TurnRequest $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(TurnRequest $request, int $id)
     {
@@ -47,7 +48,7 @@ class TurnController extends BaseController
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function statusUpdate(Request $request)
     {

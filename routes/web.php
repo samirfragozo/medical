@@ -51,7 +51,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::put('patients/{patient}/medical_appointments', 'Patients\MedicalAppointmentController@statusUpdate');
 
         // Patients - Relatives
-        Route::resource('patients/{patient}/relatives', 'Patients\RelativeController', ['except' => ['create', 'destroy', 'edit']]);
+        Route::resource('patients/{patient}/relatives', 'Patients\RelativeController', ['except' => ['create', 'edit']]);
 
         // Patients - Turns
         Route::resource('patients/{patient}/turns', 'Patients\TurnController', [
@@ -117,5 +117,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('medical_appointments', 'MedicalAppointmentController', ['except' => ['create', 'destroy', 'edit', 'store']]);
     });
 
-    Route::get('select', 'SelectController@index');
+    Route::get('select', 'SelectController@index')->middleware('ajax');
 });

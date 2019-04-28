@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MedicalAppointmentRequest;
 use App\MedicalAppointment;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class MedicalAppointmentController extends BaseController
 {
@@ -16,14 +17,14 @@ class MedicalAppointmentController extends BaseController
     public function __construct(MedicalAppointment $entity)
     {
         parent::__construct($entity);
-        $this->model = $this->entity->orderBy('date', 'desc');
+        $this->model = $this->entity->with('professional')->orderBy('date', 'desc')->get();
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param MedicalAppointmentRequest $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(MedicalAppointmentRequest $request)
     {
@@ -35,19 +36,18 @@ class MedicalAppointmentController extends BaseController
      *
      * @param MedicalAppointmentRequest $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(MedicalAppointmentRequest $request, int $id)
     {
         return parent::updateBase($request,$id);
     }
 
-
     /**
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function statusUpdate(Request $request)
     {

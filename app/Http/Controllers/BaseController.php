@@ -144,7 +144,7 @@ class BaseController extends Controller
      */
     public function download()
     {
-        $collection = $this->model;
+        $collection = collect($this->model);
         $fields = $this->entity->getExport();
         $title = $this->entity->getTable();
         $format = 'xlsx';

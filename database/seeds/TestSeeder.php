@@ -22,7 +22,7 @@ class TestSeeder extends Seeder
      */
     public function run()
     {
-        factory(Patient::class, 50)->create();
+        factory(Patient::class, 25)->create();
 
         $nurse = factory(Nurse::class)->create([
             'email' => 'nurse@admin.com'
@@ -47,7 +47,7 @@ class TestSeeder extends Seeder
             'model_id' => $professional->id,
         ])->assignRole('professional');
 
-        for ($i = 0; $i < 25; $i++) {
+        for ($i = 0; $i < 24; $i++) {
             $professional = factory(Professional::class)->create();
 
             factory(User::class)->create([

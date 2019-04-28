@@ -3,12 +3,14 @@
 namespace App;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property integer id
  * @property string date
  * @property string date_table
  * @property string state
+ * @property mixed patient
  * @property mixed professional
  */
 class MedicalAppointment extends Base
@@ -19,7 +21,7 @@ class MedicalAppointment extends Base
      * @var array
      */
     protected $appends = [
-        'actions', 'date_table', 'full_name', 'patient_name',  'professional_specialty_id', 'translated_state',
+        'actions', 'date_table', 'full_name', 'translated_state',
     ];
 
     /**
@@ -32,6 +34,15 @@ class MedicalAppointment extends Base
     ];
 
     /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $exported = [
+        'date', 'professional_id', 'patient_id', 'state', 'observations', 'diagnosis',
+    ];
+
+    /**
      * The data to build the layout.
      *
      * @var array
@@ -40,7 +51,7 @@ class MedicalAppointment extends Base
         'tools' => [
             'create' => true,
             'reload' => true,
-                        'export' => true,
+            'export' => true,
         ],
         'table' => [
             'check' => false,
@@ -109,26 +120,6 @@ class MedicalAppointment extends Base
      *
      * @return array
      */
-    public function getProfessionalSpecialtyIdAttribute()
-    {
-        return $this->professional->professional_specialty_id;
-    }
-
-    /**
-     * Mutator for the actions
-     *
-     * @return array
-     */
-    public function getPatientNameAttribute()
-    {
-        return $this->patient->name;
-    }
-
-    /**
-     * Mutator for the actions
-     *
-     * @return array
-     */
     public function getTranslatedStateAttribute()
     {
         return [
@@ -142,7 +133,7 @@ class MedicalAppointment extends Base
     /**
      * Patient relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function patient()
     {
@@ -152,7 +143,7 @@ class MedicalAppointment extends Base
     /**
      * Professional relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function professional()
     {

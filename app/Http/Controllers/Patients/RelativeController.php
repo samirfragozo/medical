@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Patients;
 
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\RelativeRequest;
+use App\Patient;
 use App\relative;
+use Illuminate\Http\Response;
 
 class RelativeController extends BaseController
 {
@@ -23,7 +25,7 @@ class RelativeController extends BaseController
 
         $this->middleware(function ($request, $next) {
             $this->id = $request->relative;
-            $patient = \App\Patient::find($request->patient);
+            $patient = Patient::find($request->patient);
 
             if ( !is_null($patient) ) {
                 $request->request->add(['data' => [
@@ -44,7 +46,7 @@ class RelativeController extends BaseController
      * Display the specified resource.
      *
      * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show(int $id)
     {
@@ -55,7 +57,7 @@ class RelativeController extends BaseController
      * Store a newly created resource in storage.
      *
      * @param RelativeRequest $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(RelativeRequest $request)
     {
@@ -66,7 +68,7 @@ class RelativeController extends BaseController
      * Update the specified resource in storage.
      *
      * @param RelativeRequest $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(RelativeRequest $request)
     {
@@ -77,7 +79,7 @@ class RelativeController extends BaseController
      * Delete the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {

@@ -18,6 +18,15 @@ class Relative extends Base
     ];
 
     /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $exported = [
+        'document_type', 'document', 'name', 'last_name', 'sex', 'address', 'neighborhood', 'phone', 'cellphone', 'relationship',
+    ];
+
+    /**
      * The data to build the layout.
      *
      * @var array
@@ -26,7 +35,7 @@ class Relative extends Base
         'tools' => [
             'create' => true,
             'reload' => true,
-                        'export' => true,
+            'export' => true,
         ],
         'table' => [
             'check' => false,

@@ -1,6 +1,7 @@
 columnsDataTable = [
     {data: 'document'},
-    {data: 'full_name'},
+    {data: 'name'},
+    {data: 'last_name'},
     {data: 'social_security_entity.name'},
     {data: 'id', searchable: false, className: 'dt-center', customValue: true},
 ];
@@ -14,7 +15,7 @@ columnsDataTable = [
  * @returns {String} The HTML string with the status
  */
 function getStatus(column, value) {
-    if (column === 3) {
+    if (column === 4) {
         return (
             '<span class="dropdown">' +
                 '<a href="javascript:" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown" aria-expanded="true">' +

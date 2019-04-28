@@ -30,6 +30,15 @@ class TurnCure extends Base
     ];
 
     /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $exported = [
+        'date', 'medicine_name', 'dose', 'unit', 'route', 'observations',
+    ];
+
+    /**
      * The data to build the layout.
      *
      * @var array
@@ -38,7 +47,7 @@ class TurnCure extends Base
         'tools' => [
             'create' => true,
             'reload' => true,
-                        'export' => true,
+            'export' => true,
         ],
         'table' => [
             'check' => false,

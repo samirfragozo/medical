@@ -2,27 +2,16 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class SocialSecurityEntity extends Model
+class SocialSecurityEntity extends Base
 {
-    // Methods
-    /**
-     * Set baseQuery variable
-     *
-     * @return array
-     */
-    public function select()
-    {
-        return $this->get()->sortBy('name')->pluck('name', 'id');
-    }
-
     // Relationships
 
     /**
      * Patient relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function patient()
     {
