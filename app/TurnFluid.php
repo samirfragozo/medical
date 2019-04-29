@@ -26,7 +26,7 @@ class TurnFluid extends Base
      * @var array
      */
     protected $exported = [
-        'date', 'type', 'total', 'observations',
+        'date_table', 'type', 'total', 'observations',
     ];
 
     /**

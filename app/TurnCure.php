@@ -26,7 +26,7 @@ class TurnCure extends Base
      * @var array
      */
     protected $exported = [
-        'date', 'observations',
+        'date_table', 'observations',
     ];
 
     /**

@@ -26,7 +26,7 @@ class TurnMedicine extends Base
      * @var array
      */
     protected $exported = [
-        'date', 'medicine_name', 'dose', 'unit', 'route', 'observations',
+        'date_table', 'medicine_name', 'dose', 'unit', 'route', 'observations',
     ];
 
     /**

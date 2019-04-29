@@ -28,7 +28,7 @@ class TurnVitalSign extends Base
      * @var array
      */
     protected $exported = [
-        'date', 'TA_S', 'TA_D', 'FR', 'FC', 'SPO2', 'T', 'observations',
+        'date_table', 'TA_S', 'TA_D', 'FR', 'FC', 'SPO2', 'T', 'observations',
     ];
 
     /**

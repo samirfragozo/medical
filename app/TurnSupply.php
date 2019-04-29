@@ -26,7 +26,7 @@ class TurnSupply extends Base
      * @var array
      */
     protected $exported = [
-        'date', 'supply_id', 'quantity', 'unit', 'observations',
+        'date_table', 'supply_id', 'quantity', 'unit', 'observations',
     ];
 
     /**
