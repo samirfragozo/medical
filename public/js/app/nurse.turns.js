@@ -41,7 +41,7 @@ function getStatus(column, value) {
                 '<i class="fa fa-window-close"></i>' +
             '</a>'
         );
-        else if (value['state'] === 'PENDIENTE') return  (
+        else if (value['state'] === 'PENDIENTE') return (
             '<a onclick="state(' + value['id'] + ',\'' + value['next'] + '\')" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-primary" title="Iniciar Turno">' +
                 '<i class="fa fa-check-square"></i>' +
             '</a>'
