@@ -38,7 +38,7 @@ class Patient extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['document', 'name', 'last_name', 'social_security_entity_id'],
+            'fields' => ['document', 'name', 'last_name',  'sex', 'social_security_entity_id'],
             'active' => false,
             'actions' => true,
         ],
@@ -143,16 +143,6 @@ class Patient extends Base
     public function getFullNameAttribute()
     {
         return "{$this->name} {$this->last_name}";
-    }
-
-    /**
-     * Mutator for the value to show in the select
-     *
-     * @return string
-     */
-    public function getSelectValueAttribute()
-    {
-        return $this->full_name;
     }
 
     // Relationships

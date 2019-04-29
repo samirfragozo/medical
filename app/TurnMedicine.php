@@ -17,16 +17,7 @@ class TurnMedicine extends Base
      * @var array
      */
     protected $appends = [
-        'date_table', 'full_name',
-    ];
-
-    /**
-     * The attributes that aren't mass assignable.
-     *
-     * @var array
-     */
-    protected $guarded = [
-        'data',
+        'date_table', 'full_name', 'select_value',
     ];
 
     /**

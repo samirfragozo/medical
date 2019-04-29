@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property string name
  * @property string full_name
- * @property array layout
  */
 class Base extends Model
 {
@@ -20,7 +19,7 @@ class Base extends Model
      * @var array
      */
     protected $appends = [
-        'full_name', 'select_value'
+        'full_name', 'select_value',
     ];
 
     /**
@@ -28,14 +27,25 @@ class Base extends Model
      *
      * @var array
      */
-    protected $guarded = ['data'];
+    protected $guarded = [
+        'data',
+    ];
 
     /**
      * The attributes that should be exported.
      *
      * @var array
      */
-    protected $exported = ['full_name'];
+    protected $exported = [
+        'full_name',
+    ];
+
+    /**
+     * The data to build the layout.
+     *
+     * @var array
+     */
+    protected $layout = [];
 
     // Methods
 

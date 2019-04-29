@@ -56,6 +56,11 @@ class MedicalAppointmentController extends BaseController
                             'name' => 'patient_id',
                             'type' => 'select_reload',
                         ],
+                        [
+                            'name' => 'diagnosis',
+                            'type' => 'textarea',
+                            'only-view' => true,
+                        ],
                     ],
                 ]]);
                 $request->request->add(['professional_id' => $professional->id]);

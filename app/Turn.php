@@ -33,15 +33,6 @@ class Turn extends Base
      *
      * @var array
      */
-    protected $guarded = [
-        'data',
-    ];
-
-    /**
-     * The attributes that aren't mass assignable.
-     *
-     * @var array
-     */
     protected $exported = [
         'start_table', 'end_table', 'nurse_id', 'patient_id', 'state', 'observations',
     ];
@@ -73,10 +64,6 @@ class Turn extends Base
                 'type' => 'datetime',
             ],
             [
-                'name' => 'observations',
-                'type' => 'textarea',
-            ],
-            [
                 'name' => 'nurse_id',
                 'type' => 'select_reload',
             ],
@@ -84,52 +71,14 @@ class Turn extends Base
                 'name' => 'patient_id',
                 'type' => 'select_reload',
             ],
+            [
+                'name' => 'observations',
+                'type' => 'textarea',
+            ],
         ],
     ];
 
     // Mutator
-
-    /**
-     * Mutator for the start date
-     *
-     * @param $value
-     * @return string
-     */
-    public function getStartAttribute($value)
-    {
-        return Carbon::parse($value)->format('Y-m-d\TH:i');
-    }
-
-    /**
-     * Mutator for the end date
-     *
-     * @param $value
-     * @return string
-     */
-    public function getEndAttribute($value)
-    {
-        return Carbon::parse($value)->format('Y-m-d\TH:i');
-    }
-
-    /**
-     * Mutator for the start date of the table
-     *
-     * @return string
-     */
-    public function getStartTableAttribute()
-    {
-        return Carbon::parse($this->start)->format('Y-m-d H:i');
-    }
-
-    /**
-     * Mutator for the end date of the table
-     *
-     * @return string
-     */
-    public function getEndTableAttribute()
-    {
-        return Carbon::parse($this->end)->format('Y-m-d H:i');
-    }
 
     /**
      * Mutator for the actions
@@ -147,13 +96,55 @@ class Turn extends Base
     }
 
     /**
+     * Mutator for the end date
+     *
+     * @param $value
+     * @return string
+     */
+    public function getEndAttribute($value)
+    {
+        return Carbon::parse($value)->format('Y-m-d\TH:i');
+    }
+
+    /**
+     * Mutator for the end date of the table
+     *
+     * @return string
+     */
+    public function getEndTableAttribute()
+    {
+        return Carbon::parse($this->end)->format('Y-m-d H:i');
+    }
+
+    /**
      * Mutator for the full name
      *
      * @return string
      */
     public function getFullNameAttribute()
     {
-        return $this->start_table . ' a ' . $this->end_table;
+        return "{$this->start_table} a {$this->end_table}";
+    }
+
+    /**
+     * Mutator for the start date
+     *
+     * @param $value
+     * @return string
+     */
+    public function getStartAttribute($value)
+    {
+        return Carbon::parse($value)->format('Y-m-d\TH:i');
+    }
+
+    /**
+     * Mutator for the start date of the table
+     *
+     * @return string
+     */
+    public function getStartTableAttribute()
+    {
+        return Carbon::parse($this->start)->format('Y-m-d H:i');
     }
 
     /**

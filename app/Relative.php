@@ -2,21 +2,14 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 /**
  * @property string name
  * @property string last_name
  */
 class Relative extends Base
 {
-    /**
-     * The mutated attributes that should be added for arrays.
-     *
-     * @var array
-     */
-    protected $appends = [
-        'full_name',
-    ];
-
     /**
      * The attributes that aren't mass assignable.
      *
@@ -107,7 +100,7 @@ class Relative extends Base
      */
     public function getFullNameAttribute()
     {
-        return $this->name . ' ' . $this->last_name;
+        return "{$this->name} {$this->last_name}";
     }
 
     // Relationships
@@ -115,7 +108,7 @@ class Relative extends Base
     /**
      * Person relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function patient()
     {

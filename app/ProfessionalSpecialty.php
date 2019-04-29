@@ -2,6 +2,9 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 /**
  * @property mixed professional_type
  */
@@ -13,7 +16,7 @@ class ProfessionalSpecialty extends Base
      * @var array
      */
     protected $exported = [
-        'date', 'medicine_name', 'dose', 'unit', 'route', 'observations',
+        'code', 'name', 'professional_type_id', 'description',
     ];
 
     /**
@@ -43,12 +46,12 @@ class ProfessionalSpecialty extends Base
                 'type' => 'text',
             ],
             [
-                'name' => 'description',
-                'type' => 'textarea',
-            ],
-            [
                 'name' => 'professional_type_id',
                 'type' => 'select_reload',
+            ],
+            [
+                'name' => 'description',
+                'type' => 'textarea',
             ],
         ],
     ];
@@ -62,7 +65,7 @@ class ProfessionalSpecialty extends Base
      */
     public function getSelectValueAttribute()
     {
-        return $this->professional_type->name . ' - ' . $this->name;
+        return "{$this->professional_type->name} - {$this->name}";
     }
 
     // Relationships
@@ -70,7 +73,7 @@ class ProfessionalSpecialty extends Base
     /**
      * Medical Appointment relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function professional()
     {
@@ -80,7 +83,7 @@ class ProfessionalSpecialty extends Base
     /**
      * Professional Specialty relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function professional_type()
     {

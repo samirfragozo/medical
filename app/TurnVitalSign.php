@@ -19,16 +19,7 @@ class TurnVitalSign extends Base
      * @var array
      */
     protected $appends = [
-        'date_table', 'full_name', 'TA',
-    ];
-
-    /**
-     * The attributes that aren't mass assignable.
-     *
-     * @var array
-     */
-    protected $guarded = [
-        'data',
+        'date_table', 'full_name', 'select_value', 'TA',
     ];
 
     /**
@@ -37,7 +28,7 @@ class TurnVitalSign extends Base
      * @var array
      */
     protected $exported = [
-        'date', 'medicine_name', 'dose', 'unit', 'route', 'observations',
+        'date', 'TA_S', 'TA_D', 'FR', 'FC', 'SPO2', 'T', 'observations',
     ];
 
     /**

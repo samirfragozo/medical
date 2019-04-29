@@ -18,7 +18,7 @@ class Nurse extends Base
      * @var array
      */
     protected $exported = [
-        'date', 'medicine_name', 'dose', 'unit', 'route', 'observations',
+        'document_type', 'document', 'name', 'last_name', 'sex', 'civil_status', 'birth_date', 'address', 'neighborhood', 'phone', 'cellphone', 'email',
     ];
 
     /**
@@ -110,7 +110,7 @@ class Nurse extends Base
      */
     public function getFullNameAttribute()
     {
-        return $this->name . ' ' . $this->last_name;
+        return "{$this->name} {$this->last_name}";
     }
 
     /**
@@ -120,7 +120,7 @@ class Nurse extends Base
      */
     public function getSelectValueAttribute()
     {
-        return 'Enfermera - ' . $this->name . ' ' . $this->last_name;
+        return "Enfermera - {$this->name} {$this->last_name}";
     }
 
     // Relationships

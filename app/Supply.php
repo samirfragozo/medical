@@ -12,7 +12,7 @@ class Supply extends Base
      * @var array
      */
     protected $exported = [
-        'date', 'medicine_name', 'dose', 'unit', 'route', 'observations',
+        'code', 'name', 'content', 'unit',
     ];
 
     /**

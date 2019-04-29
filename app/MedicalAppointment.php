@@ -21,16 +21,7 @@ class MedicalAppointment extends Base
      * @var array
      */
     protected $appends = [
-        'actions', 'date_table', 'full_name', 'translated_state',
-    ];
-
-    /**
-     * The attributes that aren't mass assignable.
-     *
-     * @var array
-     */
-    protected $guarded = [
-        'data',
+        'actions', 'date_table', 'full_name', 'select_value', 'translated_state',
     ];
 
     /**
@@ -76,20 +67,15 @@ class MedicalAppointment extends Base
                 'name' => 'patient_id',
                 'type' => 'select_reload',
             ],
+            [
+                'name' => 'diagnosis',
+                'type' => 'textarea',
+                'only-view' => true,
+            ],
         ],
     ];
 
     // Mutator
-
-    public function getDateAttribute($value)
-    {
-        return Carbon::parse($value)->format('Y-m-d\TH:i');
-    }
-
-    public function getDateTableAttribute()
-    {
-        return Carbon::parse($this->date)->format('Y-m-d H:i');
-    }
 
     /**
      * Mutator for the actions
@@ -103,6 +89,27 @@ class MedicalAppointment extends Base
             'cancel' => $this->state == 'PENDIENTE',
             'next' => __('app.selects.medical_appointment.state_next.' . $this->state),
         ];
+    }
+
+    /**
+     * Mutator for the date
+     *
+     * @param $value
+     * @return string
+     */
+    public function getDateAttribute($value)
+    {
+        return Carbon::parse($value)->format('Y-m-d\TH:i');
+    }
+
+    /**
+     * Mutator for the date of the table
+     *
+     * @return string
+     */
+    public function getDateTableAttribute()
+    {
+        return Carbon::parse($this->date)->format('Y-m-d H:i');
     }
 
     /**

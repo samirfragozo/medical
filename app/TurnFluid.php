@@ -17,16 +17,7 @@ class TurnFluid extends Base
      * @var array
      */
     protected $appends = [
-        'date_table', 'full_name',
-    ];
-
-    /**
-     * The attributes that aren't mass assignable.
-     *
-     * @var array
-     */
-    protected $guarded = [
-        'data',
+        'date_table', 'full_name', 'select_value',
     ];
 
     /**
@@ -35,7 +26,7 @@ class TurnFluid extends Base
      * @var array
      */
     protected $exported = [
-        'date', 'medicine_name', 'dose', 'unit', 'route', 'observations',
+        'date', 'type', 'total', 'observations',
     ];
 
     /**

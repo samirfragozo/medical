@@ -16,32 +16,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Professional extends Base
 {
     /**
-     * The mutated attributes that should be added for arrays.
-     *
-     * @var array
-     */
-    protected $appends = [
-        'full_name', 'professional_type_id', 'select_value',
-    ];
-
-    /**
      * The attributes that aren't mass assignable.
      *
      * @var array
      */
     protected $exported = [
         'document_type', 'document', 'name', 'last_name', 'sex', 'civil_status', 'birth_date', 'address', 'neighborhood', 'phone',
-        'cellphone', 'email', 'professional_specialty_id', 'title', 'title_type', 'allergies_description',
-        'medication_allergies', 'medication_allergies_description',
-    ];
-
-    /**
-     * The attributes that aren't mass assignable.
-     *
-     * @var array
-     */
-    protected $guarded = [
-        'professional_type_id',
+        'cellphone', 'email', 'professional_specialty_id', 'title', 'title_type', 'collage', 'year',
     ];
 
     /**
@@ -49,7 +30,6 @@ class Professional extends Base
      *
      * @var array
      */
-
     protected $layout = [
         'tools' => [
             'create' => true,
@@ -159,7 +139,7 @@ class Professional extends Base
      */
     public function getFullNameAttribute()
     {
-        return $this->name . ' ' . $this->last_name;
+        return "{$this->name} {$this->last_name}";
     }
 
     /**
@@ -169,7 +149,7 @@ class Professional extends Base
      */
     public function getSelectValueAttribute()
     {
-        return $this->professional_specialty->professional_type->name . ' - ' . $this->professional_specialty->name . ' - ' . $this->full_name;
+        return "{$this->professional_specialty->professional_type->name} - {$this->professional_specialty->name} - {$this->full_name}";
     }
 
     // Relationships
