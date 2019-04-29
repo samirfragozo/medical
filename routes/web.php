@@ -39,6 +39,24 @@ Route::middleware(['auth', 'verified'])->group(function () {
             'as' => 'nurses_turns'
         ]);
         Route::put('nurses/{nurse}/turns', 'Nurses\TurnController@statusUpdate');
+        Route::name('nurses.turn_')->namespace('Turns')->prefix('nurses/{nurse}')->group(function () {
+            // Cures
+            Route::resource('turns/{turn}/cures', 'TurnCureController', ['only' => ['index', 'show']]);
+
+            // Fluids
+            Route::resource('turns/{turn}/fluids', 'TurnFluidController', ['only' => ['index', 'show']]);
+            // Medicines
+            Route::resource('turns/{turn}/medicines', 'TurnMedicineController', ['only' => ['index', 'show']]);
+
+            // Notes
+            Route::resource('turns/{turn}/notes', 'TurnNoteController', ['only' => ['index', 'show']]);
+
+            // Supplies
+            Route::resource('turns/{turn}/supplies', 'TurnSupplyController', ['only' => ['index', 'show']]);
+
+            // Vital Signs
+            Route::resource('turns/{turn}/vital_signs', 'TurnVitalSignController', ['only' => ['index', 'show']]);
+        });
 
         // Patients
         Route::resource('patients', 'PatientController', ['except' => ['create', 'destroy', 'edit']]);
