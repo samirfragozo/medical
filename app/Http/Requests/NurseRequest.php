@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
+
 /**
  * @property mixed id
  * @property mixed email
@@ -27,7 +29,7 @@ class NurseRequest extends BaseRequest
             'neighborhood' => 'required|min:3|max:50',
             'phone' => 'required_without:cellphone|numeric|digits_between:6,12|bail',
             'cellphone' => 'nullable|numeric|digits_between:6,12|bail',
-            'email' => 'required|email|unique:users,email,' . $this->id . '|unique:nurses,email,' . $this->id,
+            'email' => 'required|email|unique:users,email,' . $this->id . ',model_id|unique:nurses,email,' . $this->id,
         ];
     }
 }

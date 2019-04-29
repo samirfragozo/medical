@@ -21,7 +21,7 @@ class MedicalAppointment extends Base
      * @var array
      */
     protected $appends = [
-        'actions', 'date_table', 'full_name', 'select_value', 'translated_state',
+        'actions', 'date_table', 'full_name', 'professional_specialty', 'select_value', 'translated_state',
     ];
 
     /**
@@ -30,7 +30,7 @@ class MedicalAppointment extends Base
      * @var array
      */
     protected $exported = [
-        'date', 'professional_id', 'patient_id', 'state', 'observations', 'diagnosis',
+        'date_table', 'professional_specialty', 'professional_id', 'patient_id', 'state', 'observations', 'diagnosis',
     ];
 
     /**
@@ -46,7 +46,7 @@ class MedicalAppointment extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['date', 'professional_specialty_id', 'professional_id', 'state'],
+            'fields' => ['date', 'professional_specialty', 'professional_id', 'state'],
             'active' => false,
             'actions' => true,
         ],
@@ -133,6 +133,16 @@ class MedicalAppointment extends Base
             'state' => $this->state,
             'class' => __('app.selects.medical_appointment.state_class.' . $this->state),
         ];
+    }
+
+    /**
+     * Mutator for the actions
+     *
+     * @return array
+     */
+    public function getProfessionalSpecialtyAttribute()
+    {
+        return $this->professional->professional_specialty->full_name;
     }
 
     // Relationships

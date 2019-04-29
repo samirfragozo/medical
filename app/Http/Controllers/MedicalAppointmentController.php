@@ -17,7 +17,13 @@ class MedicalAppointmentController extends BaseController
     public function __construct(MedicalAppointment $entity)
     {
         parent::__construct($entity);
-        $this->model = $this->entity->with('professional')->orderByDesc('date')->get();
+
+        $this->middleware(function ($request, $next) {
+            $request->request->remove('diagnosis');
+            $this->model = $this->entity->with('professional')->orderByDesc('date')->get();
+
+            return $next($request);
+        });
     }
 
     /**

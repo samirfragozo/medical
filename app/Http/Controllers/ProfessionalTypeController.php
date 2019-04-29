@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfessionalTypeRequest;
 use App\ProfessionalType;
+use Illuminate\Http\Response;
 
 class ProfessionalTypeController extends BaseController
 {
@@ -14,14 +15,13 @@ class ProfessionalTypeController extends BaseController
     public function __construct(ProfessionalType $entity)
     {
         parent::__construct($entity);
-        $this->model = $this->entity->orderBy('name');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param ProfessionalTypeRequest $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(ProfessionalTypeRequest $request)
     {
@@ -33,7 +33,7 @@ class ProfessionalTypeController extends BaseController
      *
      * @param ProfessionalTypeRequest $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(ProfessionalTypeRequest $request, int $id)
     {

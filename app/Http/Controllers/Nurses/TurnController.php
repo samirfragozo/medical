@@ -26,7 +26,7 @@ class TurnController extends BaseController
 
         $this->middleware(function ($request, $next) {
             $this->id = $request->turn;
-            $nurse = Nurse::find($request->nurse);
+            $nurse = Nurse::where('id', $request->nurse)->with('turns.patient')->first();
 
             if ( !is_null($nurse) ) {
                 $request->request->add(['data' => [
@@ -104,7 +104,6 @@ class TurnController extends BaseController
     {
         return parent::updateBase($request,$this->id);
     }
-
 
     /**
      * Update the specified resource in storage.

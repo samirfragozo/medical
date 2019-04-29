@@ -27,7 +27,7 @@ class ProfessionalRequest extends BaseRequest
             'neighborhood' => 'required|min:3|max:50',
             'phone' => 'required_without:cellphone|numeric|digits_between:6,12|bail',
             'cellphone' => 'nullable|numeric|digits_between:6,12|bail',
-            'email' => 'required|email|unique:users,email,' . $this->email,
+            'email' => 'required|email|unique:users,email,' . $this->id . ',model_id|unique:professionals,email,' . $this->id,
             'professional_specialty_id' => 'required|exists:professional_specialties,id',
             'title' => 'required|min:3|max:50',
             'title_type' =>'required|in:' . implode(',', array_keys(__('app.selects.professional.title_type'))),

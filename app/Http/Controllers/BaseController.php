@@ -30,7 +30,7 @@ class BaseController extends Controller
     {
         $this->entity = $entity;
         $this->crud = $this->entity->getTable();
-        $this->model = $this->entity->orderBy('name');
+        $this->model = $this->entity->get()->sortBy('name');
         $this->user = $user;
         $this->middleware('ajax')->except('index');
     }

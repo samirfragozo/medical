@@ -101,7 +101,6 @@ class MedicalAppointmentController extends BaseController
         return parent::updateBase($request,$this->id);
     }
 
-
     /**
      * Update the specified resource in storage.
      *

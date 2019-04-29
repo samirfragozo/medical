@@ -26,7 +26,7 @@ class MedicalAppointmentController extends BaseController
 
         $this->middleware(function ($request, $next) {
             $this->id = $request->medical_appointment;
-            $professional = Professional::where('id', $request->professional)->with('medical_appointments.patient')->first();
+            $professional = Professional::where('id', $request->professional)->with('medical_appointments.patient.social_security_entity')->first();
 
             if ( !is_null($professional) ) {
                 $request->request->add(['data' => [
@@ -64,6 +64,7 @@ class MedicalAppointmentController extends BaseController
                     ],
                 ]]);
                 $request->request->add(['professional_id' => $professional->id]);
+                $request->request->remove('diagnosis');
                 $this->model = $professional->medical_appointments->sortByDesc('date');
 
                 return $next($request);
