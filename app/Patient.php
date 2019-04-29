@@ -15,15 +15,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Patient extends Base
 {
     /**
-     * The mutated attributes that should be added for arrays.
-     *
-     * @var array
-     */
-    protected $appends = [
-        'full_name', 'social_security_entity_name'
-    ];
-
-    /**
      * The attributes that aren't mass assignable.
      *
      * @var array
@@ -162,16 +153,6 @@ class Patient extends Base
     public function getSelectValueAttribute()
     {
         return $this->full_name;
-    }
-
-    /**
-     * Mutator for the value to show in the select
-     *
-     * @return string
-     */
-    public function getSocialSecurityEntityNameAttribute()
-    {
-        return $this->social_security_entity->name;
     }
 
     // Relationships

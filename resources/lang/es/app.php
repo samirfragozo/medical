@@ -2,21 +2,6 @@
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Application Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are used during authentication for various
-    | messages that we need to display to the user. You are free to modify
-    | these language lines according to your application's requirements.
-    |
-    */
-
-    'buttons' => [
-
-    ],
-
     'messages' => [
         'medical_appointments' => [
             'ATENDIDA' => 'Cita Médica Atendida',
@@ -107,8 +92,8 @@ return [
                 'UNION LIBRE' => 'UNION LIBRE'
             ],
             'document_type' => [
-                'CC' => 'CÉDULA DE CIUDADANÍA',
-                'CE' => 'CÉDULA DE EXTRANJERÍA'
+                'CÉDULA DE CIUDADANÍA' => 'CÉDULA DE CIUDADANÍA',
+                'CÉDULA DE EXTRANJERÍA' => 'CÉDULA DE EXTRANJERÍA'
             ],
             'sex' => [
                 'FEMENINO' => 'FEMENINO',
@@ -125,18 +110,18 @@ return [
                 'DOCTORADO' => 'DOCTORADO',
             ],
             'doctor_type' => [
-                'MG' => 'MEDICINA GENERAL',
-                'MI' => 'MEDICINA INTERNA',
-                'C' => 'CARDIOLOGÍA',
-                'PN' => 'PEDIATRÍA Y NEONATOLOGÍA',
-                'GA' => 'GASTROENTEROLOGÍA',
-                'NEU' => 'NEUROLOGÍA',
-                'NEF' => 'NEFROLOGÍA',
-                'GY' => 'GINECOLOGÍA',
-                'I' => 'INFECTOLOGÍA',
-                'O' => 'ONCOLOGÍA',
-                'PH' => 'FONOAUDIOLOGIA',
-                'ND' => 'NUTRICIÓN Y DIETÉTICA',
+                'MEDICINA GENERAL' => 'MEDICINA GENERAL',
+                'MEDICINA INTERNA' => 'MEDICINA INTERNA',
+                'CARDIOLOGÍA' => 'CARDIOLOGÍA',
+                'PEDIATRÍA Y NEONATOLOGÍA' => 'PEDIATRÍA Y NEONATOLOGÍA',
+                'GASTROENTEROLOGÍ' => 'GASTROENTEROLOGÍA',
+                'NEUROLOGÍA' => 'NEUROLOGÍA',
+                'NEFROLOGÍA' => 'NEFROLOGÍA',
+                'GINECOLOGÍA' => 'GINECOLOGÍA',
+                'INFECTOLOGÍA' => 'INFECTOLOGÍA',
+                'ONCOLOGÍA' => 'ONCOLOGÍA',
+                'FONOAUDIOLOGIA' => 'FONOAUDIOLOGIA',
+                'NUTRICIÓN Y DIETÉTICA' => 'NUTRICIÓN Y DIETÉTICA',
             ],
         ],
         'relative' => [
@@ -157,17 +142,6 @@ return [
             'type' => [
                 'ARL' => 'ADMINISTRADORA DE RIESGOS LABORALES',
                 'EPS' => 'ENTIDAD PROMOTORA DE SALUD',
-            ],
-        ],
-        'supplies' => [
-            'unit' => [
-                'DL' => 'DECILITRO',
-                'G' => 'GRAMO',
-                'KG' => 'KILOGRAMO',
-                'LT' => 'LITRO',
-                'MCG' => 'MICROGRAMO',
-                'MG' => 'MILIGRAMO',
-                'ML' => 'MILILITRO',
             ],
         ],
         'turns' => [
@@ -217,4 +191,5 @@ return [
             ],
         ],
     ],
+
 ];
