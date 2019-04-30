@@ -5,7 +5,11 @@
                 <div class="m-stack m-stack--ver m-stack--general">
                     <div class="m-stack__item m-stack__item--middle m-brand__logo">
                         <a href="{{ route('home') }}" class="m-brand__logo-wrapper">
-                            <img src="{{ asset('img/logo_default_dark.png') }}"  alt="Logo"/>
+                            @if(file_exists('img/logo_default.png'))
+                                <img src="{{ asset('img/logo_default.png') }}" alt="Logo"/>
+                            @else
+                                <h3>{{ config('app.name') }}</h3>
+                            @endif
                         </a>
                     </div>
                     <div class="m-stack__item m-stack__item--middle m-brand__tools">
