@@ -125,12 +125,15 @@
                     </div>
                 </div>
             @elseif($field['type'] == 'switch')
-                {{Form::checkbox($field['name'], 1, false, [
-                    'id' => $field['name'] . '_' . $suffix,
-                    'class' => 'switch',
-                    'data-switch' => 'true',
-                    'data-on-text' => 'Sí', 'data-off-text' => 'No',
-                ])}}
+                <div class="col-12">
+                    {{Form::checkbox($field['name'], 1, false, [
+                        'id' => $field['name'] . '_' . $suffix,
+                        'class' => 'switch',
+                        'data-switch' => 'true',
+                        'data-size' => 'small',
+                        'data-on-text' => 'Sí', 'data-off-text' => 'No',
+                    ])}}
+                </div>
             @elseif($field['type'] == 'text')
                 {{Form::text($field['name'], null, [
                     'id' => $field['name'] . '_' . $suffix,
