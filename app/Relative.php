@@ -38,10 +38,6 @@ class Relative extends Base
         ],
         'form' => [
             [
-                'type' => 'section',
-                'value' => 'app.sections.personal_information',
-            ],
-            [
                 'name' => 'document_type',
                 'type' => 'select',
                 'value' => 'app.selects.person.document_type',

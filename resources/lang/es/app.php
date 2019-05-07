@@ -64,7 +64,6 @@ return [
         'academic_information' => 'Información Académica',
         'contact_information' => 'Información de Contacto',
         'medical_information' => 'Información Médica',
-        'personal_information' => 'Información Personal',
     ],
 
     'selects' => [
