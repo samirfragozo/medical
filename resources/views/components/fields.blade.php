@@ -129,7 +129,6 @@
                     'id' => $field['name'] . '_' . $suffix,
                     'class' => 'switch',
                     'data-switch' => 'true',
-                    'data-size' => 'small',
                     'data-on-text' => 'Sí', 'data-off-text' => 'No',
                 ])}}
             @elseif($field['type'] == 'text')
