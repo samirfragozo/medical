@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Patients;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\RelativeRequest;
 use App\Patient;
-use App\relative;
+use App\Relative;
 use Illuminate\Http\Response;
 
 class RelativeController extends BaseController
