@@ -151,12 +151,16 @@ function resetForm(action = 'create', name) {
         formTitle.html(Lang.get('base/base.titles.show', {name: name})).attr('data-name', name);
     }
 
-    if (crud === '/professional/medical_appointments' && action === 'show') {
-        formButton.html('Atender').attr('data-action', action);
-    } else formButton.html(Lang.get('base/base.buttons.' + action)).attr('data-action', action);
+    formButton.html(Lang.get('base/base.buttons.' + action)).attr('data-action', action);
     $('span[name=form-error]').remove();
     $('#validations').addClass('m--hide');
     form.find('select').selectpicker('refresh');
+
+    if (crud === '/professional/medical_appointments' && action === 'show') {
+        formButton.html('Atender').attr('data-action', action);
+    } else if (crud === '/patients' && action === 'show') {
+        formButton.addClass("m--hide");
+    }
 }
 
 function showMessage(message, error = false) {
