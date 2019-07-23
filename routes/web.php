@@ -57,7 +57,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         });
 
         // Patients
-        Route::resource('patients', 'PatientController', ['except' => ['create', 'destroy', 'edit']]);
+        Route::resource('patients', 'PatientController', ['except' => ['create', 'update', 'destroy', 'edit']]);
 
         // Patients - Medical appointments
         Route::resource('patients/{patient}/medical_appointments', 'Patients\MedicalAppointmentController', [

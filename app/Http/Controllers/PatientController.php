@@ -29,20 +29,4 @@ class PatientController extends BaseController
     {
         return parent::storeBase($request);
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param PatientRequest $request
-     * @param int $id
-     * @return Response
-     */
-    public function update(PatientRequest $request, int $id)
-    {
-        $request['allergies'] = isset($request['allergies']) ? 1 : 0;
-        $request['medication_allergies'] = isset($request['medication_allergies']) ? 1 : 0;
-        $request['medicines'] = isset($request['medicines']) ? 1 : 0;
-
-        return parent::updateBase($request, $id);
-    }
 }
