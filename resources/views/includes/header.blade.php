@@ -39,6 +39,18 @@
                 <div id="m_header_topbar" class="m-topbar m-stack m-stack--ver m-stack--general m-stack--fluid">
                     <div class="m-stack__item m-topbar__nav-wrapper">
                         <ul class="m-topbar__nav m-nav m-nav--inline">
+                            <li class="m-nav__item">
+                                <div class="m-subheader" style="margin-top: -15px">
+                                    <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                       class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+                                        {{ __('base.buttons.logout') }}
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
                             <li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" m-dropdown-toggle="click">
                                 <a href="#" class="m-nav__link m-dropdown__toggle">
                                     <span class="m-topbar__userpic">
@@ -67,12 +79,10 @@
                                         <div class="m-dropdown__body">
                                             <div class="m-dropdown__content">
                                                 <ul class="m-nav m-nav--skin-light">
-                                                    <li class="m-nav__separator m-nav__separator--fit">
-                                                    </li>
+                                                    <li class="m-nav__separator m-nav__separator--fit"></li>
                                                     <li class="m-nav__item">
                                                         <a href="{{ route('logout') }}"
-                                                           onclick="event.preventDefault();
-                                                                        document.getElementById('logout-form').submit();"
+                                                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                                                            class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
                                                             {{ __('base.buttons.logout') }}
                                                         </a>
