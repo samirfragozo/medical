@@ -40,18 +40,6 @@ class MedicalAppointmentController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param MedicalAppointmentRequest $request
-     * @param int $id
-     * @return Response
-     */
-    public function update(MedicalAppointmentRequest $request, int $id)
-    {
-        return parent::updateBase($request,$id);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
      * @param Request $request
      * @return Response
      */

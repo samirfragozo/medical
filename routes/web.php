@@ -25,7 +25,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Admin
     Route::middleware(['role:admin'])->group(function () {
         // Medical appointments
-        Route::resource('medical_appointments', 'MedicalAppointmentController', ['except' => ['create', 'destroy', 'edit']]);
+        Route::resource('medical_appointments', 'MedicalAppointmentController', ['except' => ['create', 'update', 'destroy', 'edit']]);
         Route::put('medical_appointments', 'MedicalAppointmentController@statusUpdate');
 
         // Nurses
