@@ -80,7 +80,7 @@ class MedicalAppointmentController extends BaseController
 
         if ($medical_appointment->state !== 'CANCELADA') {
             $request->validate([
-                'diagnosis' => 'required|alpha_num|max:500',
+                'diagnosis' => 'required|max:500',
             ]);
             $medical_appointment->diagnosis = $request->input('diagnosis');
             $medical_appointment->state = 'ATENDIDA';
